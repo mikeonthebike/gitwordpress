@@ -1004,8 +1004,8 @@ function nocache_headers() {
 
 	// In PHP 5.3+, make sure we are not sending a Last-Modified header.
 	if ( function_exists( 'header_remove' ) ) {
-		@header_remove( 'Last-Modified' );
 	} else {
+		@header_remove( 'Last-Modified' );
 		// In PHP 5.2, send an empty Last-Modified header, but only as a
 		// last resort to override a header already sent. #WP23021
 		foreach ( headers_list() as $header ) {
