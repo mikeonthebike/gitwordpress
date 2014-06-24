@@ -1,11 +1,15 @@
 <!Doctype html>
 <html>
 <head>
- <title>Tutorial theme</title>
- <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
+<title>Mike's Portfolio</title>
+<link href='http://fonts.googleapis.com/css?family=Changa+One' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
 </head>
 <body>
-<div id="wrapper">
-<div id="header">
- <h1>HEADER</h1>
-</div>
+	<div id="wrapper">
+		<div id="header">
+			<h1>
+				<span class="headertext"> PORTFOLIO </span>
+			</h1>
+		</div>

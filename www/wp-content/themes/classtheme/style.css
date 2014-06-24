@@ -4,26 +4,51 @@ body {
 	text-align: center;
 }
 
+.headertext{
+	font-family: 'Changa+One', cursive;
+	font-size: 1em;
+	font-weight: normal;
+}
+
 #wrapper {
 	display: block;
 	border: 1px #a2a2a2 solid;
-	width: 90%;
+	border-radius: .5em;
+	width: 85%;
 	margin: 0px auto;
 }
 
 #header {
 	border: 2px #a2a2a2 solid;
+	border-top-right-radius: .5em;
+	border-top-left-radius: .5em;
+	background: -moz-linear-gradient(left, #668566, white); /* For firefox */
+	background: -webkit-linear-gradient(left, #668566, white); /* For Safari 5.1 to 6.0 */
+	 background: -o-linear-gradient(left, #668566, white); /* For Opera 11.1 to 12.0 */
+	text-align: left;
+	text-colour: white;
+	padding-left: .5em;
+	margin: .25em;
 }
 
 #content {
-	width: 75%;
+	width: 65%;
+	height: 250px;;
 	border: 2px #a2a2a2 solid;
+	border-radius: .5em;
+	margin: .25em;
+	text-align: left;
+	padding-left: .5em;
 	float: left;
 }
 
 #sidebar {
-	width: 23%;
+	width: 25%;
 	border: 2px #a2a2a2 solid;
+	border-radius: .5em;
+	margin: .25em;
+	text-align: left;
+	padding-left: .5em;
 	float: right;
 }
 
@@ -33,6 +58,10 @@ body {
 
 #footer {
 	border: 2px #a2a2a2 solid;
+	border-bottom-right-radius: .5em;
+	border-bottom-left-radius: .5em;
+	margin: .25em;
+	background-color: #E6EBE6
 }
 
 .title {
