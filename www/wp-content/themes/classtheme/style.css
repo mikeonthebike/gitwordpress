@@ -5,9 +5,10 @@ body {
 }
 
 .headertext{
-	font-family: 'Changa+One', cursive;
+	font-family: 'Lobster', cursive;
 	font-size: 1em;
 	font-weight: normal;
+	
 }
 
 #wrapper {
@@ -24,7 +25,7 @@ body {
 	border-top-left-radius: .5em;
 	background: -moz-linear-gradient(left, #668566, white); /* For firefox */
 	background: -webkit-linear-gradient(left, #668566, white); /* For Safari 5.1 to 6.0 */
-	 background: -o-linear-gradient(left, #668566, white); /* For Opera 11.1 to 12.0 */
+	background: -o-linear-gradient(left, #668566, white); /* For Opera 11.1 to 12.0 */
 	text-align: left;
 	text-colour: white;
 	padding-left: .5em;
