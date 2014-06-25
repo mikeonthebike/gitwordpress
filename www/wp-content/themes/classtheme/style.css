@@ -8,12 +8,12 @@ body {
 	font-family: 'Lobster', cursive;
 	font-size: 1em;
 	font-weight: normal;
-	
+	color: white;
 }
 
 #wrapper {
 	display: block;
-	border: 1px #a2a2a2 solid;
+	border: 1.5px white solid;
 	border-radius: .5em;
 	width: 85%;
 	margin: 0px auto;
