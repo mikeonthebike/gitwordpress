@@ -4,7 +4,7 @@
 <title>Mike's Portfolio</title>
 <link rel="stylesheet" href= "<?php echo get_template_directory_uri()?>/css/lavish-bootstrap.css"/>
 <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
-<link href='//fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 </head>
 <body>
 	<div id="wrapper">
