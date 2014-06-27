@@ -5,10 +5,10 @@ body {
 }
 
 .headertext{
-	font-family: 'Lobster', cursive;
-	font-size: 1em;
+	font-family: 'Changa One', cursive;
+	font-size: .333em;
 	font-weight: normal;
-	color: white;
+	color: white,50%;
 }
 
 #wrapper {
