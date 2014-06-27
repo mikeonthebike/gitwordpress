@@ -5,10 +5,10 @@ body {
 }
 
 .headertext{
-	font-family: 'UnifrakturMaguntia', cursive;
-	font-size: .5em;
+	font-family: 'Changa One', cursive;
+	font-size: .333em;
 	font-weight: normal;
-	color: white;
+	color: white,50%;
 }
 
 #wrapper {
