@@ -13,6 +13,7 @@ body {
 
 #header {
 	border: 2px #a2a2a2 solid;
+	box-shadow: 10px 10px 5px #888888;
 }
 
 #content {
@@ -34,6 +35,8 @@ body {
 
 #footer {
 	border: 2px #a2a2a2 solid;
+	border-bottom-color:#ff0000;
+	box-shadow: 10px 10px 5px #888888;
 }
 
 .title {

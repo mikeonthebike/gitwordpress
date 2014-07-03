@@ -10,7 +10,7 @@
 	<div id="wrapper">
 		<div id="header">
 			<h1>
-				<span class="headertext"> Portfolio • Web Design & Development </span>
+				<span class="headertext"> Portfolio | Web Design & Development </span>
 			</h1>
 			
 
