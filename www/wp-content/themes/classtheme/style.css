@@ -4,11 +4,14 @@ body {
 	text-align: center;
 }
 
-.headertext{
+.headertext {
 	font-family: 'Changa One', cursive;
-	font-size: .333em;
+	font-size: .9em;
 	font-weight: normal;
-	color: white,50%;
+	/* color: white; */
+	background: -webkit-linear-gradient(#eee, #333);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 #wrapper {
@@ -16,7 +19,7 @@ body {
 	border: 1.5px white solid;
 	border-radius: .5em;
 	width: 85%;
-	hieght: 85%;
+	height: 100%;
 	margin: 0px auto;
 	box-shadow: 10px 10px 5px #888888;
 }
@@ -36,7 +39,7 @@ body {
 
 #content {
 	width: 65%;
-	height: 250px;;
+	height: 100%;
 	border: 2px #a2a2a2 solid;
 	border-radius: .5em;
 	margin: .25em;
