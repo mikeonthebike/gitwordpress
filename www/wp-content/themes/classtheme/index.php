@@ -1,4 +1,10 @@
-<?php get_header(); ?>
+<?php
+/*
+ Template Name: Page Template
+*/
+GitWordPressLayout::$Viewbag['sTitle'] = "Mike Blog";
+GitWordPressLayout::layout("_layout.php");
+?>
 <div id="main">
 	<div id="content">
 		<h1>Main Area</h1>

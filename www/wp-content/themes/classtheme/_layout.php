@@ -2,8 +2,7 @@
 <html>
 <head>
 <title><?php echo GitWordPressLayout::$Viewbag['sTitle'] ?></title>
-<link rel="stylesheet" type="text/css"
-	href="//fonts.googleapis.com/css?family=Tangerine" />
+<link href='http://fonts.googleapis.com/css?family=Changa+One' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
 <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" />
 </head>
@@ -11,6 +10,10 @@
 	<div id="wrapper"
 		class="<?php echo GitWordPressLayout::$Viewbag['sPage'] ?>">
 		<div id="header">
+		<h1>
+				<span class="headertext"> Mike Teglas | Portfolio | Web Design & Development </span>
+			</h1>
+			
 			<div id="access" role="navigation">
 				<nav class="navbar navbar-default" role="navigation">
 					<div class="container-fluid">
