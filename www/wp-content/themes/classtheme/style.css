@@ -9,7 +9,7 @@ body {
 	font-size: .9em;
 	font-weight: normal;
 	/* color: white; */
-	background: -webkit-linear-gradient(#eee, #333);
+	background: -webkit-linear-gradient(#1A1A0F, #FFFFB8);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
