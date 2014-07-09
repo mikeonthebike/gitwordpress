@@ -12,6 +12,7 @@ function adventurous_primary_menu() { ?>
                 <div class="assistive-text skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'adventurous' ); ?>"><?php _e( 'Skip to content', 'adventurous' ); ?></a></div>
                 <?php if ( has_nav_menu( 'primary' ) ) {
 					$adventurous_primary_menu_args = array(
+						'menu'              => 'primary',
 						'theme_location'    => 'primary',
 						'container_class' 	=> 'menu-header-container', 
 						'items_wrap'        => '<ul class="menu">%3$s</ul>' 
