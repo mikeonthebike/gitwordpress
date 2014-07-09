@@ -1,0 +1,1961 @@
+# Copyright (C) 2012 the Catch Themes Team
+# This file is distributed under the  GNU General Public License.
+msgid ""
+msgstr ""
+"Project-Id-Version: Adventurous\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-07-07 02:53+0545\n"
+"PO-Revision-Date: 2014-07-07 02:53+0545\n"
+"Last-Translator: Sakin Shrestha <info@catchthemes.com>\n"
+"Language-Team: Dinnye <pdinnye@gmail.com>\n"
+"Language: hu_HU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;esc_attr_e;esc_attr__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../404.php:17
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Hoppá! Az oldal nem található."
+
+#: ../404.php:21
+msgid ""
+"It looks like nothing was found at this location. Maybe try one of the links "
+"below or a search?"
+msgstr ""
+"Úgy néz ki, semmit sem található ezen a helyen. Próbálja meg az alábbi "
+"linket, vagy használja a keresést?"
+
+#: ../404.php:28
+msgid "Most Used Categories"
+msgstr "Leggyakrabban használt kategóriák"
+
+#: ../404.php:36
+#, php-format
+msgid "Try looking in the monthly archives. %1$s"
+msgstr "Próbálja megnézni a havi archívumban.  %1$s"
+
+#: ../archive.php:23
+#, php-format
+msgid "Category Archives: %s"
+msgstr "Kategória archívum : %s"
+
+#: ../archive.php:26
+#, php-format
+msgid "Tag Archives: %s"
+msgstr "Archívum címkék: %s"
+
+#: ../archive.php:33
+#, php-format
+msgid "Author Archives: %s"
+msgstr "Szerző archívum : %s"
+
+#: ../archive.php:41
+#, php-format
+msgid "Daily Archives: %s"
+msgstr "Napi archívum : %s"
+
+#: ../archive.php:44
+#, php-format
+msgid "Monthly Archives: %s"
+msgstr "Havi archívum : %s"
+
+#: ../archive.php:47
+#, php-format
+msgid "Yearly Archives: %s"
+msgstr "Éves archívum : %s"
+
+#: ../archive.php:50 ../sidebar.php:72
+msgid "Archives"
+msgstr "Archívum"
+
+#: ../comments.php:33
+#, php-format
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "Egy gondolat a &ldquo;%2$s&rdquo;"
+msgstr[1] "%1$s gondolat &ldquo;%2$s&rdquo;"
+
+#: ../comments.php:40 ../comments.php:60
+msgid "Comment navigation"
+msgstr "Hozzászólás navigáció"
+
+#: ../comments.php:41 ../comments.php:61
+msgid "&larr; Older Comments"
+msgstr "&larr; Régebbi Hozzászólások"
+
+#: ../comments.php:42 ../comments.php:62
+msgid "Newer Comments &rarr;"
+msgstr "Újabb Hozzászólások&rarr;"
+
+#: ../comments.php:72
+msgid "Comments are closed."
+msgstr "Hozzászólások lezárva."
+
+#: ../content-aside.php:21 ../content-audio.php:21 ../content-chat.php:22
+#: ../content-gallery.php:25 ../content-gallery.php:42
+#: ../content-gallery.php:43 ../content-image.php:23 ../content-page.php:18
+#: ../content-single.php:18 ../content-video.php:24 ../content.php:32
+#: ../inc/adventurous-functions.php:183
+#, php-format
+msgid "Permalink to %s"
+msgstr "Elérési útvonal %s"
+
+#: ../content-aside.php:27 ../content-audio.php:33 ../content-chat.php:34
+#: ../content-gallery.php:49 ../content-image.php:35 ../content-link.php:30
+#: ../content-page.php:24 ../content-quote.php:26 ../content-single.php:29
+#: ../content-status.php:34 ../content-video.php:36 ../content.php:52
+#: ../image.php:101
+msgid "Pages:"
+msgstr "Oldal:"
+
+#: ../content-aside.php:40 ../content-audio.php:46 ../content-chat.php:47
+#: ../content-gallery.php:63 ../content-image.php:48 ../content-link.php:42
+#: ../content-quote.php:38 ../content-single.php:46 ../content-status.php:46
+#: ../content-video.php:49 ../content.php:66
+msgid "Leave a reply"
+msgstr "Szólj hozzá"
+
+#: ../content-aside.php:40 ../content-audio.php:46 ../content-chat.php:47
+#: ../content-gallery.php:63 ../content-image.php:48 ../content-link.php:42
+#: ../content-quote.php:38 ../content-single.php:46 ../content-status.php:46
+#: ../content-video.php:49 ../content.php:66
+msgid "1 Reply"
+msgstr "1 Válasz"
+
+#: ../content-aside.php:40 ../content-audio.php:46 ../content-chat.php:47
+#: ../content-gallery.php:63 ../content-image.php:48 ../content-link.php:42
+#: ../content-quote.php:38 ../content-status.php:46 ../content-video.php:49
+msgid "% Replies;"
+msgstr "% Válaszok;"
+
+#: ../content-aside.php:42 ../content-audio.php:48 ../content-chat.php:49
+#: ../content-gallery.php:65 ../content-image.php:50 ../content-link.php:44
+#: ../content-page.php:33 ../content-quote.php:40 ../content-single.php:49
+#: ../content-status.php:48 ../content-video.php:51 ../content.php:69
+#: ../image.php:47 ../image.php:120 ../inc/adventurous-template-tags.php:190
+msgid "Edit"
+msgstr "Szerkesztés"
+
+#: ../content-audio.php:22
+msgid "All Audio Posts"
+msgstr "Minden audio bejegyzés"
+
+#: ../content-audio.php:22
+msgid "Audio"
+msgstr "Audio"
+
+#: ../content-chat.php:23
+msgid "All Chat Posts"
+msgstr "Minden beszélgetés bejegyzés"
+
+#: ../content-chat.php:23
+msgid "Chat"
+msgstr "Beszélgetés"
+
+#: ../content-gallery.php:26
+msgid "All Gallery Posts"
+msgstr "Minden galéria bejegyzés"
+
+#: ../content-gallery.php:26
+msgid "Gallery"
+msgstr "Képtár"
+
+#: ../content-gallery.php:43
+#, php-format
+msgid "This gallery contains <a %1$s>%2$s photo</a>."
+msgid_plural "This gallery contains <a %1$s>%2$s photos</a>."
+msgstr[0] "Ez a képtár <a %1$s>%2$s képet</a> tartalmaz."
+msgstr[1] "Ez a képtár <a %1$s>%2$s képet</a> tartalmaz."
+
+#: ../content-image.php:24
+msgid "All Image Posts"
+msgstr "Minden kép bejegyzés"
+
+#: ../content-image.php:24 ../inc/panel/adventurous-theme-options.php:826
+msgid "Image"
+msgstr "Kép"
+
+#: ../content-link.php:24
+msgid "All Link Posts"
+msgstr "Minden link bejegyzés"
+
+#: ../content-link.php:24
+msgid "Link"
+msgstr "Hivatkozás"
+
+#: ../content-single.php:46 ../content.php:66
+msgid "% Replies"
+msgstr "% Válaszok"
+
+#: ../content-single.php:62 ../content.php:76
+#, php-format
+msgid "About %s"
+msgstr "Erről %s"
+
+#: ../content-single.php:66 ../content.php:80
+#, php-format
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+"Összes %s által írt bejegyzés megjelenítése <span class=\"meta-nav\">&rarr;</"
+"span>"
+
+#: ../content-status.php:28
+msgid "All Status Posts"
+msgstr "Minden állapot bejegyzés"
+
+#: ../content-status.php:28
+msgid "Status"
+msgstr "Állapot"
+
+#: ../content-video.php:25
+msgid "All Video Posts"
+msgstr "Minden Video bejegyzés"
+
+#: ../content-video.php:25
+msgid "Video"
+msgstr "Video"
+
+#: ../content.php:24
+msgid "Featured post"
+msgstr "Kiemelt bejegyzés"
+
+#: ../functions.php:104
+msgid "Header Right Menu"
+msgstr "Fejléc jobb menü"
+
+#: ../functions.php:105
+msgid "Header Secondary Menu"
+msgstr "Fejléc másodlagos menü"
+
+#: ../image.php:37
+#, php-format
+msgid ""
+"Published <span class=\"entry-date\"><time class=\"entry-date\" datetime="
+"\"%1$s\" pubdate>%2$s</time></span> at <a href=\"%3$s\" title=\"Link to full-"
+"size image\">%4$s &times; %5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s"
+"\" rel=\"gallery\">%7$s</a>"
+msgstr ""
+"Közzétette <span class=\"entry-date\"><time class=\"entry-date\" datetime="
+"\"%1$s\" pubdate>%2$s</time></span> at <a href=\"%3$s\" title=\"Link a "
+"teljes méretű képhez\">%4$s &times; %5$s</a> in <a href=\"%6$s\" title="
+"\"Vissza %7$s\" rel=\"gallery\">%7$s</a>"
+
+#: ../image.php:51
+msgid "&larr; Previous"
+msgstr "&larr; Előző"
+
+#: ../image.php:52
+msgid "Next &rarr;"
+msgstr "Következő &rarr;"
+
+#: ../image.php:112
+#, php-format
+msgid ""
+"<a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">Post a "
+"comment</a> or leave a trackback: <a class=\"trackback-link\" href=\"%s\" "
+"title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+msgstr ""
+"<a class=\"comment-link\" href=\"#respond\" title=\"Hozzászólás beküldése"
+"\">Hozzászólás beküldése</a> vagy használj a hivatkozott bejegyzést: <a "
+"class=\"trackback-link\" href=\"%s\" title=\"Hivatkozott bejegyzések URL a "
+"bejegyzésben\" rel=\"trackback\">Hivatkozott bejegyzése URL</a>."
+
+#: ../image.php:114
+#, php-format
+msgid ""
+"Comments are closed, but you can leave a trackback: <a class=\"trackback-link"
+"\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback"
+"\">Trackback URL</a>."
+msgstr ""
+"A hozzászólás tiltva van, de tudod használni a hivatkozott bejegyzéseket: <a "
+"class=\"trackback-link\" href=\"%s\" title=\">Hivatkozott bejegyzések URL a "
+"bejegyzésben\" rel=\"trackback\">Hivatkozott bejegyzések URL</a>."
+
+#: ../image.php:116
+msgid ""
+"Trackbacks are closed, but you can <a class=\"comment-link\" href=\"#respond"
+"\" title=\"Post a comment\">post a comment</a>."
+msgstr ""
+"Hivatkozott bejegyzések zárva vannak, de tudod használni a <a class="
+"\"comment-link\" href=\"#respond\" title=\"Hozzászólás beküldése"
+"\">Hozzászólás beküldése</a>."
+
+#: ../image.php:118
+msgid "Both comments and trackbacks are currently closed."
+msgstr "Minden hozzászólás és hivatkozott bejegyzés jelenleg zárva."
+
+#: ../inc/adventurous-custom-header.php:45
+msgid "Highway"
+msgstr "Országút"
+
+#: ../inc/adventurous-custom-header.php:51
+msgid "Buddha"
+msgstr "Buddha"
+
+#: ../inc/adventurous-functions.php:257
+#, php-format
+msgid "Page %s"
+msgstr "%s Oldal"
+
+#: ../inc/adventurous-functions.php:741
+#, php-format
+msgid "%s on Facebook"
+msgstr "%s a Facebook-on"
+
+#: ../inc/adventurous-functions.php:746
+#, php-format
+msgid "%s on Twitter"
+msgstr "%s a Twitter-en"
+
+#: ../inc/adventurous-functions.php:751
+#, php-format
+msgid "%s on Google+"
+msgstr "%s a Google+-on"
+
+#: ../inc/adventurous-functions.php:756
+#, php-format
+msgid "%s on Linkedin"
+msgstr "%s a Linkedin-en"
+
+#: ../inc/adventurous-functions.php:761
+#, php-format
+msgid "%s on Pinterest"
+msgstr "%s a Pinterest-en"
+
+#: ../inc/adventurous-functions.php:766
+#, php-format
+msgid "%s on YouTube"
+msgstr "%s a YouTube-on"
+
+#: ../inc/adventurous-functions.php:771
+#, php-format
+msgid "%s on Vimeo"
+msgstr "%s a Vimeo-on"
+
+#: ../inc/adventurous-functions.php:776
+#, php-format
+msgid "%s on Slideshare"
+msgstr "%s a Slideshare-en"
+
+#: ../inc/adventurous-functions.php:781
+#, php-format
+msgid "%s on Foursquare"
+msgstr "%s a Foursquare-on"
+
+#: ../inc/adventurous-functions.php:786
+#, php-format
+msgid "%s on Flickr"
+msgstr "%s a Flickr-en"
+
+#: ../inc/adventurous-functions.php:791
+#, php-format
+msgid "%s on Tumblr"
+msgstr "%s a Tumblr-en"
+
+#: ../inc/adventurous-functions.php:796
+#, php-format
+msgid "%s on deviantART"
+msgstr "%s a deviantART-on"
+
+#: ../inc/adventurous-functions.php:801
+#, php-format
+msgid "%s on Dribbble"
+msgstr "%s a Dribbble-en"
+
+#: ../inc/adventurous-functions.php:806
+#, php-format
+msgid "%s on MySpace"
+msgstr "%s a MySpace-en"
+
+#: ../inc/adventurous-functions.php:811
+#, php-format
+msgid "%s on WordPress"
+msgstr "%s a WordPress-en"
+
+#: ../inc/adventurous-functions.php:816
+#, php-format
+msgid "%s on RSS"
+msgstr "%s a RSS-en"
+
+#: ../inc/adventurous-functions.php:821
+#, php-format
+msgid "%s on Delicious"
+msgstr "%s a Delicious-on"
+
+#: ../inc/adventurous-functions.php:826
+#, php-format
+msgid "%s on Last.fm"
+msgstr "%s a Last.fm-en"
+
+#: ../inc/adventurous-functions.php:831
+#, php-format
+msgid "%s on Instagram"
+msgstr "%s az Instagram-on"
+
+#: ../inc/adventurous-functions.php:836
+#, php-format
+msgid "%s on GitHub"
+msgstr "%s a GitHub-on"
+
+#: ../inc/adventurous-functions.php:841
+#, php-format
+msgid "%s on Vkontakte"
+msgstr "%s a Vkontakte-on"
+
+#: ../inc/adventurous-functions.php:846
+#, php-format
+msgid "%s on My World"
+msgstr "%s a My World-ön"
+
+#: ../inc/adventurous-functions.php:851
+#, php-format
+msgid "%s on Odnoklassniki"
+msgstr "%s a Odnoklassniki-in"
+
+#: ../inc/adventurous-functions.php:856
+#, php-format
+msgid "%s on Goodreads"
+msgstr "%s a Goodreads-en"
+
+#: ../inc/adventurous-functions.php:861
+#, php-format
+msgid "%s on Skype"
+msgstr "%s a Skype-on"
+
+#: ../inc/adventurous-functions.php:866
+#, php-format
+msgid "%s on Soundcloud"
+msgstr "%s a Soundcloud-on"
+
+#: ../inc/adventurous-functions.php:888
+msgid "ID"
+msgstr "ID"
+
+#: ../inc/adventurous-menus.php:11
+msgid "Primary Menu"
+msgstr "Elsődleges Menü"
+
+#: ../inc/adventurous-menus.php:12
+msgid "Skip to content"
+msgstr "Tovább a tartalomra"
+
+#: ../inc/adventurous-menus.php:45
+msgid "Secondary Menu"
+msgstr "Másodlagos Menü"
+
+#: ../inc/adventurous-metabox.php:14
+#: ../inc/panel/adventurous-theme-options.php:1750
+msgid "Adventurous"
+msgstr "Adventurous"
+
+#: ../inc/adventurous-metabox.php:20
+msgid "Adventurous Options"
+msgstr "Adventurous beállítások"
+
+#: ../inc/adventurous-metabox.php:34
+msgid "Default"
+msgstr "Alapértelmezett"
+
+#: ../inc/adventurous-metabox.php:39
+msgid "Enable"
+msgstr "Engedélyezés"
+
+#: ../inc/adventurous-metabox.php:44
+#: ../inc/panel/adventurous-theme-options.php:337
+#: ../inc/panel/adventurous-theme-options.php:480
+#: ../inc/panel/adventurous-theme-options.php:762
+#: ../inc/panel/adventurous-theme-options.php:918
+msgid "Disable"
+msgstr "Letiltás"
+
+#: ../inc/adventurous-metabox.php:55 ../inc/adventurous-metabox.php:86
+msgid "Default Layout Set in"
+msgstr "Alapértelmezett elrendezés beállítása"
+
+#: ../inc/adventurous-metabox.php:55 ../inc/adventurous-metabox.php:86
+#: ../inc/panel/adventurous-theme-options.php:41
+#: ../inc/panel/adventurous-theme-options.php:42
+#: ../inc/panel/adventurous-theme-options.php:116
+msgid "Theme Options"
+msgstr "Téma Beállítások"
+
+#: ../inc/adventurous-metabox.php:61
+msgid "Right sidebar"
+msgstr "Jobb oldalsáv"
+
+#: ../inc/adventurous-metabox.php:67
+msgid "Left sidebar"
+msgstr "Ball oldalsáv"
+
+#: ../inc/adventurous-metabox.php:73
+msgid "No sidebar"
+msgstr "Nincs oldalsáv"
+
+#: ../inc/adventurous-metabox.php:91
+#: ../inc/panel/adventurous-theme-options.php:355
+#: ../inc/panel/adventurous-theme-options.php:438
+msgid "Featured Image"
+msgstr "Kiemelt kép"
+
+#: ../inc/adventurous-metabox.php:96
+#: ../inc/panel/adventurous-theme-options.php:347
+#: ../inc/panel/adventurous-theme-options.php:442
+msgid "Full Image"
+msgstr "Teljes méretű kép"
+
+#: ../inc/adventurous-metabox.php:101
+#: ../inc/panel/adventurous-theme-options.php:351
+#: ../inc/panel/adventurous-theme-options.php:446
+msgid "Slider Image"
+msgstr "Csúszka kép"
+
+#: ../inc/adventurous-metabox.php:106
+#: ../inc/panel/adventurous-theme-options.php:450
+msgid "Disable Image"
+msgstr "Kép tiltása"
+
+#: ../inc/adventurous-metabox.php:123
+msgid "Sidebar Layout"
+msgstr "Oldalsáv elrendezés"
+
+#: ../inc/adventurous-metabox.php:153
+#: ../inc/panel/adventurous-theme-options.php:303
+msgid "Header Featured Image Options"
+msgstr "Fejléc Kiemelt Kép beállításai"
+
+#: ../inc/adventurous-metabox.php:181
+#: ../inc/panel/adventurous-theme-options.php:430
+msgid "Content Featured Image Options"
+msgstr "Tartalom Kiemelt Kép beállításai"
+
+#: ../inc/adventurous-slider.php:240
+msgid ""
+"You have selected Post Slider but you haven't added the Post ID in "
+"\"Appearance => Theme Options => Featured Slider => Featured Post Slider "
+"Options\""
+msgstr ""
+"Bejegyzés csúszkát választottál, de nem adtál meg bejegyzés IDt a "
+"\"Megjelenés => Téma Beállítások  => Kiemelt csúszka => Kiemelt bejegyzés "
+"csúszka beállítások\" oldalon"
+
+#: ../inc/adventurous-slider.php:248
+msgid ""
+"You have selected Category Slider but you haven't selected any categories in "
+"\"Appearance => Theme Options => Featured Slider => Featured Category Slider "
+"Options\""
+msgstr ""
+"Kategória csúszkát választottál, de nem adtál meg kategóriát a \"Megjelenés "
+"=> Téma Beállítások => Kiemelt csúszka => Kiemelt kategória csúszka "
+"beállítások\" oldalon"
+
+#: ../inc/adventurous-template-tags.php:51
+#: ../inc/adventurous-template-tags.php:109
+msgid "Post navigation"
+msgstr "Hozzászólás navigáció"
+
+#: ../inc/adventurous-template-tags.php:55
+#: ../inc/adventurous-template-tags.php:113
+msgctxt "Previous post link"
+msgid "&larr;"
+msgstr "&larr; [ Előző bejegyzés ]"
+
+#: ../inc/adventurous-template-tags.php:56
+#: ../inc/adventurous-template-tags.php:114
+msgctxt "Next post link"
+msgid "&rarr;"
+msgstr "[Következő bejegyzés ] &rarr;"
+
+#: ../inc/adventurous-template-tags.php:65
+#: ../inc/adventurous-template-tags.php:123
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> Régebbi hozzászólások"
+
+#: ../inc/adventurous-template-tags.php:69
+#: ../inc/adventurous-template-tags.php:127
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Újabb hozzászólások <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../inc/adventurous-template-tags.php:158
+msgid "Pingback:"
+msgstr "Pingback:"
+
+#: ../inc/adventurous-template-tags.php:158
+msgid "(Edit)"
+msgstr "(Szerkesztés)"
+
+#: ../inc/adventurous-template-tags.php:173
+msgid "Post author"
+msgstr "Bejegyzés szerzője"
+
+#: ../inc/adventurous-template-tags.php:179
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s ekkor %2$s"
+
+#: ../inc/adventurous-template-tags.php:185
+msgid "Your comment is awaiting moderation."
+msgstr "A hozzászólása moderálásra vár."
+
+#: ../inc/adventurous-template-tags.php:194
+msgid "Reply"
+msgstr "Válasz"
+
+#: ../inc/adventurous-template-tags.php:223
+#: ../inc/adventurous-template-tags.php:296
+#, php-format
+msgid "View all posts by %s"
+msgstr "Összes bejegyzés megjelenítése %s-től"
+
+#: ../inc/adventurous-template-tags.php:228
+#, php-format
+msgid ""
+"<span class=\"on-date\">Posted on %1$s</span><span class=\"by-author\"> by "
+"%2$s</span>"
+msgstr ""
+"<span class=\"on-date\">Bejegyzés időpontja: %1$s</span><span class=\"by-"
+"author\"> Szerző: %2$s</span>"
+
+#: ../inc/adventurous-template-tags.php:250
+#: ../inc/adventurous-template-tags.php:253
+#: ../inc/adventurous-template-tags.php:282
+#: ../inc/adventurous-template-tags.php:285
+msgid ", "
+msgstr ", "
+
+#: ../inc/adventurous-template-tags.php:258
+#, php-format
+msgid ""
+"<span class=\"in-category\">Posted in %1$s</span><span class=\"sep\"> | </"
+"span><span class=\"in-tag\">Tagged %2$s</span>"
+msgstr ""
+"<span class=\"in-category\">Kategória: %1$s</span><span class=\"sep\"> | </"
+"span><span class=\"in-tag\">Címkék: %2$s</span>"
+
+#: ../inc/adventurous-template-tags.php:260
+#, php-format
+msgid "<span class=\"in-category\">Posted in %1$s</span>"
+msgstr "<span class=\"in-category\">Kategória: %1$s</span>"
+
+#: ../inc/adventurous-template-tags.php:302
+#, php-format
+msgid ""
+"<span class=\"on-date\">Posted on %3$s</span><span class=\"in-category\"> "
+"under %1$s</span><span class=\"sep\"> | </span><span class=\"in-tag\">Tagged "
+"%2$s</span><span class=\"sep\"> | </span><span class=\"by-author\"> By %4$s</"
+"span>"
+msgstr ""
+"<span class=\"on-date\">Bejegyzés időpontja: %3$s</span><span class=\"in-"
+"category\"> Kategória: %1$s</span><span class=\"sep\"> | </span><span class="
+"\"in-tag\">Címkék:  %2$s</span><span class=\"sep\"> | </span><span class="
+"\"by-author\"> Szerző: %4$s</span>"
+
+#: ../inc/adventurous-template-tags.php:304
+#, php-format
+msgid ""
+"<span class=\"on-date\">Posted on %3$s</span><span class=\"in-category\"> "
+"under in %1$s</span><span class=\"sep\"> | </span><span class=\"by-author\"> "
+"By %4$s</span>."
+msgstr ""
+"<span class=\"on-date\">Bejegyzés időpontja: %3$s</span><span class=\"in-"
+"category\"> Kategória: %1$s</span><span class=\"sep\"> | </span><span class="
+"\"by-author\"> Szerző: %4$s</span>."
+
+#: ../inc/adventurous-template-tags.php:306
+#, php-format
+msgid ""
+"<span class=\"on-date\">Posted on %3$s</span><span class=\"sep\"> | </"
+"span><span class=\"by-author\"> By %4$s</span>."
+msgstr ""
+"<span class=\"on-date\">Bejegyzés időpontja: %3$s</span><span class=\"sep\"> "
+"| </span><span class=\"by-author\"> Szerző: %4$s</span>."
+
+#: ../inc/adventurous-widgets.php:14
+msgid "Main Sidebar"
+msgstr "Fő oldalsáv"
+
+#: ../inc/adventurous-widgets.php:16
+msgid "Shows the Widgets at the side of Content"
+msgstr "Mutasd a widget-et a tartalom oldalon"
+
+#: ../inc/adventurous-widgets.php:25
+msgid "Footer Area One"
+msgstr "Első Lábléc Terület"
+
+#: ../inc/adventurous-widgets.php:27 ../inc/adventurous-widgets.php:38
+#: ../inc/adventurous-widgets.php:49 ../inc/adventurous-widgets.php:60
+msgid "An optional widget area for your site footer"
+msgstr "Egy opcionális widget terület az oldalad láblécének"
+
+#: ../inc/adventurous-widgets.php:36
+msgid "Footer Area Two"
+msgstr "Második Lábléc Terület"
+
+#: ../inc/adventurous-widgets.php:47
+msgid "Footer Area Three"
+msgstr "Harmadik Lábléc Terület"
+
+#: ../inc/adventurous-widgets.php:58
+msgid "Footer Area Four"
+msgstr "Negyedik Lábléc Terület"
+
+#: ../inc/adventurous-widgets.php:88
+msgid ""
+"Use this widget to add Social Icons from Social Icons Settings as a widget. "
+msgstr ""
+"Használja ezt a widget-et ahhoz hogy közösségi ikonokat adjon hozzá widget-"
+"ként."
+
+#: ../inc/adventurous-widgets.php:89
+msgid "1. Adventurous: Social"
+msgstr "1. Adventurous: Közösségi"
+
+#: ../inc/adventurous-widgets.php:102
+msgid "Title (optional):"
+msgstr "Cím (opcionális) :"
+
+#: ../inc/panel/adventurous-theme-options-defaults.php:21
+msgid "Adventurous is a Simple, Clean and Responsive WordPress Theme"
+msgstr "Adventurous egy egyszerű, tiszta és reszponzív WordPress téma"
+
+#: ../inc/panel/adventurous-theme-options-defaults.php:22
+msgid ""
+"This is Promotion Headine. You can edit this from \"Appearance => Theme "
+"Options => Promotion Headeline Options\""
+msgstr ""
+"Ez egy promóciós fejléc. Ez megváltoztathatod a \"Megjelenés => Téma "
+"Beállítások => Promóciós fejléc beállítások\" oldalon"
+
+#: ../inc/panel/adventurous-theme-options-defaults.php:23
+msgid "Reviews"
+msgstr "Vélemények"
+
+#: ../inc/panel/adventurous-theme-options-defaults.php:39
+msgid "Continue Reading &rarr;"
+msgstr "A folytatás olvasása &rarr;"
+
+#: ../inc/panel/adventurous-theme-options-defaults.php:42
+msgid "Search &hellip;"
+msgstr "Keresés &hellip;"
+
+#: ../inc/panel/adventurous-theme-options-defaults.php:94
+msgid "Copyright"
+msgstr "Copyright"
+
+#: ../inc/panel/adventurous-theme-options-defaults.php:94
+msgid "All Rights Reserved"
+msgstr "Minden szerzői jog fenntartva."
+
+#: ../inc/panel/adventurous-theme-options-defaults.php:94
+msgid "Powered by"
+msgstr "Powered by"
+
+#: ../inc/panel/adventurous-theme-options-defaults.php:94
+msgid "Theme"
+msgstr "Téma"
+
+#: ../inc/panel/adventurous-theme-options.php:82
+msgid "Options Saved"
+msgstr "Beállítások elmentve"
+
+#: ../inc/panel/adventurous-theme-options.php:88
+msgid "Theme Options By"
+msgstr "Téma opciók"
+
+#: ../inc/panel/adventurous-theme-options.php:90
+msgid "http://catchthemes.com/"
+msgstr "http://catchthemes.com/"
+
+#: ../inc/panel/adventurous-theme-options.php:90
+#: ../inc/panel/adventurous-theme-options.php:91
+msgid "Catch Themes"
+msgstr "Catch Themes"
+
+#: ../inc/panel/adventurous-theme-options.php:97
+msgid "http://catchthemes.com/themes/adventurous-pro/"
+msgstr "http://catchthemes.com/themes/adventurous-pro/"
+
+#: ../inc/panel/adventurous-theme-options.php:97
+msgid "Upgrade to Adventurous Pro"
+msgstr "Frissítés Adventurous Pro-ra"
+
+#: ../inc/panel/adventurous-theme-options.php:102
+msgid "http://catchthemes.com/donate/"
+msgstr "http://catchthemes.com/donate/"
+
+#: ../inc/panel/adventurous-theme-options.php:102
+msgid "Donate to Adventurous"
+msgstr "Adományozzon az Adventurous-nak"
+
+#: ../inc/panel/adventurous-theme-options.php:102
+msgid "Donate Now"
+msgstr "Adományozzon most"
+
+#: ../inc/panel/adventurous-theme-options.php:103
+msgid "http://catchthemes.com/support/"
+msgstr "http://catchthemes.com/support/"
+
+#: ../inc/panel/adventurous-theme-options.php:103
+msgid "Support"
+msgstr "Support"
+
+#: ../inc/panel/adventurous-theme-options.php:104
+msgid "http://catchthemes.com/theme-instructions/adventurous-pro/"
+msgstr "http://catchthemes.com/theme-instructions/adventurous-pro/"
+
+#: ../inc/panel/adventurous-theme-options.php:104
+msgid "Theme Instruction"
+msgstr "Téma útmutatók"
+
+#: ../inc/panel/adventurous-theme-options.php:105
+msgid "https://www.facebook.com/catchthemes/"
+msgstr "https://www.facebook.com/catchthemes/"
+
+#: ../inc/panel/adventurous-theme-options.php:105
+msgid "Like Catch Themes on Facebook"
+msgstr "Lájkold a Catch Themes-t a Facebook-on"
+
+#: ../inc/panel/adventurous-theme-options.php:105
+#: ../inc/panel/adventurous-theme-options.php:1061
+msgid "Facebook"
+msgstr "Facebook"
+
+#: ../inc/panel/adventurous-theme-options.php:106
+msgid "https://twitter.com/catchthemes/"
+msgstr "https://twitter.com/catchthemes/"
+
+#: ../inc/panel/adventurous-theme-options.php:106
+msgid "Follow Catch Themes on Twitter"
+msgstr "Kövesd a Catch Themes-t a Twitter-en"
+
+#: ../inc/panel/adventurous-theme-options.php:106
+#: ../inc/panel/adventurous-theme-options.php:1069
+msgid "Twitter"
+msgstr "Twitter"
+
+#: ../inc/panel/adventurous-theme-options.php:107
+msgid "http://wordpress.org/support/view/theme-reviews/adventurous"
+msgstr "http://wordpress.org/support/view/theme-reviews/adventurous"
+
+#: ../inc/panel/adventurous-theme-options.php:107
+msgid "Rate us 5 Star on WordPress"
+msgstr "Szavazz 5 csillaggal a WordPress-en"
+
+#: ../inc/panel/adventurous-theme-options.php:107
+msgid "5 Star Rating"
+msgstr "5 Star Rating"
+
+#: ../inc/panel/adventurous-theme-options.php:117
+msgid "Featured Content"
+msgstr "Kiemelt tartalom"
+
+#: ../inc/panel/adventurous-theme-options.php:118
+msgid "Featured Slider"
+msgstr "Kiemelt csúszka"
+
+#: ../inc/panel/adventurous-theme-options.php:119
+msgid "Social Links"
+msgstr "Közösségi linkek"
+
+#: ../inc/panel/adventurous-theme-options.php:127
+msgid "Favicon"
+msgstr "Favicon"
+
+#: ../inc/panel/adventurous-theme-options.php:131
+msgid "Disable Favicon?"
+msgstr "Favicon tiltása?"
+
+#: ../inc/panel/adventurous-theme-options.php:135
+#: ../inc/panel/adventurous-theme-options.php:179
+#: ../inc/panel/adventurous-theme-options.php:254
+#: ../inc/panel/adventurous-theme-options.php:534
+#: ../inc/panel/adventurous-theme-options.php:543
+#: ../inc/panel/adventurous-theme-options.php:552
+#: ../inc/panel/adventurous-theme-options.php:928
+msgid "Check to disable"
+msgstr "Letiltáshoz pipálja ki"
+
+#: ../inc/panel/adventurous-theme-options.php:140
+msgid "Fav Icon URL:"
+msgstr "Favicon URL:"
+
+#: ../inc/panel/adventurous-theme-options.php:144
+msgid "Change Fav Icon"
+msgstr "Favicon megváltoztatása"
+
+#: ../inc/panel/adventurous-theme-options.php:146
+msgid "Upload Fav Icon"
+msgstr "Favicon feltöltése"
+
+#: ../inc/panel/adventurous-theme-options.php:152
+#: ../inc/panel/adventurous-theme-options.php:197
+#: ../inc/panel/adventurous-theme-options.php:274
+#: ../inc/panel/adventurous-theme-options.php:376
+msgid "Preview"
+msgstr "Előnézet"
+
+#: ../inc/panel/adventurous-theme-options.php:165
+#: ../inc/panel/adventurous-theme-options.php:213
+#: ../inc/panel/adventurous-theme-options.php:240
+#: ../inc/panel/adventurous-theme-options.php:296
+#: ../inc/panel/adventurous-theme-options.php:424
+#: ../inc/panel/adventurous-theme-options.php:455
+#: ../inc/panel/adventurous-theme-options.php:556
+#: ../inc/panel/adventurous-theme-options.php:603
+#: ../inc/panel/adventurous-theme-options.php:657
+#: ../inc/panel/adventurous-theme-options.php:674
+#: ../inc/panel/adventurous-theme-options.php:709
+#: ../inc/panel/adventurous-theme-options.php:734
+#: ../inc/panel/adventurous-theme-options.php:810
+#: ../inc/panel/adventurous-theme-options.php:870
+#: ../inc/panel/adventurous-theme-options.php:978
+#: ../inc/panel/adventurous-theme-options.php:1013
+#: ../inc/panel/adventurous-theme-options.php:1046
+#: ../inc/panel/adventurous-theme-options.php:1268
+msgid "Save Changes"
+msgstr "Változások mentése"
+
+#: ../inc/panel/adventurous-theme-options.php:171
+msgid "Web Clip Icon Options"
+msgstr "Honlap Klipp Ikon beállítások"
+
+#: ../inc/panel/adventurous-theme-options.php:175
+msgid "Disable Web Clip Icon?"
+msgstr "Honlap Klipp Ikon tiltása?"
+
+#: ../inc/panel/adventurous-theme-options.php:184
+msgid "Web Clip Icon URL:"
+msgstr "Honlap Klipp Ikon URL:"
+
+#: ../inc/panel/adventurous-theme-options.php:192
+msgid "Change Web Clip Icon"
+msgstr "Honlap Klip Ikon megváltoztatása"
+
+#: ../inc/panel/adventurous-theme-options.php:210
+msgid ""
+"Note: Web Clip Icon for Apple devices. Recommended Size - Width 144px and "
+"Height 144px height, which will support High Resolution Devices like iPad "
+"Retina."
+msgstr ""
+"Megjegyzés: Honlap Klipp Ikon az Apple eszközökhöz. Ajánlott méret -"
+"szélesség 144px és magasság 144px, amely támogatja a nagy felbontású "
+"eszközök, mint a iPad Retina."
+
+#: ../inc/panel/adventurous-theme-options.php:220
+msgid "Menu Options"
+msgstr "Menü Beállítások"
+
+#: ../inc/panel/adventurous-theme-options.php:224
+msgid "Custom Menus"
+msgstr "Egyéni menük"
+
+#: ../inc/panel/adventurous-theme-options.php:227
+msgid "Click to Create Custom Menus"
+msgstr "Kattintson, hogy létrehozzon egyéni menüket"
+
+#: ../inc/panel/adventurous-theme-options.php:232
+msgid "Assign Locations"
+msgstr "Helyzet hozzárendelése"
+
+#: ../inc/panel/adventurous-theme-options.php:233
+msgid ""
+"Note: You can assign your custom menu to Header Right Menu Location and "
+"Header Secondary Menu Location. This will replace the WordPress default page "
+"menu"
+msgstr ""
+"Megjegyzés: Hozzá tudsz rendelni egyéni menüt a Fejléc jobb menühőz és a "
+"Fejléc másodlagos menüjéhez. Ez váltja fel az alapértelmezett WordPress "
+"menüt."
+
+#: ../inc/panel/adventurous-theme-options.php:236
+msgid "Click to Manage Menu Locations"
+msgstr "Kattintson, hogy kezelje a menük helyzetét"
+
+#: ../inc/panel/adventurous-theme-options.php:246
+msgid "Header Options"
+msgstr "Fejléc beállítások"
+
+#: ../inc/panel/adventurous-theme-options.php:250
+msgid "Disable Logo?"
+msgstr "Logo tiltása?"
+
+#: ../inc/panel/adventurous-theme-options.php:259
+msgid "Logo url"
+msgstr "Logo url"
+
+#: ../inc/panel/adventurous-theme-options.php:269
+msgid "Change Logo"
+msgstr "Logo megváltoztatása"
+
+#: ../inc/panel/adventurous-theme-options.php:288
+msgid "Disable Header Right Section?"
+msgstr "A fejléc jobb részének tiltása?"
+
+#: ../inc/panel/adventurous-theme-options.php:292
+#: ../inc/panel/adventurous-theme-options.php:570
+msgid "Check to Disable"
+msgstr "Letiltáshoz pipálja ki"
+
+#: ../inc/panel/adventurous-theme-options.php:307
+msgid "Enable Featured Header Image"
+msgstr "Kiemelt fejléc kép engedélyezése"
+
+#: ../inc/panel/adventurous-theme-options.php:312
+#: ../inc/panel/adventurous-theme-options.php:470
+#: ../inc/panel/adventurous-theme-options.php:754
+#: ../inc/panel/adventurous-theme-options.php:910
+msgid "Homepage"
+msgstr "Főoldal"
+
+#: ../inc/panel/adventurous-theme-options.php:317
+msgid "Excluding Homepage"
+msgstr "Főoldal kihagyása"
+
+#: ../inc/panel/adventurous-theme-options.php:322
+#: ../inc/panel/adventurous-theme-options.php:475
+#: ../inc/panel/adventurous-theme-options.php:758
+#: ../inc/panel/adventurous-theme-options.php:914
+msgid "Entire Site"
+msgstr "Az egész oldalon"
+
+#: ../inc/panel/adventurous-theme-options.php:327
+msgid "Entire Site, Page/Post Featured Image"
+msgstr "Minden oldal, Oldal/bejegyzés kiemelt kép"
+
+#: ../inc/panel/adventurous-theme-options.php:332
+msgid "Pages & Posts"
+msgstr "Oldalak és bejegyzések"
+
+#: ../inc/panel/adventurous-theme-options.php:343
+msgid "Page/Post Featured Image Size"
+msgstr "OIdal/Bejegyzés kiemelt kép  mérete"
+
+#: ../inc/panel/adventurous-theme-options.php:361
+msgid "Header Image"
+msgstr "Fejléc kép"
+
+#: ../inc/panel/adventurous-theme-options.php:367
+msgid "Click here to change header image"
+msgstr "Kattintson ide a fejléc kép megváltoztatásához"
+
+#: ../inc/panel/adventurous-theme-options.php:367
+msgid "Click here to change Header Image"
+msgstr "Kattintson ide a fejléc kép megváltoztatásához"
+
+#: ../inc/panel/adventurous-theme-options.php:369
+msgid "Click here to add header image"
+msgstr "Kattintson ide a fejléc kép hozzáadásához"
+
+#: ../inc/panel/adventurous-theme-options.php:369
+msgid "Click here to add Header Image"
+msgstr "Kattintson ide a fejléc kép hozzáadásához"
+
+#: ../inc/panel/adventurous-theme-options.php:383
+msgid "There is no Header Image"
+msgstr "Ez nem fejléc kép"
+
+#: ../inc/panel/adventurous-theme-options.php:390
+msgid "Featured Header Image Alt/Title Tag"
+msgstr "Kiemelt fejléc kép Alt/Cím címke"
+
+#: ../inc/panel/adventurous-theme-options.php:398
+msgid "Featured Header Image Link URL"
+msgstr "Kiemelt Fejléc Kép link URL"
+
+#: ../inc/panel/adventurous-theme-options.php:406
+#: ../inc/panel/adventurous-theme-options.php:843
+msgid "Target. Open Link in New Window?"
+msgstr "Cél. Hivatkozás megnyitása új ablakban?"
+
+#: ../inc/panel/adventurous-theme-options.php:410
+#: ../inc/panel/adventurous-theme-options.php:525
+#: ../inc/panel/adventurous-theme-options.php:847
+msgid "Check to open in new window"
+msgstr "Ellenőrizze, úgy hogy nyissa meg új ablakban"
+
+#: ../inc/panel/adventurous-theme-options.php:416
+msgid "Reset Header Featured Image Options?"
+msgstr "Visszaállítod a kiemelt fejléc kép beállításokat?"
+
+#: ../inc/panel/adventurous-theme-options.php:420
+#: ../inc/panel/adventurous-theme-options.php:653
+#: ../inc/panel/adventurous-theme-options.php:705
+msgid "Check to reset"
+msgstr "A visszaállításhoz pipálja ki"
+
+#: ../inc/panel/adventurous-theme-options.php:434
+msgid "Content Featured Image Size"
+msgstr "Tartalom kiemelt kép mérete"
+
+#: ../inc/panel/adventurous-theme-options.php:461
+msgid "Promotion Headline Options"
+msgstr "Promóciós fejléc beállítások"
+
+#: ../inc/panel/adventurous-theme-options.php:465
+msgid "Enable Promotion"
+msgstr "Promóció engedélyezése"
+
+#: ../inc/panel/adventurous-theme-options.php:486
+msgid "Headline Text"
+msgstr "Fejléc szöveg"
+
+#: ../inc/panel/adventurous-theme-options.php:487
+msgid "The appropriate length for Headine is around 10 words."
+msgstr "A szöveg megfelelő hossza a fejlécben kb. 10 szó."
+
+#: ../inc/panel/adventurous-theme-options.php:495
+msgid "Subheadline Text"
+msgstr "Alfejléc szöveg"
+
+#: ../inc/panel/adventurous-theme-options.php:496
+msgid "The appropriate length for Headine is around 15 words."
+msgstr "A szöveg megfelelő hossza a fejlécben kb. 15 szó."
+
+#: ../inc/panel/adventurous-theme-options.php:504
+msgid "Button Text"
+msgstr "Gomb felirat"
+
+#: ../inc/panel/adventurous-theme-options.php:505
+msgid "The appropriate length for Headine is around 3 words."
+msgstr "A szöveg megfelelő hossza a fejlécben kb. 3 szó."
+
+#: ../inc/panel/adventurous-theme-options.php:513
+msgid "Button Link"
+msgstr "Gomb hivatkozás"
+
+#: ../inc/panel/adventurous-theme-options.php:521
+msgid "Target. Open Link in New Window? "
+msgstr "Cél. Hivatkozás megnyitása új ablakban?"
+
+#: ../inc/panel/adventurous-theme-options.php:530
+msgid "Disable Headline?"
+msgstr "Fejléc tiltása?"
+
+#: ../inc/panel/adventurous-theme-options.php:539
+msgid "Disable Subheadline?"
+msgstr "Alfejléc tiltása?"
+
+#: ../inc/panel/adventurous-theme-options.php:548
+msgid "Disable Button?"
+msgstr "Gomb tiltása?"
+
+#: ../inc/panel/adventurous-theme-options.php:562
+msgid "Homepage / Frontpage Settings"
+msgstr "Főoldal beállítások"
+
+#: ../inc/panel/adventurous-theme-options.php:566
+msgid "Disable Latest Posts?"
+msgstr "Az utolsó bejegyzés tiltása?"
+
+#: ../inc/panel/adventurous-theme-options.php:575
+msgid "Add Page instead of Latest Posts"
+msgstr "Új oldal helyett a legfrissebb hozzászólások"
+
+#: ../inc/panel/adventurous-theme-options.php:578
+msgid "Click Here to Set Static Front Page Instead of Latest Posts"
+msgstr ""
+"Kattintson ide a statikus főoldal beállításához az utolsó bejegyzések "
+"helyett "
+
+#: ../inc/panel/adventurous-theme-options.php:583
+msgid "Homepage posts categories:"
+msgstr "Főoldal bejegyzés kategóriák"
+
+#: ../inc/panel/adventurous-theme-options.php:584
+msgid ""
+"Only posts that belong to the categories selected here will be displayed on "
+"the front page."
+msgstr ""
+"Csak azok a bejegyzések jelennek meg a főoldalon amelyik kategória ki van "
+"választva."
+
+#: ../inc/panel/adventurous-theme-options.php:588
+#: ../inc/panel/adventurous-theme-options.php:1028
+msgid "--Disabled--"
+msgstr "--Tiltott--"
+
+#: ../inc/panel/adventurous-theme-options.php:599
+#: ../inc/panel/adventurous-theme-options.php:1039
+msgid "You may select multiple categories by holding down the CTRL key."
+msgstr "Több kategóriát kiválaszthatsz a CTRL gomb megnyomásával"
+
+#: ../inc/panel/adventurous-theme-options.php:609
+msgid "Layout Options"
+msgstr "Elrendezés beállításai"
+
+#: ../inc/panel/adventurous-theme-options.php:613
+msgid "Sidebar Layout Options"
+msgstr "Oldalsáv elrendezés beállításai"
+
+#: ../inc/panel/adventurous-theme-options.php:618
+msgid "Right Sidebar"
+msgstr "Jobb oldalsáv"
+
+#: ../inc/panel/adventurous-theme-options.php:623
+msgid "Left Sidebar"
+msgstr "Ball oldalsáv"
+
+#: ../inc/panel/adventurous-theme-options.php:628
+msgid "No Sidebar"
+msgstr "Nincs oldalsáv"
+
+#: ../inc/panel/adventurous-theme-options.php:634
+msgid "Content Layout"
+msgstr "Tartalom elrendezése"
+
+#: ../inc/panel/adventurous-theme-options.php:638
+msgid "Full Content Display"
+msgstr "Teljes tartalom megjelenése"
+
+#: ../inc/panel/adventurous-theme-options.php:642
+msgid "Excerpt/Blog Display"
+msgstr "Idézet/Blog nézet"
+
+#: ../inc/panel/adventurous-theme-options.php:649
+msgid "Reset Layout?"
+msgstr "Alapértelmezett elrendezés?"
+
+#: ../inc/panel/adventurous-theme-options.php:663
+msgid "Search Text Settings"
+msgstr "Keresési szöveg beállítása"
+
+#: ../inc/panel/adventurous-theme-options.php:667
+msgid "Default Display Text in Search"
+msgstr "Alapértelmezetten megjelenítendő szöveg a keresésnél"
+
+#: ../inc/panel/adventurous-theme-options.php:680
+msgid "Excerpt / More Tag Settings"
+msgstr "Idézet/Több címke beállítások"
+
+#: ../inc/panel/adventurous-theme-options.php:684
+msgid "More Tag Text"
+msgstr "Több címke felirat"
+
+#: ../inc/panel/adventurous-theme-options.php:692
+msgid "Excerpt length(words)"
+msgstr "Kivonat hossza (szavakban)"
+
+#: ../inc/panel/adventurous-theme-options.php:701
+msgid "Reset Excerpt?"
+msgstr "Visszaállítod az idézetet?"
+
+#: ../inc/panel/adventurous-theme-options.php:715
+msgid "Custom CSS"
+msgstr "Egyéni CSS"
+
+#: ../inc/panel/adventurous-theme-options.php:719
+msgid "Enter your custom CSS styles."
+msgstr "Egyéni CSS stílus megadása"
+
+#: ../inc/panel/adventurous-theme-options.php:727
+msgid "CSS Tutorial from W3Schools."
+msgstr "CSS útmutatót a W3Schools-on talál."
+
+#: ../inc/panel/adventurous-theme-options.php:730
+msgid "http://www.w3schools.com/css/default.asp"
+msgstr "http://www.w3schools.com/css/default.asp"
+
+#: ../inc/panel/adventurous-theme-options.php:730
+msgid "CSS Tutorial"
+msgstr "CSS Útmutató"
+
+#: ../inc/panel/adventurous-theme-options.php:730
+msgid "Click Here to Read"
+msgstr "Kattintson ide az olvasáshoz"
+
+#: ../inc/panel/adventurous-theme-options.php:745
+msgid "Featured Settings"
+msgstr "Kiemelt beállítások"
+
+#: ../inc/panel/adventurous-theme-options.php:749
+msgid "Enable Featured Content"
+msgstr "Kiemelt tartalom engedélyezése"
+
+#: ../inc/panel/adventurous-theme-options.php:768
+msgid "Featured Content Headline Text"
+msgstr "Kiemelt tartalom fejléc szöveg"
+
+#: ../inc/panel/adventurous-theme-options.php:769
+msgid "Leave empty if you want to remove headline."
+msgstr "Hagyd üresen ha el akarod távolítani a fejlécet."
+
+#: ../inc/panel/adventurous-theme-options.php:777
+msgid "Featured Content Subheadline Text"
+msgstr "Kiemelt tartalom alfejléc szöveg"
+
+#: ../inc/panel/adventurous-theme-options.php:778
+msgid "eave empty if you want to remove Subheadline"
+msgstr "Hagyd üresen ha el akarod távolítani az alfejlécet"
+
+#: ../inc/panel/adventurous-theme-options.php:786
+msgid "Number of Featured Content"
+msgstr "Kiemelt tartalmak száma"
+
+#: ../inc/panel/adventurous-theme-options.php:794
+msgid "Featured Content Layout"
+msgstr "Kiemelt tartalom elrendezése"
+
+#: ../inc/panel/adventurous-theme-options.php:799
+msgid "3 Columns"
+msgstr "3 oszlop"
+
+#: ../inc/panel/adventurous-theme-options.php:804
+msgid "4 Columns"
+msgstr "4 oszlop"
+
+#: ../inc/panel/adventurous-theme-options.php:817
+msgid "Featured Content Options"
+msgstr "Kiemelt bejegyzés beállítása"
+
+#: ../inc/panel/adventurous-theme-options.php:823
+#, php-format
+msgid "Featured Content #%s"
+msgstr "Kiemelt bejegyzés #%s"
+
+#: ../inc/panel/adventurous-theme-options.php:830
+msgid "Change Image"
+msgstr "Kép megváltoztatása"
+
+#: ../inc/panel/adventurous-theme-options.php:830
+msgid "Add Image"
+msgstr "Kép hozzáadása"
+
+#: ../inc/panel/adventurous-theme-options.php:835
+msgid "Link URL"
+msgstr "Link URL:"
+
+#: ../inc/panel/adventurous-theme-options.php:838
+msgid "Add in the Target URL for the content"
+msgstr "Add hozzá a cél URL-t  a tartalomhoz"
+
+#: ../inc/panel/adventurous-theme-options.php:852
+msgid "Title"
+msgstr "Cím"
+
+#: ../inc/panel/adventurous-theme-options.php:855
+msgid "Leave empty if you want to remove title"
+msgstr "Hagyd üresen ha el akarod távolítani a címet"
+
+#: ../inc/panel/adventurous-theme-options.php:860
+msgid "Content"
+msgstr "Tartalom"
+
+#: ../inc/panel/adventurous-theme-options.php:861
+msgid "The appropriate length for Content is around 10 words."
+msgstr "A megfelelő tartalom hossza körülbelül 10 szó."
+
+#: ../inc/panel/adventurous-theme-options.php:880
+msgid "Slider Options"
+msgstr "Oszlop beállítások"
+
+#: ../inc/panel/adventurous-theme-options.php:884
+msgid "Select Slider Type"
+msgstr "Válaszd ki a csúszka típusát"
+
+#: ../inc/panel/adventurous-theme-options.php:889
+msgid "Demo Slider"
+msgstr "Demo csúszka"
+
+#: ../inc/panel/adventurous-theme-options.php:893
+msgid "Post Slider"
+msgstr "Bejegyzés csúszka"
+
+#: ../inc/panel/adventurous-theme-options.php:898
+msgid "Category Slider"
+msgstr "Kategória csúszka"
+
+#: ../inc/panel/adventurous-theme-options.php:905
+msgid "Enable Slider"
+msgstr "Csúszka engedélyezése"
+
+#: ../inc/panel/adventurous-theme-options.php:924
+msgid "Disable Text in Slider?"
+msgstr "Szöveg tiltása a csúszkán"
+
+#: ../inc/panel/adventurous-theme-options.php:933
+msgid "Number of Slides"
+msgstr "Oszlopok száma"
+
+#: ../inc/panel/adventurous-theme-options.php:941
+msgid "Transition Effect:"
+msgstr "Átmenet hatása:"
+
+#: ../inc/panel/adventurous-theme-options.php:945
+msgid "fade"
+msgstr "fade"
+
+#: ../inc/panel/adventurous-theme-options.php:946
+msgid "wipe"
+msgstr "wipe"
+
+#: ../inc/panel/adventurous-theme-options.php:947
+msgid "scrollUp"
+msgstr "scrollUp"
+
+#: ../inc/panel/adventurous-theme-options.php:948
+msgid "scrollDown"
+msgstr "scrollDown"
+
+#: ../inc/panel/adventurous-theme-options.php:949
+msgid "scrollLeft"
+msgstr "scrollLeft"
+
+#: ../inc/panel/adventurous-theme-options.php:950
+msgid "scrollRight"
+msgstr "scrollRight"
+
+#: ../inc/panel/adventurous-theme-options.php:951
+msgid "blindX"
+msgstr "blindX"
+
+#: ../inc/panel/adventurous-theme-options.php:952
+msgid "blindY"
+msgstr "blindY"
+
+#: ../inc/panel/adventurous-theme-options.php:953
+msgid "blindZ"
+msgstr "blindZ"
+
+#: ../inc/panel/adventurous-theme-options.php:954
+msgid "cover"
+msgstr "cover"
+
+#: ../inc/panel/adventurous-theme-options.php:955
+msgid "shuffle"
+msgstr "shuffle"
+
+#: ../inc/panel/adventurous-theme-options.php:961
+msgid "Transition Delay"
+msgstr "Átmenet késleltetés"
+
+#: ../inc/panel/adventurous-theme-options.php:965
+#: ../inc/panel/adventurous-theme-options.php:974
+msgid "second(s)"
+msgstr "másodpercben (s)"
+
+#: ../inc/panel/adventurous-theme-options.php:970
+msgid "Transition Length"
+msgstr "Átmenet hossza"
+
+#: ../inc/panel/adventurous-theme-options.php:985
+msgid "Featured Post Slider Options"
+msgstr "Kiemelt bejegyzés csúszka beállítások"
+
+#: ../inc/panel/adventurous-theme-options.php:989
+msgid "Exclude Slider post from Homepage posts?"
+msgstr "Csúszka elemek kizárása a főoldal bejegyzéseinél:"
+
+#: ../inc/panel/adventurous-theme-options.php:993
+msgid "Check to exclude"
+msgstr "Ellenőrizze, hogy kizárja"
+
+#: ../inc/panel/adventurous-theme-options.php:1000
+#, php-format
+msgid "Featured Post Slider #%s"
+msgstr "Kiemelt bejegyzés csúszka #%s"
+
+#: ../inc/panel/adventurous-theme-options.php:1004
+msgid "Click Here To Edit"
+msgstr "A szerkesztéshez kattintson ide"
+
+#: ../inc/panel/adventurous-theme-options.php:1010
+msgid ""
+"Note: Here You can put your Post IDs which displays on Homepage as slider."
+msgstr ""
+"Megjegyzés: Itt adhatod hozzá a bejegyzések IDjét amelyek megjelennek a "
+"főoldal csúszkájában."
+
+#: ../inc/panel/adventurous-theme-options.php:1019
+msgid "Featured Category Slider Options"
+msgstr "Kiemelt kategória csúszka beállítások"
+
+#: ../inc/panel/adventurous-theme-options.php:1023
+msgid "Select Slider Categories"
+msgstr "Csúszka kategória kiválasztása"
+
+#: ../inc/panel/adventurous-theme-options.php:1024
+msgid ""
+"Use this only is you want to display posts from Specific Categories in "
+"Featured Slider"
+msgstr ""
+"Használd ezt a megjeleníteni kívánt bejegyzések kategóriájához a kiemelt "
+"csúszkán."
+
+#: ../inc/panel/adventurous-theme-options.php:1043
+msgid ""
+"Note: Here you can select the categories from which latest posts will "
+"display on Featured Slider."
+msgstr ""
+"Megjegyzés: Itt választhatja ki a kategóriákat, amelyek legújabb "
+"hozzászólásai megjelennek kiemelt csúszkán."
+
+#: ../inc/panel/adventurous-theme-options.php:1057
+msgid "Predefine Social Icons"
+msgstr "Előredefiniált közösségi ikonok"
+
+#: ../inc/panel/adventurous-theme-options.php:1077
+msgid "Google+"
+msgstr "Google +"
+
+#: ../inc/panel/adventurous-theme-options.php:1085
+msgid "Pinterest"
+msgstr "Pinterest"
+
+#: ../inc/panel/adventurous-theme-options.php:1093
+msgid "Youtube"
+msgstr "Youtube"
+
+#: ../inc/panel/adventurous-theme-options.php:1101
+msgid "Vimeo"
+msgstr "Vimeo"
+
+#: ../inc/panel/adventurous-theme-options.php:1109
+msgid "Linkedin"
+msgstr "LinkedIn"
+
+#: ../inc/panel/adventurous-theme-options.php:1117
+msgid "Slideshare"
+msgstr "Slideshare"
+
+#: ../inc/panel/adventurous-theme-options.php:1125
+msgid "Foursquare"
+msgstr "Foursquare"
+
+#: ../inc/panel/adventurous-theme-options.php:1133
+msgid "Flickr"
+msgstr "Flickr"
+
+#: ../inc/panel/adventurous-theme-options.php:1141
+msgid "Tumblr"
+msgstr "Tumblr"
+
+#: ../inc/panel/adventurous-theme-options.php:1149
+msgid "deviantART"
+msgstr "Deviantart"
+
+#: ../inc/panel/adventurous-theme-options.php:1157
+msgid "Dribbble"
+msgstr "Dribbble"
+
+#: ../inc/panel/adventurous-theme-options.php:1165
+msgid "MySpace"
+msgstr "MySpace"
+
+#: ../inc/panel/adventurous-theme-options.php:1173
+#: ../inc/panel/adventurous-theme-options.php:1740
+msgid "WordPress"
+msgstr "Wordpress"
+
+#: ../inc/panel/adventurous-theme-options.php:1181
+msgid "RSS"
+msgstr "RSS"
+
+#: ../inc/panel/adventurous-theme-options.php:1189
+msgid "Delicious"
+msgstr "Delicious"
+
+#: ../inc/panel/adventurous-theme-options.php:1197
+msgid "Last.fm"
+msgstr "Last.fm"
+
+#: ../inc/panel/adventurous-theme-options.php:1205
+msgid "Instagram"
+msgstr "Instagram"
+
+#: ../inc/panel/adventurous-theme-options.php:1213
+msgid "GitHub"
+msgstr "GitHub"
+
+#: ../inc/panel/adventurous-theme-options.php:1221
+msgid "Vkontakte"
+msgstr "Vkontakte"
+
+#: ../inc/panel/adventurous-theme-options.php:1229
+msgid "My World"
+msgstr "My World"
+
+#: ../inc/panel/adventurous-theme-options.php:1237
+msgid "Odnoklassniki"
+msgstr "Odnoklassniki"
+
+#: ../inc/panel/adventurous-theme-options.php:1245
+msgid "Goodreads"
+msgstr "Goodreads"
+
+#: ../inc/panel/adventurous-theme-options.php:1253
+msgid "Skype"
+msgstr "Skype"
+
+#: ../inc/panel/adventurous-theme-options.php:1261
+msgid "Soundcloud"
+msgstr "Soundcloud"
+
+#: ../inc/panel/adventurous-theme-options.php:1719
+msgid "Y"
+msgstr "Y"
+
+#: ../no-results.php:15
+msgid "Nothing Found"
+msgstr "Nincs találat"
+
+#: ../no-results.php:21
+#, php-format
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+"Készen állsz arra hogy publikáld az első bejegyzésedet? <a href=\"%1$s"
+"\">Kezdje itt</a>."
+
+#: ../no-results.php:25
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+"Sajnálom, de semmi nem felelt meg a megadott keresési feltételeknek. Kérjük, "
+"próbálja meg újra más kulcsszavakkal."
+
+#: ../no-results.php:30
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr "Sajnos nem találtuk amit ön keres. Talán használja a keresés funkciót"
+
+#: ../search.php:18
+#, php-format
+msgid "Search Results for: %s"
+msgstr "A keresés eredménye: %s"
+
+#: ../searchform.php:17 ../searchform.php:19
+msgid "Search"
+msgstr "Keresés"
+
+#: ../searchform.php:18
+#, php-format
+msgid "%s"
+msgstr "%s"
+
+#~ msgid "http://facebook.com/catchthemes"
+#~ msgstr "http://facebook.com/catchthemes"
+
+#~ msgid "https://twitter.com/catchthemes"
+#~ msgstr "https://twitter.com/catchthemes"
+
+#~ msgid "Error 404 - Page Not Found."
+#~ msgstr "404-es Hiba - Az oldal nem található"
+
+#~ msgid "This might be because:"
+#~ msgstr "Ez azért lehet mert :"
+
+#~ msgid ""
+#~ "You have typed the web address incorrectly, or the page you were looking "
+#~ "for may have been moved, updated or deleted."
+#~ msgstr ""
+#~ "Rosszul írta be a web címet vagy az ön által keresett weblap át lett "
+#~ "helyezve, meg lett frissít vagy le lett törölve."
+
+#~ msgid "Please try the following options instead:"
+#~ msgstr "Kérjük próbálja ki a következő opciókat helyette :"
+
+#~ msgid ""
+#~ "Check for a mis-typed URL error, then press the refresh button on your "
+#~ "browser or Use the search box below."
+#~ msgstr ""
+#~ "Ellenőrizze, hogy a linket jól írta-e be, nyomja a frissítés gombot a "
+#~ "böngészőjén, vagy használja a lent megtalálható kereső mezőt."
+
+#~ msgctxt "monthly archives date format"
+#~ msgid "F Y"
+#~ msgstr "Y F"
+
+#~ msgid "Blog Archives"
+#~ msgstr "Blog archívum"
+
+#~ msgid ""
+#~ "Apologies, but no results were found for the requested archive. Perhaps "
+#~ "searching will help find a related post."
+#~ msgstr ""
+#~ "Elnézést, de nem találtunk semmit a megadott archívumra. Talán ha rákeres "
+#~ "akkor megtalálja a kapcsolódó cikket."
+
+#~ msgid ""
+#~ "This post is password protected. Enter the password to view any comments."
+#~ msgstr ""
+#~ "Ez a cikk jelszóval védett. Írja be a jelszót, hogy megtekinthesse a "
+#~ "hozzászólásokat."
+
+#~ msgid "Aside"
+#~ msgstr "Mellett"
+
+#~ msgctxt "comments number"
+#~ msgid "1"
+#~ msgstr "1"
+
+#~ msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+#~ msgstr "Tovább <span class=\"meta-nav\">&rarr;</span>"
+
+#~ msgid "<b>1</b> Reply"
+#~ msgstr "<b>1</b> Hozzászólás "
+
+#~ msgid ""
+#~ "This entry was posted in %1$s and tagged %2$s. Bookmark the <a href=\"%3$s"
+#~ "\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+#~ msgstr ""
+#~ "Ez a bejegyzés %1$s nél jelenik meg, ilyen cimkével : %2$s . Tedd be "
+#~ "kedvenceid közé <a href=\"%3$s\" title=\"Link %4$s\" rel=\"bookmark"
+#~ "\">ezzel a linkel</a>."
+
+#~ msgid ""
+#~ "This entry was posted in %1$s. Bookmark the <a href=\"%3$s\" title="
+#~ "\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+#~ msgstr ""
+#~ "Ez a bejegyzés %1$s nél jelenik meg. Tedd be kedvenceid közé <a href="
+#~ "\"%3$s\" title=\"Link %4$s\" rel=\"bookmark\">ezzel a linkel</a>."
+
+#~ msgid "<span class=\"%1$s\">Tagged</span> %2$s"
+#~ msgstr "<span class=\"%1$s\">Címkézett</span> %2$s"
+
+#~ msgid ""
+#~ "<a href=\"%1$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime="
+#~ "\"%2$s\" pubdate>%3$s</time></a><span class=\"by-author\"> <span class="
+#~ "\"sep\"> by </span> <span class=\"author vcard\"><a class=\"url fn n\" "
+#~ "href=\"%4$s\" title=\"%5$s\" rel=\"author\">%6$s</a></span></span>"
+#~ msgstr ""
+#~ "<a href=\"%1$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime="
+#~ "\"%2$s\" pubdate>%3$s</time></a><span class=\"by-author\"> <span class="
+#~ "\"sep\"> szerző </span> <span class=\"author vcard\"><a class=\"url fn n"
+#~ "\" href=\"%4$s\" title=\"%5$s\" rel=\"author\">%6$s</a></span></span>"
+
+#~ msgid "Quote"
+#~ msgstr "Idézni"
+
+#~ msgid "No Comments &darr;"
+#~ msgstr "Nincs hozzászólás &darr;"
+
+#~ msgid "1 Comment &darr;"
+#~ msgstr "1 Hozzászólás &darr;"
+
+#~ msgid "% Comments &darr;"
+#~ msgstr "% Hozzászólás &darr;"
+
+#~ msgid ""
+#~ "This entry was posted in %1$s and tagged %2$s by <a href=\"%6$s\">%5$s</"
+#~ "a>. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel="
+#~ "\"bookmark\">permalink</a>."
+#~ msgstr ""
+#~ "Ez a bejegyzés megjelenik %1$s és %2$s címkézte fel <a href=\"%6$s\">"
+#~ "%5$s</a>. Tedd be kedvenceid közé <a href=\"%3$s\" title=\"Link %4$s\" "
+#~ "rel=\"bookmark\">ezzel a linkel</a>."
+
+#~ msgid ""
+#~ "This entry was posted in %1$s by <a href=\"%6$s\">%5$s</a>. Bookmark the "
+#~ "<a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</"
+#~ "a>."
+#~ msgstr ""
+#~ "Ez a bejegyzés megjelenik %1$s <a href=\"%6$s\">%5$s</a> által. Tedd be "
+#~ "kedvenceid közé <a href=\"%3$s\" title=\"Link %4$s\" rel=\"bookmark"
+#~ "\">ezzel a linkel</a>."
+
+#~ msgid ""
+#~ "This entry was posted by <a href=\"%6$s\">%5$s</a>. Bookmark the <a href="
+#~ "\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+#~ msgstr ""
+#~ "Ezt a bejegyzés <a href=\"%6$s\">%5$s</a> írta. Tedd be kedvenceid közé "
+#~ "<a href=\"%3$s\" title=\"Link %4$s\" rel=\"bookmark\">ezzel a linkel</a>."
+
+#~ msgid "Footer menu"
+#~ msgstr "Lábléc Menü"
+
+#~ msgid "Footer Menu"
+#~ msgstr "Lábléc Menü"
+
+#~ msgid "Garden"
+#~ msgstr "Kert"
+
+#~ msgid "Flower"
+#~ msgstr "Virág"
+
+#~ msgid "Mountain"
+#~ msgstr "Hegy"
+
+#~ msgid "%1$s on %2$s <span class=\"says\">said:</span>"
+#~ msgstr "%1$s ekkor %2$s <span class=\"says\">ezt mondta:</span>"
+
+#~ msgid "Reply <span>&darr;</span>"
+#~ msgstr "Válasz <span>&darr;</span>"
+
+#~ msgid ""
+#~ "<span class=\"sep\">Posted on </span><a href=\"%1$s\" title=\"%2$s\" rel="
+#~ "\"bookmark\"><time class=\"entry-date updated\" datetime=\"%3$s\" pubdate>"
+#~ "%4$s</time></a><span class=\"by-author\"> <span class=\"sep\"> by </span> "
+#~ "<span class=\"author vcard\"><a class=\"url fn n\" href=\"%5$s\" title="
+#~ "\"%6$s\" rel=\"author\">%7$s</a></span></span>"
+#~ msgstr ""
+#~ "<span class=\"sep\">Közzétette </span><a href=\"%1$s\" title=\"%2$s\" rel="
+#~ "\"bookmark\"><time class=\"entry-date updated\" datetime=\"%3$s\" pubdate>"
+#~ "%4$s</time></a><span class=\"by-author\"> <span class=\"sep\"> szerző </"
+#~ "span> <span class=\"author vcard\"><a class=\"url fn n\" href=\"%5$s\" "
+#~ "title=\"%6$s\" rel=\"author\">%7$s</a></span></span>"
+
+#~ msgid "Name"
+#~ msgstr "Név"
+
+#~ msgid "Email"
+#~ msgstr "Emailcím"
+
+#~ msgid "Primary menu"
+#~ msgstr "Elsődleges menü"
+
+#~ msgid "Skip to secondary content"
+#~ msgstr "Tovább az másodlagos tartalomra"
+
+#~ msgid "Secondary menu"
+#~ msgstr "Másodlagos menü"
+
+#~ msgid "http://wordpress.org/"
+#~ msgstr "http://wordpress.org/"
+
+#~ msgid "Powered by WordPress"
+#~ msgstr "Powered by WordPress"
+
+#~ msgid "Theme Catch Box by Catch Themes"
+#~ msgstr "Catch Box téma Catch Themes-től"
+
+#~ msgid "Image navigation"
+#~ msgstr "Kép navigáció"
+
+#~ msgid "Color Scheme"
+#~ msgstr "Szín séma"
+
+#~ msgid "Link Color"
+#~ msgstr "Hivatkozás színe"
+
+#~ msgid "Feed Redirect URL"
+#~ msgstr "RSS átirányítási URL"
+
+#~ msgid "Move Site Title and Tagline?"
+#~ msgstr "Helyezzük át a Honlap Címét és a szlogent?"
+
+#~ msgid "Enable Secondary & Footer Menu in Mobile Devices?"
+#~ msgstr "Engedélyezze a Másodlagos és a Lábléc Menüt mobil eszközökön ?"
+
+#~ msgid "Light"
+#~ msgstr "Világos"
+
+#~ msgid "Dark"
+#~ msgstr "Sötét"
+
+#~ msgid "Blue"
+#~ msgstr "Kék"
+
+#~ msgid "Green"
+#~ msgstr "Zöld"
+
+#~ msgid "Red"
+#~ msgstr "Red"
+
+#~ msgid "Brown"
+#~ msgstr "Brown"
+
+#~ msgid "Orange"
+#~ msgstr "Orange"
+
+#~ msgid "Content on left"
+#~ msgstr "Tartalom bal felől"
+
+#~ msgid "Content on right"
+#~ msgstr "Tartalom jobb felől"
+
+#~ msgid "One-column, no sidebar"
+#~ msgstr "Egy oszlop, nincs oldalsáv"
+
+#~ msgid "Show excerpt"
+#~ msgstr "Kivonat megjelenítése"
+
+#~ msgid "Show full content"
+#~ msgstr "Teljes tartalom megjelenítése"
+
+#~ msgid "Select a Color"
+#~ msgstr "Válasszon ki egy színt"
+
+#~ msgid "Default color: %s"
+#~ msgstr "Alapértelmezett szín: %s"
+
+#~ msgid "Check to move above the Header/Logo Image"
+#~ msgstr "Pipálja ki ahhoz hogy a Fejléc/Logó fölött jelenjen meg"
+
+#~ msgid "http://catchthemes.com/support-forum/forum/catch-box-public/"
+#~ msgstr "http://catchthemes.com/support-forum/forum/catch-box-public/"
+
+#~ msgid "Support Forum"
+#~ msgstr "Support Forum"
+
+#~ msgid "Webmaster Tools"
+#~ msgstr "Webmester Eszközök"
+
+#~ msgid "Save"
+#~ msgstr "Mentés"
+
+#~ msgid "Slider Effect Options"
+#~ msgstr "Slider hatások beállítása"
+
+#~ msgid "RSS Feed"
+#~ msgstr "RSS Feed"
+
+#~ msgid "Aim"
+#~ msgstr "Aim"
+
+#~ msgid ""
+#~ "<strong>Note:</strong> Enter the url for correponding social networking "
+#~ "website"
+#~ msgstr ""
+#~ "<strong>Megjegyzés:</strong> Írja be a megfelelő szociális hálózatoknak a "
+#~ "linkjét."
+
+#~ msgid "Header and Footer Code"
+#~ msgstr "Fejléc és Lábléc kód"
+
+#~ msgid "Code to display on Header"
+#~ msgstr "A fejlécben megjelenítendő kód"
+
+#~ msgid ""
+#~ "Note: Here you can put scripts from Google, Facebook etc. which will load "
+#~ "on Header"
+#~ msgstr ""
+#~ "Megjegyzés : Ide teheti be szkripteket Google, Facebook stb. amik a "
+#~ "fejlécen fognak betöltődni."
+
+#~ msgid "Code to display on Footer"
+#~ msgstr "A láblécben megjelenítendő kód"
+
+#~ msgid ""
+#~ "Note: Here you can put scripts from Google, Facebook, Add This etc. which "
+#~ "will load on footer"
+#~ msgstr ""
+#~ "Megjegyzés : Ide teheti be szkripteket Google, Facebook stb. amik a "
+#~ "láblécen fognak betöltődni."
+
+#~ msgid "Catch Box Adspace Widget"
+#~ msgstr "Catch Box Adspace Widget"
+
+#~ msgid "Ad Code:"
+#~ msgstr "Hirdetés kód:"
+
+#~ msgid "Image Url:"
+#~ msgstr "Kép linkje:"
+
+#~ msgid "Alt text:"
+#~ msgstr "Alternatív szöveg:"
+
+#~ msgid "Meta"
+#~ msgstr "Meta"
+
+#~ msgid "<span class=\"meta-nav\">&larr;</span> Previous"
+#~ msgstr "<span class=\"meta-nav\">&larr;</span> Előző"
+
+#~ msgid "Next <span class=\"meta-nav\">&rarr;</span>"
+#~ msgstr "Következő <span class=\"meta-nav\">&rarr;</span>"
