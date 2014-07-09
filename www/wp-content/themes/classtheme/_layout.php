@@ -3,9 +3,7 @@
 <head>
 <title><?php echo GitWordPressLayout::$Viewbag['sTitle'] ?></title>
 <link href='http://fonts.googleapis.com/css?family=Changa+One' rel='stylesheet' type='text/css'>
-
 <link rel="stylesheet" href="css/lavish-bootstrap.css">
-
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
 <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" />
 </head>
