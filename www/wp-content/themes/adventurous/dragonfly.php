@@ -8,24 +8,22 @@ get_header ();
 
 <div id="main" class="container">
 
-	<h1>Mike's Dragon Fly</h1>
-	<h5>Drag the "Dragonfly" to keep flying. Want to rest? Maneuver onto
-		the Lilly Pad</h5>
+	<h1>Dragon Fly game</h1>
+	<h5>Drag the "Dragonfly" with your mouse to keep flying. Want to rest? Maneuver onto the Lilly Pad</h5>
 
 	<canvas id="mainStage">
 
-        <img src="<?php echo get_template_directory_uri(); ?>/images/DragonFlySpriteSheet.png" />
-        <img src="<?php echo get_template_directory_uri(); ?>/images/MarshBackgroundSpriteSheet.png" />
+        <img
+			src="<?php echo get_template_directory_uri(); ?>/images/DragonFlySpriteSheet.png" />
+        <img
+			src="<?php echo get_template_directory_uri(); ?>/images/MarshBackgroundSpriteSheet.png" />
 
     </canvas>
 </div>
-<script
-	src="<?php echo get_template_directory_uri(); ?>/js/jquery-1.11.0.min.js"></script>
-<script
-	src="<?php echo get_template_directory_uri(); ?>/js/easeljs.min.js"></script>
-<script
-	src="<?php echo get_template_directory_uri(); ?>/js/js-toolbox.js"></script>
-<script>
+			<script src="<?php echo get_template_directory_uri(); ?>/js/jquery-1.11.0.min.js"></script>
+			<script src="<?php echo get_template_directory_uri(); ?>/js/easeljs.min.js"></script>
+			<script src="<?php echo get_template_directory_uri(); ?>/js/js-toolbox.js"></script>
+			<script>
 
     var aLilly = { 18:977, 19:895, 20:809, 21:726, 22: 639, 23:555, 24:469 };
 
