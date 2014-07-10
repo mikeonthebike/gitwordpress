@@ -27,8 +27,7 @@ function adventurous_default_featured_content() {
 			<section class="container" >
 				<div id="featured-heading">
 					<h2>Featured Content</h2>
-					<p>Here you can showcase the x number of Featured Content. You can edit this Headline, Subheadline and Feaured Content from "Appearance => Theme Options => Featured Content Option".</p>
-				</div>
+					</div>
 				<div class="featued-content-wrap">
 					<article id="featured-post-1" class="post hentry post-demo">
 						<figure class="featured-homepage-image">
