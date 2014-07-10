@@ -6,6 +6,15 @@ get_header();
 
 ?>
 
+<div>
+<p>
+<strong>Racing</strong> page is a mobile game based on two pixel line repeats and a simple repeating background javascript animation using HTML5, Easel.js, Canvas, Jquery, Google webfont VT323.
+It utilize's the accelerometer controls in your smart phone, surf to it and enjoy !
+</p>
+
+</div>
+
+
 <!--<!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +28,14 @@ padding:0;
 </style>
 </head>
 <body>
+
+<div>
+<p>
+<strong>Racing</strong> page is a mobile game based on two pixel line repeats and a simple repeating background javascript animation using HTML5, Easel.js, Canvas, Jquery, Google webfont VT323.
+It utilize's the accelerometer controls in your smart phone, surf to it and enjoy !
+</p>
+
+</div>
 
 	<!--  
 	
