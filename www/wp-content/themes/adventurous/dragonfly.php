@@ -14,10 +14,8 @@ get_header ();
 
 	<canvas id="mainStage">
 
-        <img
-			src="<?php echo get_template_directory_uri(); ?>/images/DragonFlySpriteSheet.png" />
-        <img
-			src="<?php echo get_template_directory_uri(); ?>/images/MarshBackgroundSpriteSheet.png" />
+        <img src="<?php echo get_template_directory_uri(); ?>/images/DragonFlySpriteSheet.png" />
+        <img src="<?php echo get_template_directory_uri(); ?>/images/MarshBackgroundSpriteSheet.png" />
 
     </canvas>
 </div>
