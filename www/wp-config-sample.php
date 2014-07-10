@@ -62,14 +62,14 @@ define('NONCE_SALT',       'put your unique phrase here');
 $table_prefix  = 'wp_';
 
 /**
- * WordPress Localized Language, defaults to English.
+ * WordPress Localized Language, defaults to Canadian English.
  *
  * Change this to localize WordPress. A corresponding MO file for the chosen
  * language must be installed to wp-content/languages. For example, install
- * de_DE.mo to wp-content/languages and set WPLANG to 'de_DE' to enable German
- * language support.
+ * en_CA.mo to wp-content/languages and set WPLANG to 'en_CA' to enable Canadian
+ * English language support.
  */
-define('WPLANG', '');
+define('WPLANG', 'en_CA');
 
 /**
  * For developers: WordPress debugging mode.
