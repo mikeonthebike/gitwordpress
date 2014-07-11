@@ -7,8 +7,8 @@ get_header();
 ?>
 
 <p>
-<b>Racing:</b> A mobile game based on two single pixel line repeats, a looping repeating background javascript animation using HTML5, Easel.js, Canvas, Jquery, Google webfont VT323.
-It utilize's the accelerometer controls in your smart phone, surf to racing-mikeonthebike.rhcloud.com (refresh the page to restart the game)... enjoy !
+<b>Racing:</b> A mobile game based on three simple elements, two single pixel lines for the race track and a looping background. A Javascript animation using HTML5, Easel.js, Canvas, Jquery, Google webfont VT323.
+Utilize the accelerometer as controls on your smart phone, tilt to go faster or slower. Surf to <b>racing-mikeonthebike.rhcloud.com</b> (refresh the page to restart the game)... enjoy !
 </p>
 
 <!--<!DOCTYPE html>

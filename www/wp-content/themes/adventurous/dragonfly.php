@@ -5,26 +5,22 @@
 get_header ();
 
 ?>
+<h5>Drag the "Dragonfly" with your mouse to keep flying. Want to rest? Maneuver onto the Lilly Pad.</h5>
 
-<div id="main" class="container">
+<br>
 
-	<h1>Dragon Fly game</h1>
-	<h5>Drag the "Dragonfly" with your mouse to keep flying. Want to rest? Maneuver onto the Lilly Pad</h5>
-
+<div id="stagewrapper">
 	<canvas id="mainStage">
-
-        <img
-			src="<?php echo get_template_directory_uri(); ?>/images/DragonFlySpriteSheet.png" />
-        <img
-			src="<?php echo get_template_directory_uri(); ?>/images/MarshBackgroundSpriteSheet.png" />
-
+        <img src="<?php echo get_template_directory_uri(); ?>/images/DragonFlySpriteSheet.png" />
+        <img src="<?php echo get_template_directory_uri(); ?>/images/MarshBackgroundSpriteSheet.png" />
     </canvas>
 </div>
 			<script src="<?php echo get_template_directory_uri(); ?>/js/jquery-1.11.0.min.js"></script>
 			<script src="<?php echo get_template_directory_uri(); ?>/js/easeljs.min.js"></script>
 			<script src="<?php echo get_template_directory_uri(); ?>/js/js-toolbox.js"></script>
-			<script>
+			<script type="text/javascript">
 
+	// math for positioning dragonfly & lily in frames		
     var aLilly = { 18:977, 19:895, 20:809, 21:726, 22: 639, 23:555, 24:469 };
 
     jQuery(document).ready(function () {
@@ -36,6 +32,8 @@ get_header ();
 
         var oX = stage.canvas.width / 2;
         var oY = stage.canvas.height / 2;
+
+        
 
         var Bg = new createjs.Shape();
         Bg.graphics.beginFill("rgba(0,0,0,0.8)").drawRect(0, 0, stage.canvas.width, stage.canvas.height);
@@ -79,6 +77,7 @@ get_header ();
 
             var data = {
                 framerate: 8,
+	            //php code to draw png into file
                 images: ["<?php echo get_template_directory_uri(); ?>/images/MarshBackgroundSpriteSheet.png"],
                 frames: { width: 1024, height: 505 },
                 animations: { left: [0, 23] }
@@ -92,6 +91,7 @@ get_header ();
             // dragonfly draw
             var data = {
                 framerate: 24,
+	            //php code to draw png into file
                 images: ["<?php echo get_template_directory_uri(); ?>/images/DragonFlySpriteSheet.png"],
                 frames: { width: 1024, height: 505 },
                 animations: { left: [0, 23] }
@@ -126,11 +126,14 @@ get_header ();
         function onResize() {
             // browser viewport size
             var w = jQuery("#main").width();
+            // var w = window.innerWidth;
             var h = window.innerHeight;
 
             // stage dimensions
             var ow = 1024; // my stage width
             var oh = 505; // my stage height
+
+            
 
             // KEEP ASPECT RATIO
             var scale = Math.min(w / ow, h / oh);
