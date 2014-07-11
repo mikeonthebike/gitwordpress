@@ -125,7 +125,7 @@ get_header ();
         // viewing window resizing
         function onResize() {
             // browser viewport size
-            var w = jQuery("#main").width();
+            var w = jQuery("#stagewrapper").width();
             // var w = window.innerWidth;
             var h = window.innerHeight;
 
