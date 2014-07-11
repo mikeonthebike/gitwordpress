@@ -188,7 +188,7 @@ a img {
 #featured-post,
 #content-sidebar,
 #footer-sidebar {
-	padding-top: 30px;
+	padding-top: 300px;
 }
 #header-right,
 #header-right .widget_nav_menu,
@@ -2080,7 +2080,7 @@ ul.social-profile li.custom-social a img {
 ----------------------------------------------- */
 
 #masthead .breadcrumb {
-	padding-top: 25px;
+	padding-top: 35 px;
 }
 .breadcrumb ul {	
 	list-style: none;
