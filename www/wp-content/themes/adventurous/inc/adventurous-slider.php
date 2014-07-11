@@ -36,7 +36,7 @@ function adventurous_default_sliders() {
 				<article class="post hentry slides demo-image displayblock">
 					<figure class="slider-image">
 						<a title="Seto Ghumba" href="#">
-							<img src="'. get_template_directory_uri() . '/images/demo/slider-1-1600x600.jpg" class="wp-post-image" alt="Seto GhumbaSeto GhumbaSeto GhumbaSeto Ghumba" title="Seto Ghumba">
+							<img src="'. get_template_directory_uri() . '/images/demo/slider-1-1600x600.jpg" class="wp-post-image" alt="Seto Ghumba" title="Seto Ghumba">
 						</a>
 					</figure>          
 				</article><!-- .slides --> 	
@@ -47,7 +47,8 @@ function adventurous_default_sliders() {
 							<img src="'. get_template_directory_uri() . '/images/demo/slider-2-1600x600.jpg" class="wp-post-image" alt="Kathmandu Durbar Square" title="Kathmandu Durbar Square">
 						</a>
 					</figure>
-				</article><!-- .slides --> 			
+				</article><!-- .slides -->
+									 			
 			</section>
         	<div id="slider-nav">
         		<a class="slide-previous"><span>Previous</span></a>
