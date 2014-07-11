@@ -44,7 +44,7 @@ function adventurous_default_sliders() {
 				<article class="post hentry slides demo-image displayblock">
 					<figure class="slider-image">
 						<a title="Seto Ghumba" href="#">
-							<img src="'. get_template_directory_uri() . '/images/Unconcious_1280x800PresentationSlider.jpg" class="wp-post-image" alt="Seto Ghumba" title="Seto Ghumba">
+							<img src="'. get_template_directory_uri() . 'www/wp-content/themes/adventurous/images/Unconcious_1280x800PresentationSlider.jpg" class="wp-post-image" alt="Seto Ghumba" title="Seto Ghumba">
 						</a>
 					</figure>          
 				</article><!-- .slides -->					
