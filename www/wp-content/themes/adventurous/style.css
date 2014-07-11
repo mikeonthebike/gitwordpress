@@ -188,12 +188,12 @@ a img {
 #featured-post,
 #content-sidebar,
 #footer-sidebar {
-	padding-top: 300px;
+	padding-top: 25px;
 }
 #header-right,
 #header-right .widget_nav_menu,
 #header-right .widget_search {
-	padding-top: 5px;
+	padding-top: 11.5px;
 }
 .fixed-header #header-right {
 	padding-top: 0;
