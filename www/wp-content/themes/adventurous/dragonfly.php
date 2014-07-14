@@ -8,7 +8,13 @@ get_header ();
 <h5>Drag the "Dragonfly" with your mouse to keep flying. Want to rest? Maneuver onto the Lilly Pad.</h5>
 
 <br>
-
+<!-- div id= "stagewrapper" line 10 / matches jQuery("#stagewrapper") down at line 134
+			// viewing window resizing
+        	function onResize() {
+            // browser viewport size
+            var w = jQuery("#main").width();
+            var h = window.innerHeight;-->
+            
 <div id="stagewrapper">
 	<canvas id="mainStage">
         <img src="<?php echo get_template_directory_uri(); ?>/images/DragonFlySpriteSheet.png" />
