@@ -9,7 +9,7 @@ Author URI: http://syndicateme.net/
 */
 
 class GitWordPressLayout{
-	public static $Viewbag = ['bInLayout'=> false];
+	public static $Viewbag = array('bInLayout'=> false);
 	
 	public static function layout($sLayout){
 		if(!GitWordPressLayout::$Viewbag['bInLayout']){
