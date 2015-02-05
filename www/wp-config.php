@@ -28,7 +28,7 @@ $sPwd = isset($_ENV['OPENSHIFT_MYSQL_DB_PASSWORD']) ? $_ENV['OPENSHIFT_MYSQL_DB_
 define('DB_PASSWORD', $sPwd);
 
 /** MySQL hostname */
-$sHost = isset($_ENV['OPENSHIFT_MYSQL_DB_HOST']) ? $_ENV['OPENSHIFT_MYSQL_DB_HOST'] : '127.0.0.1:3306';
+$sHost = isset($_ENV['OPENSHIFT_MYSQL_DB_HOST']) ? $_ENV['OPENSHIFT_MYSQL_DB_HOST'] : '127.0.0.1:8000';
 define('DB_HOST', $sHost);
 
 /**127.0.0.1:3306
