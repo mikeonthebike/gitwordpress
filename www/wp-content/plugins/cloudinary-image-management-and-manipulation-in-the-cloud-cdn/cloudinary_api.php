@@ -3,6 +3,7 @@
 class Cloudinary {
     private static $config = NULL;
     const SHARED_CDN = "d3jpl91pxevbkh.cloudfront.net";
+    const USER_AGENT = "cld-wp-1.1.4";
     public static $JS_CONFIG_PARAMS = array("api_key", "cloud_name", "private_cdn", "secure_distribution", "cdn_subdomain");
 
     public static function config($values = NULL) {
@@ -75,7 +76,7 @@ class Cloudinary {
 
     // Warning: $options are being destructively updated!
     public static function generate_transformation_string(&$options=array()) {
-        $generate_base_transformation = "Cloudinary::generate_base_transformation";
+        $generate_base_transformation = array("Cloudinary", "generate_base_transformation");
         if ($options == array_values($options)) {
             return implode("/", array_map($generate_base_transformation, $options));
         }
@@ -129,7 +130,7 @@ class Cloudinary {
 
         $params = array_filter($params);
         ksort($params);
-        $join_pair_underscore = "Cloudinary::join_pair_underscore";
+        $join_pair_underscore = array("Cloudinary", "join_pair_underscore");
         $transformation = implode(",", array_map($join_pair_underscore, array_keys($params), array_values($params)));
         $raw_transformation = Cloudinary::option_consume($options, "raw_transformation");
         $transformation = implode(",", array_filter(array($transformation, $raw_transformation)));
@@ -232,13 +233,13 @@ class Cloudinary {
             }
         }
         ksort($params);
-        $join_pair_equal = "Cloudinary::join_pair_equal";
+        $join_pair_equal = array("Cloudinary", "join_pair_equal");
         $to_sign = implode("&", array_map($join_pair_equal, array_keys($params), array_values($params)));
         return sha1($to_sign . $api_secret);
     }
     public static function html_attrs($options) {
         ksort($options);
-        $join_pair_equal_quoted = "Cloudinary::join_pair_equal_quoted";
+        $join_pair_equal_quoted = array("Cloudinary", "join_pair_equal_quoted");
         return implode(" ", array_map($join_pair_equal_quoted, array_keys($options), array_values($options)));
     }
 }
