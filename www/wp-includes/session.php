@@ -275,6 +275,7 @@ abstract class WP_Session_Tokens {
 	 * @access protected
 	 *
 	 * @param string $verifier Verifier of the session to update.
+	 * @param array  $session  Optional. Session. Omitting this argument destroys the session.
 	 */
 	abstract protected function update_session( $verifier, $session = null );
 
@@ -434,6 +435,6 @@ class WP_User_Meta_Session_Tokens extends WP_Session_Tokens {
 	 * @static
 	 */
 	public static function drop_sessions() {
-		delete_metadata( 'user', false, 'session_tokens', false, true );
+		delete_metadata( 'user', 0, 'session_tokens', false, true );
 	}
 }
