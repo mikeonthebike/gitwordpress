@@ -36,9 +36,9 @@ class Jetpack_JSON_API_Core_Modify_Endpoint extends Jetpack_JSON_API_Core_Endpoi
 
 		/**
 		 * Pre-upgrade action
-		 *
+		 * 
 		 * @since 3.9.3
-		 *
+		 * 
 		 * @param object|array $update as returned by find_core_update() or find_core_auto_update()
 		 */
 		do_action('jetpack_pre_core_upgrade', $update);

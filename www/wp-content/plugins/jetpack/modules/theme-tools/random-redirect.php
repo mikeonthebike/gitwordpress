@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Random Redirect
-Plugin URI: http://wordpress.org/extend/plugins/random-redirect/
+Plugin URI: https://wordpress.org/extend/plugins/random-redirect/
 Description: Allows you to create a link to yourblog.example.com/?random which will redirect someone to a random post on your blog, in a StumbleUpon-like fashion.
 Version: 1.2-wpcom
 Author: Matt Mullenweg
@@ -31,6 +31,8 @@ function jetpack_matt_random_redirect() {
 	if ( is_author() ) {
 		$random_author_name = get_the_author_meta( 'user_login' );
 		$random_author_query = 'AND user_login = "' . $random_author_name . '"';
+	} else {
+		$random_author_query = '';
 	}
 
 	// Acceptable URL formats: /[...]/?random=[post type], /?random, /&random, /&random=1

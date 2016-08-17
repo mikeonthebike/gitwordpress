@@ -39,7 +39,7 @@
 								<# } else { #>
 									<span><em><?php _e( 'Not connected', 'jetpack' ); ?></em></span>
 								<# } #>
-							</div>
+							</div> 
 						</div>
 
 						<?php // right col ( Link/Unlink my account ) ?>
@@ -78,7 +78,7 @@
 							<h3 title="<?php esc_attr_e( 'WordPress.com Username', 'jetpack' ); ?>"><?php _e( 'WordPress.com Username', 'jetpack' ); ?></h3>
 							<div class="wpuser-02">
 								<span>{{{ data.currentUser.userComData.login }}}</span>
-							</div>
+							</div> 
 						</div>
 					</div>
 				<# } #>
@@ -106,6 +106,7 @@
 									<?php
 									$all_users = get_users();
 
+									$user_options = '';
 									foreach ( $all_users as $user ) {
 										if ( Jetpack::is_user_connected( $user->ID ) && $user->caps['administrator'] ) {
 											if ( $user->ID == Jetpack_Options::get_option( 'master_user' ) ) {

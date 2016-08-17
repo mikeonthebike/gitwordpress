@@ -32,48 +32,48 @@
  */
 class Simplify_Object {
 
-    private $properties = array();
+	private $properties = array();
 
-    /**
-     * @ignore
-     */
-    public function __get($key) {
-        if (array_key_exists($key, $this->properties)) {
-            return $this->properties[$key];
-        } else {
-            return null;
-        }
-    }
+	/**
+	 * @ignore
+	 */
+	public function __get($key) {
+		if (array_key_exists($key, $this->properties)) {
+			return $this->properties[$key];
+		} else {
+			return null;
+		}
+	}
 
-    /**
-     * @ignore
-     */
-    public function __set($key, $value) {
-        $this->properties[$key] = $value;
-    }
+	/**
+	 * @ignore
+	 */
+	public function __set($key, $value) {
+		$this->properties[$key] = $value;
+	}
 
-    /**
-     * Updates the object's properties with the values in the specified map.
-     * @param $hash array Map of values to set.
-     */
-    public function setAll($hash) {
-        foreach ($hash as $key => $value) {
-            $this->$key = $value;
-        }
-    }
+	/**
+	 * Updates the object's properties with the values in the specified map.
+	 * @param $hash array Map of values to set.
+	 */
+	public function setAll($hash) {
+		foreach ($hash as $key => $value) {
+			$this->$key = $value;
+		}
+	}
 
-    /**
-     * @ignore
-     */
-    public function __toString() {
-        return json_encode($this->properties);
-    }
+	/**
+	 * @ignore
+	 */
+	public function __toString() {
+		return json_encode($this->properties);
+	}
 
-    /**
-     * Returns the object's properties as a map.
-     * @return array map of properties.
-     */
-    public function getProperties() {
-        return $this->properties;
-    }
+	/**
+	 * Returns the object's properties as a map.
+	 * @return array map of properties.
+	 */
+	public function getProperties() {
+		return $this->properties;
+	}
 }

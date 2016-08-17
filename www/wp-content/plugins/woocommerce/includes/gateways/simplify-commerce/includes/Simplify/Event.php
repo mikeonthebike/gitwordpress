@@ -29,36 +29,36 @@
 
 class Simplify_Event extends Simplify_Object {
 
-    /**
-     * Creates an Event object
-     * @param     array $hash A map of parameters; valid keys are:
-     *     <dt><code>paylod</code></dt>    <dd>The raw JWS payload. </dd> <strong>required</strong>
-     *     <dt><code>url</code></dt>    <dd>The URL for the webhook.  If present it must match the URL registered for the webhook.</dd>
-     * @param  $authentication Object that contains the API public and private keys.  If null the values of the static
-     *         Simplify::$publicKey and Simplify::$privateKey will be used.
-     * @return Payments_Event an Event object.
-     * @throws InvalidArgumentException
-     */
-    static public function createEvent($hash, $authentication = null) {
+	/**
+	 * Creates an Event object
+	 * @param     array $hash A map of parameters; valid keys are:
+	 *     <dt><code>paylod</code></dt>    <dd>The raw JWS payload. </dd> <strong>required</strong>
+	 *     <dt><code>url</code></dt>    <dd>The URL for the webhook.  If present it must match the URL registered for the webhook.</dd>
+	 * @param  $authentication Object that contains the API public and private keys.  If null the values of the static
+	 *         Simplify::$publicKey and Simplify::$privateKey will be used.
+	 * @return Payments_Event an Event object.
+	 * @throws InvalidArgumentException
+	 */
+	static public function createEvent($hash, $authentication = null) {
 
-        $args = func_get_args();
-        $authentication = Simplify_PaymentsApi::buildAuthenticationObject($authentication, $args, 2);
+		$args = func_get_args();
+		$authentication = Simplify_PaymentsApi::buildAuthenticationObject($authentication, $args, 2);
 
-        $paymentsApi = new Simplify_PaymentsApi();
+		$paymentsApi = new Simplify_PaymentsApi();
 
-        $jsonObject = $paymentsApi->jwsDecode($hash, $authentication);
+		$jsonObject = $paymentsApi->jwsDecode($hash, $authentication);
 
-        if ($jsonObject['event'] == null) {
-            throw new InvalidArgumentException("Incorect data in webhook event");
-        }
+		if ($jsonObject['event'] == null) {
+			throw new InvalidArgumentException("Incorect data in webhook event");
+		}
 
-        return  $paymentsApi->convertFromHashToObject($jsonObject['event'], self::getClazz());
-    }
+		return  $paymentsApi->convertFromHashToObject($jsonObject['event'], self::getClazz());
+	}
 
-    /**
-     * @ignore
-     */
-    static public function getClazz() {
-        return "Event";
-    }
+	/**
+	 * @ignore
+	 */
+	static public function getClazz() {
+		return "Event";
+	}
 }

@@ -159,8 +159,11 @@ class WP_Filesystem_FTPext extends WP_Filesystem_Base {
 	public function put_contents($file, $contents, $mode = false ) {
 		$tempfile = wp_tempnam($file);
 		$temp = fopen( $tempfile, 'wb+' );
-		if ( ! $temp )
+
+		if ( ! $temp ) {
+			unlink( $tempfile );
 			return false;
+		}
 
 		mbstring_binary_safe_encoding();
 

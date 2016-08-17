@@ -32,13 +32,13 @@
  */
 class Simplify_ResourceList {
 
-    /**
-     * @var array $list the list of domain objects.
-     */
-    public $list = array();
+	/**
+	 * @var array $list the list of domain objects.
+	 */
+	public $list = array();
 
-    /**
-     * @var int $total the total number of object available.
-     */
-    public $total = 0;
+	/**
+	 * @var int $total the total number of object available.
+	 */
+	public $total = 0;
 }

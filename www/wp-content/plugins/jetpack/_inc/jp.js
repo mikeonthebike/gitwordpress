@@ -133,7 +133,7 @@
 			var $this = $( this ).parent(),
 				index = $this.data( 'index' ),
 				name = $this.data( 'name' );
-
+			
 			$modal.empty().html( wp.template( 'modal' )( $.extend( modules[index], { name: name } ) ) );
 			// Save the focused element, then shift focus to the modal window.
 			originPoint = this;
@@ -300,14 +300,14 @@
 					dataName = $( 'label[for="active-' + mod.module_slug + '"]' + '.plugin-action__label' );
 					configURL = mod.configure_url;
 					checkBox = $( 'input[id="active-' + mod.module_slug + '"]' );
-
+					
 					$( '#toggle-' + mod.module_slug ).addClass( 'activated' );
 					dataName.html( 'ACTIVE' );
 					$( checkBox ).prop( 'checked', true );
 				});
 
-				$( '.jumpstart-spinner, .jstart, #jumpstart-cta, .manage-cta-inactive' ).hide();
-				$( '.jumpstart-message, .manage-cta-active' ).toggle();
+				$( '.jumpstart-spinner, .jstart, #jumpstart-cta' ).hide();
+				$( '.jumpstart-message' ).toggle();
 				$( '#jump-start-area' ).delay( 5000 ).hide( 600 );
 
 				// Log Jump Start event in MC Stats
@@ -391,7 +391,7 @@
 					// Manual element alteration for Manage, since it's not part of the template
 					if ( 'manage' === data.thisModuleSlug ) {
 						if ( response.activated ) {
-							thisLabel.show().html( 'ACTIVE' );
+							$( '#manage-row .module-action' ).hide();
 							$( '#manage-row' ).addClass( 'activated' );
 						} else {
 							thisLabel.show().html( 'INACTIVE' );

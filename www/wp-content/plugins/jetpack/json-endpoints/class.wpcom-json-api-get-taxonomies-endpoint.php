@@ -30,7 +30,7 @@ class WPCOM_JSON_API_Get_Taxonomies_Endpoint extends WPCOM_JSON_API_Endpoint {
 			if ( $args['page'] < 1 ) {
 				$args['page'] = 1;
 			}
-
+		
 			$args['offset'] = ( $args['page'] - 1 ) * $args['number'];
 			unset( $args['page'] );
 		}

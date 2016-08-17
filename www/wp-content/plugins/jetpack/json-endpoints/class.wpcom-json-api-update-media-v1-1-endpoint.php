@@ -45,7 +45,7 @@ class WPCOM_JSON_API_Update_Media_v1_1_Endpoint extends WPCOM_JSON_API_Endpoint 
 		if ( 0 === strpos( $item->mime_type, 'audio/' ) ) {
 			$changed = false;
 			$id3data = wp_get_attachment_metadata( $media_id );
-
+		
 			if ( ! is_array( $id3data ) ) {
 				$changed = true;
 				$id3data = array();
@@ -55,7 +55,7 @@ class WPCOM_JSON_API_Update_Media_v1_1_Endpoint extends WPCOM_JSON_API_Endpoint 
 				'artist' => __( 'Artist', 'jetpack' ),
 				'album' => __( 'Album', 'jetpack' )
 			);
-
+		
 			foreach ( $id3_keys as $key => $label ) {
 				if ( isset( $input[ $key ] ) ) {
 					$changed = true;

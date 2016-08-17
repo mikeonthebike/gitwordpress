@@ -11,7 +11,7 @@ Created by Michael Arestad with FontForge 2.0 (http://fontforge.sf.net)
 </metadata>
 <defs>
 <font id="jetpack" horiz-adv-x="512" >
-  <font-face
+  <font-face 
     font-family="jetpack"
     font-weight="500"
     font-stretch="normal"
@@ -25,7 +25,7 @@ Created by Michael Arestad with FontForge 2.0 (http://fontforge.sf.net)
     unicode-range="U+F102-F102"
   />
     <missing-glyph />
-    <glyph glyph-name="uniF102" unicode="&#xf102;"
+    <glyph glyph-name="uniF102" unicode="&#xf102;" 
 d="M256 396.8c113.101 0 204.8 -91.6992 204.8 -204.8s-91.6992 -204.8 -204.8 -204.8s-204.8 91.6992 -204.8 204.8s91.6992 204.8 204.8 204.8zM230.4 140.8v179.2l-80.0771 -125.491c-8.42285 -14.5918 -0.563477 -33.1777 15.7441 -37.3252zM361.677 189.491
 c8.39648 14.5918 0.563477 33.1777 -15.7441 37.3252l-64.333 16.3838v-179.2z" />
   </font>

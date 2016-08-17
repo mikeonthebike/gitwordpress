@@ -22,7 +22,7 @@
 
 function latex_markup( $content ) {
 	$textarr = wp_html_split( $content );
-
+	
 	$regex = '%
 		\$latex(?:=\s*|\s+)
 		((?:
@@ -32,7 +32,7 @@ function latex_markup( $content ) {
 		)+)
 		(?<!\\\\)\$ # Dollar preceded by zero slashes
 	%ix';
-
+	
 	foreach ( $textarr as &$element ) {
 		if ( '' == $element || '<' === $element[0] ) {
 			continue;

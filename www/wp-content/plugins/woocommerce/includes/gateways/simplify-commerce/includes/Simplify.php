@@ -30,31 +30,31 @@ require_once(dirname(__FILE__) . '/Simplify/Constants.php');
 
 class Simplify
 {
-    /**
-     * @var string $publicKey public API key used to authenticate requests.
-     */
-    public static $publicKey;
+	/**
+	 * @var string $publicKey public API key used to authenticate requests.
+	 */
+	public static $publicKey;
 
-    /**
-     * @var string $privateKey private API key used to authenticate requests.
-     */
-    public static $privateKey;
+	/**
+	 * @var string $privateKey private API key used to authenticate requests.
+	 */
+	public static $privateKey;
 
 
-    /**
-     * @var string $apiBaseLiveUrl URL of the live API endpoint
-     */
-    public static $apiBaseLiveUrl = Simplify_Constants::API_BASE_LIVE_URL;
+	/**
+	 * @var string $apiBaseLiveUrl URL of the live API endpoint
+	 */
+	public static $apiBaseLiveUrl = Simplify_Constants::API_BASE_LIVE_URL;
 
-    /**
-     * @var string $apiBaseSandboxUrl URL of the sandbox API endpoint
-     */
-    public static $apiBaseSandboxUrl = Simplify_Constants::API_BASE_SANDBOX_URL;
+	/**
+	 * @var string $apiBaseSandboxUrl URL of the sandbox API endpoint
+	 */
+	public static $apiBaseSandboxUrl = Simplify_Constants::API_BASE_SANDBOX_URL;
 
-    /**
-     * @var string $userAgent User-agent string send with requests.
-     */
-    public static $userAgent = null;
+	/**
+	 * @var string $userAgent User-agent string send with requests.
+	 */
+	public static $userAgent = null;
 
 }
 

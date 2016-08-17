@@ -818,7 +818,7 @@ class ftp_base {
 	function glob_regexp($pattern,$probe) {
 		$sensitive=(PHP_OS!='WIN32');
 		return ($sensitive?
-			preg_match( '/' . preg_quote( $pattern, '/' ) . '/', $probe ) :
+			preg_match( '/' . preg_quote( $pattern, '/' ) . '/', $probe ) : 
 			preg_match( '/' . preg_quote( $pattern, '/' ) . '/i', $probe )
 		);
 	}

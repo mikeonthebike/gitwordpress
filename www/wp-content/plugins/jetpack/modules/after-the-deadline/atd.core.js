@@ -6,7 +6,7 @@
  * Contact     : raffi@automattic.com
  */
 
-/* jshint sub: true, devel: true, onevar: false, smarttabs: true */
+/* jshint sub: true, devel: true, onevar: false, smarttabs: true, loopfunc: true */
 /* exported EXPORTED_SYMBOLS, atd_sprintf */
 
 /* EXPORTED_SYMBOLS is set so this file can be a JavaScript Module */
@@ -629,7 +629,7 @@ AtDCore.prototype.isIE = function() {
 	return navigator.appName === 'Microsoft Internet Explorer';
 };
 
-// TODO: this doesn't seem used anywhere in AtD, moved here from install_atd_l10n.js for eventual back-compat
+// TODO: this doesn't seem used anywhere in AtD, moved here from install_atd_l10n.js for eventual back-compat 
 /* a quick poor man's sprintf */
 function atd_sprintf(format, values) {
 	var result = format;

@@ -8,6 +8,7 @@ class WPCOM_JSON_API_List_Post_Types_Endpoint extends WPCOM_JSON_API_Endpoint {
 		'description'  => 'description',
 		'map_meta_cap' => 'map_meta_cap',
 		'cap'          => 'capabilities',
+		'hierarchical' => 'hierarchical',
 	);
 
 	// /sites/%s/post-types -> $blog_id
@@ -23,9 +24,15 @@ class WPCOM_JSON_API_List_Post_Types_Endpoint extends WPCOM_JSON_API_Endpoint {
 
 		$args = $this->query_args();
 
-		// API localization occurs after the initial post types have been
-		// registered, so re-register if localizing response
+		/**
+		 * Whether API responses should be returned in a custom locale.  False
+		 * for Jetpack; may be true for WP.com requests.
+		 *
+		 * @since 3.9.2
+		 */
 		if ( apply_filters( 'rest_api_localize_response', false ) ) {
+			// API localization occurs after the initial post types have been
+			// registered, so re-register if localizing response
 			create_initial_post_types();
 		}
 
@@ -64,12 +71,12 @@ class WPCOM_JSON_API_List_Post_Types_Endpoint extends WPCOM_JSON_API_Endpoint {
 			'post_types' => $formatted_post_type_objects
 		);
 	}
-
+	
 	function post_type_supports_tags( $post_type ) {
 		if ( in_array( 'post_tag', get_object_taxonomies( $post_type ) ) ) {
 			return true;
 		}
-
+		
 		// the featured content module adds post_tag support
 		// to the post types that are registered for it
 		// however it does so in a way that isn't available
@@ -78,7 +85,7 @@ class WPCOM_JSON_API_List_Post_Types_Endpoint extends WPCOM_JSON_API_Endpoint {
 		if ( ! $featured_content || empty( $featured_content[0] ) || empty( $featured_content[0]['post_types'] ) ) {
 			return false;
 		}
-
+		
 		return in_array( $post_type, $featured_content[0]['post_types'] );
 	}
 }

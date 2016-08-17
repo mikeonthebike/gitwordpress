@@ -223,7 +223,7 @@ function edButton(id, display, tagStart, tagEnd, access) {
 
 		if ( tb.addEventListener ) {
 			tb.addEventListener( 'click', onclick, false );
-
+			
 			if ( wrap ) {
 				wrap.addEventListener( 'click', setActiveEditor, false );
 			}
@@ -526,6 +526,11 @@ function edButton(id, display, tagStart, tagEnd, access) {
 		} else if ( canvas.selectionStart || canvas.selectionStart === 0 ) { // FF, WebKit, Opera
 			startPos = canvas.selectionStart;
 			endPos = canvas.selectionEnd;
+
+			if ( startPos < endPos && v.charAt( endPos - 1 ) === '\n' ) {
+				endPos -= 1;
+			}
+
 			cursorPos = endPos;
 			scrollTop = canvas.scrollTop;
 			l = v.substring(0, startPos); // left of the selection

@@ -6,10 +6,10 @@
 .j-row {
 	width: 100%;
 	margin: 0 auto;
-	&:before,
+	&:before, 
 	&:after {
 		content: " ";
-		display: table;
+		display: table; 
 	}
 
 	&:after {
@@ -20,7 +20,7 @@
 .j-col {
 	padding: 0.85em;
 	width: 100%;
-	float: left;
+	float: left; 
 	position: relative;
 }
 
