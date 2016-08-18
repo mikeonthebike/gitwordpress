@@ -13,7 +13,7 @@
  *
  * @package WordPress
  */
-
+define('FORCE_SSL_ADMIN', true);
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 $sDBName = isset($_ENV['OPENSHIFT_APP_NAME']) ? $_ENV['OPENSHIFT_APP_NAME'] : 'gitwordpress';
