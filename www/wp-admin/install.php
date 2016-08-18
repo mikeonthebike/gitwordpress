@@ -31,7 +31,7 @@ if ( false ) {
  * @var bool
  */
 define( 'WP_INSTALLING', true );
-
+print_r($_SERVER);
 /** Load WordPress Bootstrap */
 require_once( dirname( dirname( __FILE__ ) ) . '/wp-load.php' );
 
