@@ -2,7 +2,7 @@ jQuery( function ( $ ) {
 	var mshotRemovalTimer = null;
 	var mshotSecondTryTimer = null
 	var mshotThirdTryTimer = null
-
+	
 	$( 'a.activate-option' ).click( function(){
 		var link = $( this );
 		if ( link.hasClass( 'clicked' ) ) {
@@ -27,12 +27,12 @@ jQuery( function ( $ ) {
 		.find('.column-author a[href^="http"]:first') // Ignore mailto: links, which would be the comment author's email.
 		.each(function () {
 		var linkHref = $(this).attr( 'href' );
-
+		
 		// Ignore any links to the current domain, which are diagnostic tools, like the IP address link
 		// or any other links another plugin might add.
 		var currentHostParts = document.location.href.split( '/' );
 		var currentHost = currentHostParts[0] + '//' + currentHostParts[2] + '/';
-
+		
 		if ( linkHref.indexOf( currentHost ) != 0 ) {
 			var thisCommentId = $(this).parents('tr:first').attr('id').split("-");
 
@@ -45,7 +45,8 @@ jQuery( function ( $ ) {
 				);
 		}
 	});
-	$('.remove_url').live('click', function () {
+	
+	$( '#the-comment-list' ).on( 'click', '.remove_url', function () {
 		var thisId = $(this).attr('commentid');
 		var data = {
 			action: 'comment_author_deurl',
@@ -82,8 +83,7 @@ jQuery( function ( $ ) {
 		});
 
 		return false;
-	});
-	$('.akismet_undo_link_removal').live('click', function () {
+	}).on( 'click', '.akismet_undo_link_removal', function () {
 		var thisId = $(this).attr('cid');
 		var thisUrl = $(this).attr('href');
 		var data = {
@@ -177,7 +177,7 @@ jQuery( function ( $ ) {
 				'limit': limit
 			},
 			function(result) {
-				if (result.processed < limit) {
+				if (result.counts.processed < limit) {
 					window.location.reload();
 				}
 				else {

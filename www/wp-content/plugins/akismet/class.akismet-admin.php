@@ -61,7 +61,7 @@ class Akismet_Admin {
 		add_filter( 'comment_row_actions', array( 'Akismet_Admin', 'comment_row_action' ), 10, 2 );
 		
 		add_filter( 'plugin_action_links_'.plugin_basename( plugin_dir_path( __FILE__ ) . 'akismet.php'), array( 'Akismet_Admin', 'admin_plugin_settings_link' ) );
-
+		
 		add_filter( 'wxr_export_skip_commentmeta', array( 'Akismet_Admin', 'exclude_commentmeta_from_export' ), 10, 3 );
 	}
 
@@ -357,71 +357,14 @@ class Akismet_Admin {
 
 		Akismet::fix_scheduled_recheck();
 
-		if ( ! ( isset( $_GET['recheckqueue'] ) || ( isset( $_REQUEST['action'] ) && 'akismet_recheck_queue' == $_REQUEST['action'] ) ) )
+		if ( ! ( isset( $_GET['recheckqueue'] ) || ( isset( $_REQUEST['action'] ) && 'akismet_recheck_queue' == $_REQUEST['action'] ) ) ) {
 			return;
-
-		$paginate = '';
-		if ( isset( $_POST['limit'] ) && isset( $_POST['offset'] ) ) {
-			$paginate = $wpdb->prepare( " LIMIT %d OFFSET %d", array( $_POST['limit'], $_POST['offset'] ) );
 		}
-		$moderation = $wpdb->get_results( "SELECT * FROM {$wpdb->comments} WHERE comment_approved = '0'{$paginate}", ARRAY_A );
 
-		$result_counts = array(
-			'spam' => 0,
-			'ham' => 0,
-			'error' => 0,
-		);
+		$result_counts = self::recheck_queue_portion( empty( $_POST['offset'] ) ? 0 : $_POST['offset'], empty( $_POST['limit'] ) ? 100 : $_POST['limit'] );
 
-		foreach ( (array) $moderation as $c ) {
-			$c['user_ip']      = $c['comment_author_IP'];
-			$c['user_agent']   = $c['comment_agent'];
-			$c['referrer']     = '';
-			$c['blog']         = get_bloginfo('url');
-			$c['blog_lang']    = get_locale();
-			$c['blog_charset'] = get_option('blog_charset');
-			$c['permalink']    = get_permalink($c['comment_post_ID']);
-
-			$c['user_role'] = '';
-			if ( isset( $c['user_ID'] ) )
-				$c['user_role'] = Akismet::get_user_roles($c['user_ID']);
-
-			if ( Akismet::is_test_mode() )
-				$c['is_test'] = 'true';
-
-			add_comment_meta( $c['comment_ID'], 'akismet_rechecking', true );
-
-			$response = Akismet::http_post( Akismet::build_query( $c ), 'comment-check' );
-
-			if ( 'true' == $response[1] ) {
-				wp_set_comment_status( $c['comment_ID'], 'spam' );
-				update_comment_meta( $c['comment_ID'], 'akismet_result', 'true' );
-				delete_comment_meta( $c['comment_ID'], 'akismet_error' );
-				delete_comment_meta( $c['comment_ID'], 'akismet_delayed_moderation_email' );
-				Akismet::update_comment_history( $c['comment_ID'], '', 'recheck-spam' );
-				++$result_counts['spam'];
-			} elseif ( 'false' == $response[1] ) {
-				update_comment_meta( $c['comment_ID'], 'akismet_result', 'false' );
-				delete_comment_meta( $c['comment_ID'], 'akismet_error' );
-				delete_comment_meta( $c['comment_ID'], 'akismet_delayed_moderation_email' );
-				Akismet::update_comment_history( $c['comment_ID'], '', 'recheck-ham' );
-				++$result_counts['ham'];
-			} else {
-				// abnormal result: error
-				update_comment_meta( $c['comment_ID'], 'akismet_result', 'error' );
-				Akismet::update_comment_history(
-					$c['comment_ID'],
-					'',
-					'recheck-error',
-					array( 'response' => substr( $response[1], 0, 50 ) )
-				);
-				++$result_counts['error'];
-			}
-
-			delete_comment_meta( $c['comment_ID'], 'akismet_rechecking' );
-		}
 		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 			wp_send_json( array(
-				'processed' => count((array) $moderation),
 				'counts' => $result_counts,
 			));
 		}
@@ -431,11 +374,51 @@ class Akismet_Admin {
 			exit;
 		}
 	}
+	
+	public static function recheck_queue_portion( $start = 0, $limit = 100 ) {
+		global $wpdb;
+		
+		$paginate = '';
+
+		if ( $limit <= 0 ) {
+			$limit = 100;
+		}
+
+		if ( $start < 0 ) {
+			$start = 0;
+		}
+
+		$moderation = $wpdb->get_col( $wpdb->prepare( "SELECT * FROM {$wpdb->comments} WHERE comment_approved = '0' LIMIT %d OFFSET %d", $limit, $start ) );
+
+		$result_counts = array(
+			'processed' => count( $moderation ),
+			'spam' => 0,
+			'ham' => 0,
+			'error' => 0,
+		);
+
+		foreach ( $moderation as $comment_id ) {
+			$api_response = Akismet::recheck_comment( $comment_id, 'recheck_queue' );
+
+			if ( 'true' === $api_response ) {
+				++$result_counts['spam'];
+			}
+			elseif ( 'false' === $api_response ) {
+				++$result_counts['ham'];
+			}
+			else {
+				++$result_counts['error'];
+			}
+		}
+
+		return $result_counts;
+	}
 
 	// Adds an 'x' link next to author URLs, clicking will remove the author URL and show an undo link
 	public static function remove_comment_author_url() {
 		if ( !empty( $_POST['id'] ) && check_admin_referer( 'comment_author_url_nonce' ) ) {
-			$comment = get_comment( intval( $_POST['id'] ), ARRAY_A );
+			$comment_id = intval( $_POST['id'] );
+			$comment = get_comment( $comment_id, ARRAY_A );
 			if ( $comment && current_user_can( 'edit_comment', $comment['comment_ID'] ) ) {
 				$comment['comment_author_url'] = '';
 				do_action( 'comment_remove_author_url' );
@@ -447,7 +430,8 @@ class Akismet_Admin {
 
 	public static function add_comment_author_url() {
 		if ( !empty( $_POST['id'] ) && !empty( $_POST['url'] ) && check_admin_referer( 'comment_author_url_nonce' ) ) {
-			$comment = get_comment( intval( $_POST['id'] ), ARRAY_A );
+			$comment_id = intval( $_POST['id'] );
+			$comment = get_comment( $comment_id, ARRAY_A );
 			if ( $comment && current_user_can( 'edit_comment', $comment['comment_ID'] ) ) {
 				$comment['comment_author_url'] = esc_url( $_POST['url'] );
 				do_action( 'comment_add_author_url' );
@@ -505,7 +489,7 @@ class Akismet_Admin {
 
 		$show_user_comments = apply_filters( 'akismet_show_user_comments_approved', get_option('akismet_show_user_comments_approved') );
 		$show_user_comments = $show_user_comments === 'false' ? false : $show_user_comments; //option used to be saved as 'false' / 'true'
-
+		
 		if ( $show_user_comments ) {
 			$comment_count = Akismet::get_user_comments_approved( $comment->user_id, $comment->comment_author_email, $comment->comment_author, $comment->comment_author_url );
 			$comment_count = intval( $comment_count );
@@ -523,18 +507,18 @@ class Akismet_Admin {
 
 			foreach ( $history as $row ) {
 				$time = date( 'D d M Y @ h:i:m a', $row['time'] ) . ' GMT';
-
+				
 				$message = '';
-
+				
 				if ( ! empty( $row['message'] ) ) {
 					// Old versions of Akismet stored the message as a literal string in the commentmeta.
 					// New versions don't do that for two reasons:
 					// 1) Save space.
-					// 2) The message can be translated into the current language of the blog, not stuck
+					// 2) The message can be translated into the current language of the blog, not stuck 
 					//    in the language of the blog when the comment was made.
 					$message = $row['message'];
 				}
-
+				
 				// If possible, use a current translation.
 				switch ( $row['event'] ) {
 					case 'recheck-spam';
@@ -599,7 +583,7 @@ class Akismet_Admin {
 							}
 						}
 					break;
-
+					
 				}
 
 				echo '<div style="margin-bottom: 13px;">';
@@ -648,16 +632,16 @@ class Akismet_Admin {
 	// Check connectivity between the WordPress blog and Akismet's servers.
 	// Returns an associative array of server IP addresses, where the key is the IP address, and value is true (available) or false (unable to connect).
 	public static function check_server_ip_connectivity() {
-
+		
 		$servers = $ips = array();
 
 		// Some web hosts may disable this function
-		if ( function_exists('gethostbynamel') ) {
-
+		if ( function_exists('gethostbynamel') ) {	
+			
 			$ips = gethostbynamel( 'rest.akismet.com' );
 			if ( $ips && is_array($ips) && count($ips) ) {
 				$api_key = Akismet::get_api_key();
-
+				
 				foreach ( $ips as $ip ) {
 					$response = Akismet::verify_key( $api_key, $ip );
 					// even if the key is invalid, at least we know we have connectivity
@@ -668,13 +652,13 @@ class Akismet_Admin {
 				}
 			}
 		}
-
+		
 		return $servers;
 	}
-
+	
 	// Simpler connectivity check
 	public static function check_server_connectivity($cache_timeout = 86400) {
-
+		
 		$debug = array();
 		$debug[ 'PHP_VERSION' ]         = PHP_VERSION;
 		$debug[ 'WORDPRESS_VERSION' ]   = $GLOBALS['wp_version'];
@@ -682,7 +666,7 @@ class Akismet_Admin {
 		$debug[ 'AKISMET__PLUGIN_DIR' ] = AKISMET__PLUGIN_DIR;
 		$debug[ 'SITE_URL' ]            = site_url();
 		$debug[ 'HOME_URL' ]            = home_url();
-
+		
 		$servers = get_option('akismet_available_servers');
 		if ( (time() - get_option('akismet_connectivity_time') < $cache_timeout) && $servers !== false ) {
 			$servers = self::check_server_ip_connectivity();
@@ -690,21 +674,26 @@ class Akismet_Admin {
 			update_option('akismet_connectivity_time', time());
 		}
 
-		$response = wp_remote_get( 'http://rest.akismet.com/1.1/test' );
+		if ( function_exists( 'wp_http_supports' ) && ( wp_http_supports( array( 'ssl' ) ) ) ) {
+			$response = wp_remote_get( 'https://rest.akismet.com/1.1/test' );
+		}
+		else {
+			$response = wp_remote_get( 'http://rest.akismet.com/1.1/test' );
+		}
 
 		$debug[ 'gethostbynamel' ]  = function_exists('gethostbynamel') ? 'exists' : 'not here';
 		$debug[ 'Servers' ]         = $servers;
 		$debug[ 'Test Connection' ] = $response;
-
+		
 		Akismet::log( $debug );
-
+		
 		if ( $response && 'connected' == wp_remote_retrieve_body( $response ) )
 			return true;
-
+		
 		return false;
 	}
 
-	// Check the server connectivity and store the available servers in an option.
+	// Check the server connectivity and store the available servers in an option. 
 	public static function get_server_connectivity($cache_timeout = 86400) {
 		return self::check_server_connectivity( $cache_timeout );
 	}
@@ -731,7 +720,7 @@ class Akismet_Admin {
 	public static function get_akismet_user( $api_key ) {
 		$akismet_user = false;
 
-		$subscription_verification = Akismet::http_post( Akismet::build_query( array( 'key' => $api_key, 'blog' => get_bloginfo( 'url' ) ) ), 'get-subscription' );
+		$subscription_verification = Akismet::http_post( Akismet::build_query( array( 'key' => $api_key, 'blog' => get_option( 'home' ) ) ), 'get-subscription' );
 
 		if ( ! empty( $subscription_verification[1] ) ) {
 			if ( 'invalid' !== $subscription_verification[1] ) {
@@ -746,7 +735,7 @@ class Akismet_Admin {
 		$stat_totals = array();
 
 		foreach( array( '6-months', 'all' ) as $interval ) {
-			$response = Akismet::http_post( Akismet::build_query( array( 'blog' => get_bloginfo( 'url' ), 'key' => $api_key, 'from' => $interval ) ), 'get-stats' );
+			$response = Akismet::http_post( Akismet::build_query( array( 'blog' => get_option( 'home' ), 'key' => $api_key, 'from' => $interval ) ), 'get-stats' );
 
 			if ( ! empty( $response[1] ) ) {
 				$stat_totals[$interval] = json_decode( $response[1] );
@@ -770,20 +759,20 @@ class Akismet_Admin {
 		
 		return $akismet_account;
 	}
-
+	
 	public static function connect_jetpack_user() {
-
+	
 		if ( $jetpack_user = self::get_jetpack_user() ) {
 			if ( isset( $jetpack_user['user_id'] ) && isset(  $jetpack_user['api_key'] ) ) {
 				$akismet_user = self::verify_wpcom_key( $jetpack_user['api_key'], $jetpack_user['user_id'], array( 'action' => 'connect_jetpack_user' ) );
-
+							
 				if ( is_object( $akismet_user ) ) {
 					self::save_key( $akismet_user->api_key );
 					return in_array( $akismet_user->status, array( 'active', 'active-dunning', 'no-sub' ) );
 				}
 			}
 		}
-
+		
 		return false;
 	}
 
@@ -924,7 +913,7 @@ class Akismet_Admin {
 
 		if ( in_array( $hook_suffix, array( 'jetpack_page_akismet-key-config', 'settings_page_akismet-key-config', 'edit-comments.php' ) ) && (int) get_option( 'akismet_alert_code' ) > 0 ) {
 			Akismet::verify_key( Akismet::get_api_key() ); //verify that the key is still in alert state
-
+			
 			if ( get_option( 'akismet_alert_code' ) > 0 )
 				self::display_alert();
 		}
@@ -951,13 +940,13 @@ class Akismet_Admin {
 			foreach ( self::$notices as $type ) {
 				if ( is_object( $type ) ) {
 					$notice_header = $notice_text = '';
-
+					
 					if ( property_exists( $type, 'notice_header' ) )
 						$notice_header = wp_kses( $type->notice_header, self::$allowed );
-
+				
 					if ( property_exists( $type, 'notice_text' ) )
 						$notice_text = wp_kses( $type->notice_text, self::$allowed );
-
+					
 					if ( property_exists( $type, 'status' ) ) {
 						$type = wp_kses( $type->status, self::$allowed );
 						Akismet::view( 'notice', compact( 'type', 'notice_header', 'notice_text' ) );
@@ -965,7 +954,7 @@ class Akismet_Admin {
 				}
 				else
 					Akismet::view( 'notice', compact( 'type' ) );
-			}
+			}				
 		}
 	}
 
@@ -992,7 +981,7 @@ class Akismet_Admin {
 		}
 		return false;
 	}
-
+	
 	/**
 	 * Some commentmeta isn't useful in an export file. Suppress it (when supported).
 	 *
@@ -1005,7 +994,7 @@ class Akismet_Admin {
 		if ( in_array( $key, array( 'akismet_as_submitted', 'akismet_rechecking', 'akismet_delayed_moderation_email' ) ) ) {
 			return true;
 		}
-
+		
 		return $exclude;
 	}
 }

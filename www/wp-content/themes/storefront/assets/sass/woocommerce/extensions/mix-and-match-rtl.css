@@ -26,7 +26,7 @@
   .cart .mnm_table_item .mnm_table_item_indent:before,
   .shop_table .mnm_table_item .mnm_table_item_indent:before {
     display: inline-block;
-    font: normal normal normal 1em/1 FontAwesome;
+    font: normal normal normal 1em / 1 FontAwesome;
     font-size: inherit;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;

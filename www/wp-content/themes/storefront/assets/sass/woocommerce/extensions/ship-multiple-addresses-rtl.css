@@ -37,7 +37,7 @@
   .woocommerce-page .ship_address .gift-form label:after,
   .woocommerce-page .no_shipping_address .gift-form label:after {
     display: inline-block;
-    font: normal normal normal 1em/1 FontAwesome;
+    font: normal normal normal 1em / 1 FontAwesome;
     font-size: inherit;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
@@ -51,7 +51,7 @@
     .woocommerce-page .ship_address .modify-address-button:before,
     .woocommerce-page .no_shipping_address .modify-address-button:before {
       display: inline-block;
-      font: normal normal normal 1em/1 FontAwesome;
+      font: normal normal normal 1em / 1 FontAwesome;
       font-size: inherit;
       text-rendering: auto;
       -webkit-font-smoothing: antialiased;

@@ -22,24 +22,24 @@
   // to generate all possibilities.
   @each $Ratio in $Ratios {
     @each $Base in $Bases {
-
+      
       // Set base variables
       $MS-base-list: ();
       $Base-counter: 0;
-
+      
       // Seed list with an initial value
       $MS-base-list: $Base;
-
+      
       // Find values on a positive scale
       @if $Value >= 0 {
-
+        
         // Find lower values on the scale
         $Base-counter: -1;
         @while ms-calc($Base-counter, $Base, $Ratio) >= nth($Bases, 1) {
           $MS-base-list: join($MS-base-list, ms-calc($Base-counter, $Base, $Ratio));
           $Base-counter: $Base-counter - 1;
         }
-
+        
         // Ensure the list is smallest to largest
         $MS-base-list: ms-reverse-list($MS-base-list);
 
@@ -53,7 +53,7 @@
 
       // Find values on a negitive scale
       @else {
-
+        
         // Find lower values on the scale
         $Base-counter: 1;
         @while ms-calc($Base-counter, $Base, $Ratio) <= nth($Bases, 1) {
@@ -74,7 +74,7 @@
           }
           $Base-counter: $Base-counter - 1;
         }
-
+        
         // Trim outlier base.
         @if length($Bases) > 1 {
           @for $i from 2 through length($Bases) {
@@ -88,7 +88,7 @@
           }
         }
       }
-
+      
       // reverse list if its largest to smallest
       $MS-base-list: ms-reverse-list($MS-base-list);
 
@@ -97,7 +97,7 @@
 
     }
   }
-
+  
   // After all the possibilities are found, output a master list
   @return $MS-list;
 }

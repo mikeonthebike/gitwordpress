@@ -80,12 +80,15 @@ if ( ! class_exists( 'Storefront_Customizer' ) ) :
 		 * @return string
 		 */
 		public function get_theme_mod_value( $value ) {
-			if ( $value ) {
+			$key = substr( current_filter(), 10 );
+
+			$set_theme_mods = get_theme_mods();
+
+			if ( isset( $set_theme_mods[ $key ] ) ) {
 				return $value;
 			}
 
-			$key    = substr( current_filter(), 10 );
-			$values = self::get_storefront_default_setting_values();
+			$values = $this->get_storefront_default_setting_values();
 
 			return isset( $values[ $key ] ) ? $values[ $key ] : $value;
 		}
@@ -128,8 +131,6 @@ if ( ! class_exists( 'Storefront_Customizer' ) ) :
 		 * @since  1.0.0
 		 */
 		public function customize_register( $wp_customize ) {
-			$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
-			$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 
 			// Move background color setting alongside background image.
 			$wp_customize->get_control( 'background_color' )->section   = 'background_image';
@@ -144,26 +145,31 @@ if ( ! class_exists( 'Storefront_Customizer' ) ) :
 			$wp_customize->get_section( 'header_image' )->priority      = 25;
 
 			// Selective refresh.
-			$wp_customize->selective_refresh->add_partial( 'custom_logo', array(
-				'selector'        => '.site-branding',
-				'render_callback' => function() {
-					storefront_site_title_or_logo();
-				},
-			) );
+			if ( function_exists( 'add_partial' ) ) {
+				$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
+				$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 
-			$wp_customize->selective_refresh->add_partial( 'blogname', array(
-				'selector'        => '.site-title.beta a',
-				'render_callback' => function() {
-					bloginfo( 'name' );
-				},
-			) );
+				$wp_customize->selective_refresh->add_partial( 'custom_logo', array(
+					'selector'        => '.site-branding',
+					'render_callback' => function() {
+						storefront_site_title_or_logo();
+					},
+				) );
 
-			$wp_customize->selective_refresh->add_partial( 'blogdescription', array(
-				'selector'        => '.site-description',
-				'render_callback' => function() {
-					bloginfo( 'description' );
-				},
-			) );
+				$wp_customize->selective_refresh->add_partial( 'blogname', array(
+					'selector'        => '.site-title.beta a',
+					'render_callback' => function() {
+						bloginfo( 'name' );
+					},
+				) );
+
+				$wp_customize->selective_refresh->add_partial( 'blogdescription', array(
+					'selector'        => '.site-description',
+					'render_callback' => function() {
+						bloginfo( 'description' );
+					},
+				) );
+			}
 
 			/**
 			 * Custom controls

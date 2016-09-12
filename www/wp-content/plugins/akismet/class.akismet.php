@@ -48,12 +48,12 @@ class Akismet {
 
 		add_filter( 'comment_moderation_recipients', array( 'Akismet', 'disable_moderation_emails_if_unreachable' ), 1000, 2 );
 		add_filter( 'pre_comment_approved', array( 'Akismet', 'last_comment_status' ), 10, 2 );
-
+		
 		add_action( 'transition_comment_status', array( 'Akismet', 'transition_comment_status' ), 10, 3 );
 
 		// Run this early in the pingback call, before doing a remote fetch of the source uri
 		add_action( 'xmlrpc_call', array( 'Akismet', 'pre_check_pingback' ) );
-
+		
 		// Jetpack compatibility
 		add_filter( 'jetpack_options_whitelist', array( 'Akismet', 'add_to_jetpack_options_whitelist' ) );
 		add_action( 'update_option_wordpress_api_key', array( 'Akismet', 'updated_option' ), 10, 2 );
@@ -64,7 +64,7 @@ class Akismet {
 	}
 
 	public static function check_key_status( $key, $ip = null ) {
-		return self::http_post( Akismet::build_query( array( 'key' => $key, 'blog' => get_option('home') ) ), 'verify-key', $ip );
+		return self::http_post( Akismet::build_query( array( 'key' => $key, 'blog' => get_option( 'home' ) ) ), 'verify-key', $ip );
 	}
 
 	public static function verify_key( $key, $ip = null ) {
@@ -77,7 +77,7 @@ class Akismet {
 	}
 
 	public static function deactivate_key( $key ) {
-		$response = self::http_post( Akismet::build_query( array( 'key' => $key, 'blog' => get_option('home') ) ), 'deactivate' );
+		$response = self::http_post( Akismet::build_query( array( 'key' => $key, 'blog' => get_option( 'home' ) ) ), 'deactivate' );
 
 		if ( $response[1] != 'deactivated' )
 			return 'failed';
@@ -124,7 +124,7 @@ class Akismet {
 		$comment['user_ip']      = self::get_ip_address();
 		$comment['user_agent']   = self::get_user_agent();
 		$comment['referrer']     = self::get_referer();
-		$comment['blog']         = get_option('home');
+		$comment['blog']         = get_option( 'home' );
 		$comment['blog_lang']    = get_locale();
 		$comment['blog_charset'] = get_option('blog_charset');
 		$comment['permalink']    = get_permalink( $comment['comment_post_ID'] );
@@ -347,10 +347,11 @@ class Akismet {
 				do_action( 'delete_comment', $comment_id );
 			}
 
-			$comma_comment_ids = implode( ', ', array_map('intval', $comment_ids) );
+			// Prepared as strings since comment_id is an unsigned BIGINT, and using %d will constrain the value to the maximum signed BIGINT.
+			$format_string = implode( ", ", array_fill( 0, count( $comment_ids ), '%s' ) );
 
-			$wpdb->query("DELETE FROM {$wpdb->comments} WHERE comment_id IN ( $comma_comment_ids )");
-			$wpdb->query("DELETE FROM {$wpdb->commentmeta} WHERE comment_id IN ( $comma_comment_ids )");
+			$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->comments} WHERE comment_id IN ( " . $format_string . " )", $comment_ids ) );
+			$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->commentmeta} WHERE comment_id IN ( " . $format_string . " )", $comment_ids ) );
 
 			clean_comment_cache( $comment_ids );
 		}
@@ -432,11 +433,11 @@ class Akismet {
 			'time'    => self::_get_microtime(),
 			'event'   => $event,
 		);
-
+		
 		if ( is_object( $current_user ) && isset( $current_user->user_login ) ) {
 			$event['user'] = $current_user->user_login;
 		}
-
+		
 		if ( ! empty( $meta ) ) {
 			$event['meta'] = $meta;
 		}
@@ -449,47 +450,92 @@ class Akismet {
 		global $wpdb;
 
 		$c = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$wpdb->comments} WHERE comment_ID = %d", $id ), ARRAY_A );
-		if ( !$c )
-			return;
+		
+		if ( ! $c ) {
+			return new WP_Error( 'invalid-comment-id', __( 'Comment not found.', 'akismet' ) );
+		}
 
 		$c['user_ip']        = $c['comment_author_IP'];
 		$c['user_agent']     = $c['comment_agent'];
 		$c['referrer']       = '';
-		$c['blog']           = get_option('home');
+		$c['blog']           = get_option( 'home' );
 		$c['blog_lang']      = get_locale();
 		$c['blog_charset']   = get_option('blog_charset');
 		$c['permalink']      = get_permalink($c['comment_post_ID']);
 		$c['recheck_reason'] = $recheck_reason;
+
+		$c['user_role'] = '';
+		if ( isset( $c['user_ID'] ) )
+			$c['user_role'] = Akismet::get_user_roles($c['user_ID']);
 
 		if ( self::is_test_mode() )
 			$c['is_test'] = 'true';
 
 		$response = self::http_post( Akismet::build_query( $c ), 'comment-check' );
 
-		return ( is_array( $response ) && ! empty( $response[1] ) ) ? $response[1] : false;
+		if ( ! empty( $response[1] ) ) {
+			return $response[1];
+		}
+
+		return false;
+	}
+	
+	public static function recheck_comment( $id, $recheck_reason = 'recheck_queue' ) {
+		add_comment_meta( $id, 'akismet_rechecking', true );
+		
+		$api_response = self::check_db_comment( $id, $recheck_reason );
+
+		delete_comment_meta( $id, 'akismet_rechecking' );
+
+		if ( is_wp_error( $api_response ) ) {
+			// Invalid comment ID.
+		}
+		else if ( 'true' === $api_response ) {
+			wp_set_comment_status( $id, 'spam' );
+			update_comment_meta( $id, 'akismet_result', 'true' );
+			delete_comment_meta( $id, 'akismet_error' );
+			delete_comment_meta( $id, 'akismet_delayed_moderation_email' );
+			Akismet::update_comment_history( $id, '', 'recheck-spam' );
+		}
+		elseif ( 'false' === $api_response ) {
+			update_comment_meta( $id, 'akismet_result', 'false' );
+			delete_comment_meta( $id, 'akismet_error' );
+			delete_comment_meta( $id, 'akismet_delayed_moderation_email' );
+			Akismet::update_comment_history( $id, '', 'recheck-ham' );
+		}
+		else {
+			// abnormal result: error
+			update_comment_meta( $id, 'akismet_result', 'error' );
+			Akismet::update_comment_history(
+				$id,
+				'',
+				'recheck-error',
+				array( 'response' => substr( $api_response, 0, 50 ) )
+			);
+		}
+
+		return $api_response;
 	}
 
-
-
 	public static function transition_comment_status( $new_status, $old_status, $comment ) {
-
+		
 		if ( $new_status == $old_status )
 			return;
 
 		# we don't need to record a history item for deleted comments
 		if ( $new_status == 'delete' )
 			return;
-
+		
 		if ( !current_user_can( 'edit_post', $comment->comment_post_ID ) && !current_user_can( 'moderate_comments' ) )
 			return;
 
 		if ( defined('WP_IMPORTING') && WP_IMPORTING == true )
 			return;
-
+			
 		// if this is present, it means the status has been changed by a re-check, not an explicit user action
 		if ( get_comment_meta( $comment->comment_ID, 'akismet_rechecking' ) )
 			return;
-
+		
 		global $current_user;
 		$reporter = '';
 		if ( is_object( $current_user ) )
@@ -518,7 +564,7 @@ class Akismet {
 
 		self::update_comment_history( $comment->comment_ID, '', 'status-' . $new_status );
 	}
-
+	
 	public static function submit_spam_comment( $comment_id ) {
 		global $wpdb, $current_user, $current_site;
 
@@ -538,7 +584,7 @@ class Akismet {
 		if ( $as_submitted && is_array( $as_submitted ) && isset( $as_submitted['comment_content'] ) )
 			$comment = (object) array_merge( (array)$comment, $as_submitted );
 
-		$comment->blog         = get_bloginfo('url');
+		$comment->blog         = get_option( 'home' );
 		$comment->blog_lang    = get_locale();
 		$comment->blog_charset = get_option('blog_charset');
 		$comment->permalink    = get_permalink($comment->comment_post_ID);
@@ -584,7 +630,7 @@ class Akismet {
 		if ( $as_submitted && is_array($as_submitted) && isset($as_submitted['comment_content']) )
 			$comment = (object) array_merge( (array)$comment, $as_submitted );
 
-		$comment->blog         = get_bloginfo('url');
+		$comment->blog         = get_option( 'home' );
 		$comment->blog_lang    = get_locale();
 		$comment->blog_charset = get_option('blog_charset');
 		$comment->permalink    = get_permalink( $comment->comment_post_ID );
@@ -954,7 +1000,7 @@ class Akismet {
 			// request to fail and subsequent HTTP requests to succeed randomly.
 			// Retry the HTTPS request once before disabling SSL for a time.
 			$response = wp_remote_post( $akismet_url, $http_args );
-
+			
 			Akismet::log( compact( 'akismet_url', 'http_args', 'response' ) );
 
 			if ( is_wp_error( $response ) ) {
@@ -980,12 +1026,12 @@ class Akismet {
 		if ( $ssl_failed ) {
 			// The request failed when using SSL but succeeded without it. Disable SSL for future requests.
 			update_option( 'akismet_ssl_disabled', time() );
-
+			
 			do_action( 'akismet_https_disabled' );
 		}
-
+		
 		$simplified_response = array( $response['headers'], $response['body'] );
-
+		
 		self::update_alert( $simplified_response );
 
 		return $simplified_response;
@@ -1019,7 +1065,7 @@ class Akismet {
 		add_action( 'wp_footer', array( 'Akismet', 'print_form_js' ) );
 		add_action( 'admin_footer', array( 'Akismet', 'print_form_js' ) );
 	}
-
+	
 	public static function print_form_js() {
 		wp_print_scripts( 'akismet-form' );
 	}
@@ -1106,7 +1152,7 @@ p {
 	public static function plugin_deactivation( ) {
 		return self::deactivate_key( self::get_api_key() );
 	}
-
+	
 	/**
 	 * Essentially a copy of WP's build_query but one that doesn't expect pre-urlencoded values.
 	 *
@@ -1137,13 +1183,13 @@ p {
 			return;
 
 		global $wp_xmlrpc_server;
-
+	
 		if ( !is_object( $wp_xmlrpc_server ) )
 			return false;
-
+	
 		// Lame: tightly coupled with the IXR class.
 		$args = $wp_xmlrpc_server->message->params;
-
+	
 		if ( !empty( $args[1] ) ) {
 			$post_id = url_to_postid( $args[1] );
 
@@ -1170,10 +1216,10 @@ p {
 			}
 		}
 	}
-
+	
 	public static function pingback_forwarded_for( $r, $url ) {
 		static $urls = array();
-
+	
 		// Call this with $r == null to prime the callback to add headers on a specific URL
 		if ( is_null( $r ) && !in_array( $url, $urls ) ) {
 			$urls[] = $url;
@@ -1182,7 +1228,7 @@ p {
 		// Add X-Pingback-Forwarded-For header, but only for requests to a specific URL (the apparent pingback source)
 		if ( is_array( $r ) && is_array( $r['headers'] ) && !isset( $r['headers']['X-Pingback-Forwarded-For'] ) && in_array( $url, $urls ) ) {
 			$remote_ip = preg_replace( '/[^a-fx0-9:.,]/i', '', $_SERVER['REMOTE_ADDR'] );
-
+		
 			// Note: this assumes REMOTE_ADDR is correct, and it may not be if a reverse proxy or CDN is in use
 			$r['headers']['X-Pingback-Forwarded-For'] = $remote_ip;
 
@@ -1192,7 +1238,7 @@ p {
 
 		return $r;
 	}
-
+	
 	/**
 	 * Ensure that we are loading expected scalar values from akismet_as_submitted commentmeta.
 	 *

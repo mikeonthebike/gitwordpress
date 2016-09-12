@@ -1,5 +1,5 @@
 @function ms-calc($Value, $Base: $ms-base, $Ratio: $ms-ratio) {
-
+  
   // If pow exists use it.
   // It supports non-interger values!
   @if $MS-pow-exists {

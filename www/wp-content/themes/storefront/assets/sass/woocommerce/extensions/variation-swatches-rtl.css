@@ -39,7 +39,7 @@ a#variations_clear {
   margin: 1em 0 1.618em; }
   a#variations_clear:before {
     display: inline-block;
-    font: normal normal normal 1em/1 FontAwesome;
+    font: normal normal normal 1em / 1 FontAwesome;
     font-size: inherit;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;

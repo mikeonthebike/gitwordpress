@@ -54,7 +54,7 @@
 
 .single-product div.product .component_selections .clear_component_options:before {
   display: inline-block;
-  font: normal normal normal 1em/1 FontAwesome;
+  font: normal normal normal 1em / 1 FontAwesome;
   font-size: inherit;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;

@@ -24,7 +24,7 @@ function akismet_delete_old() {
 	return Akismet::delete_old_comments();
 }
 
-function akismet_delete_old_metadata() {
+function akismet_delete_old_metadata() { 
 	return Akismet::delete_old_comments_meta();
 }
 
