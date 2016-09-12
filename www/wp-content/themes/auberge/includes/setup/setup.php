@@ -6,7 +6,7 @@
  * @copyright  WebMan Design, Oliver Juhas
  *
  * @since    1.0
- * @version  2.0
+ * @version  2.1
  *
  * Contents:
  *
@@ -497,6 +497,14 @@
 
 
 	/**
+	 * Welcome page
+	 */
+
+		require_once( get_template_directory() . '/includes/welcome/welcome.php' );
+
+
+
+	/**
 	 * Setup images
 	 */
 
@@ -786,7 +794,7 @@
 		 * Food menu item image link
 		 *
 		 * @since    2.0
-		 * @version  2.0
+		 * @version  2.0.1
 		 *
 		 * @param  array $image_link
 		 */
@@ -796,6 +804,7 @@
 				// Helper variables
 
 					$post_id = get_the_ID();
+					$content = trim( strip_tags( get_the_content() ) );
 
 
 				// Processing
@@ -803,7 +812,7 @@
 					if (
 							'nova_menu_item' == get_post_type( $post_id )
 							&& ! is_single( $post_id )
-							&& empty( trim( strip_tags( get_the_content() ) ) )
+							&& empty( $content )
 						) {
 
 						$image_link = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'full' );
@@ -2311,14 +2320,17 @@
 				 * Display Food Menu loop on page template
 				 *
 				 * @since    2.0
-				 * @version  2.0
+				 * @version  2.1
 				 */
 				if ( ! function_exists( 'wm_loop_food_menu_page_template' ) ) {
 					function wm_loop_food_menu_page_template() {
 
 						// Requirements check
 
-							if ( ! is_page_template( 'page-template/_menu.php' ) ) {
+							if (
+									! is_page_template( 'page-template/_menu.php' )
+									|| is_front_page()
+								) {
 								return;
 							}
 
@@ -3375,6 +3387,14 @@
 
 		if ( class_exists( 'Jetpack' ) ) {
 			require_once( get_template_directory() . '/includes/plugins/jetpack/jetpack.php' );
+		}
+
+
+
+	// One Click Demo Import
+
+		if ( class_exists( 'PT_One_Click_Demo_Import' ) && is_admin() ) {
+			require_once( get_template_directory() . '/includes/plugins/one-click-demo-import/class-one-click-demo-import.php' );
 		}
 
 	// Smart Slider 3 setup

@@ -6,11 +6,11 @@
  * @copyright  WebMan Design, Oliver Juhas
  *
  * @since    1.0
- * @version  2.0
+ * @version  2.1
  *
  * Contents:
  *
- * - 10) Funcions
+ * - 10) Functions
  */
 
 
@@ -18,7 +18,7 @@
 
 
 /**
- * 10) Funcions
+ * 10) Functions
  */
 
 	/**
@@ -45,31 +45,29 @@
 								'name'     => esc_html__( 'Jetpack by WordPress.com (adds theme features)', 'auberge' ),
 								'slug'     => 'jetpack',
 								'required' => false,
-								'version'  => '4.0.2',
+							),
+
+							'beaver-builder' => array(
+								'name'        => esc_html__( 'Beaver Builder (easy page builder)', 'auberge' ),
+								'slug'        => 'beaver-builder-lite-version',
+								'required'    => false,
+								'is_callable' => 'FLBuilder::init',
 							),
 
 							'advanced-custom-fields' => array(
-								'name'     => esc_html__( 'Advanced Custom Fields (adds theme features)', 'auberge' ),
-								'slug'     => 'advanced-custom-fields',
+								'name'        => esc_html__( 'Advanced Custom Fields (easy page setup)', 'auberge' ),
+								'slug'        => 'advanced-custom-fields',
+								'required'    => false,
+								'is_callable' => 'register_field_group',
+							),
+
+							'one-click-demo-import' => array(
+								'name'     => esc_html__( 'One Click Demo Import (for installing theme demo content)', 'auberge' ),
+								'slug'     => 'one-click-demo-import',
 								'required' => false,
-								'version'  => '4.4.7',
 							),
 
 				) );
-
-			/**
-			 * Recommend Beaver Builder Lite Version only if Pro version not active
-			 */
-			if ( ! class_exists( 'FLBuilder' ) ) {
-
-				$plugins['beaver-builder'] = array(
-						'name'     => esc_html__( 'Beaver Builder (easy page builder)', 'auberge' ),
-						'slug'     => 'beaver-builder-lite-version',
-						'required' => false,
-						'version'  => '1.7.8',
-					);
-
-			}
 
 
 

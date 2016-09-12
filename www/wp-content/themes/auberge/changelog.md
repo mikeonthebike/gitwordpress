@@ -1,5 +1,79 @@
 # Auberge Changelog
 
+## 2.1
+
+* **Add**: "Welcome" admin page (under Apperance > Welcome)
+* **Add**: One click demo import
+* **Update**: Food menu scroll navigation using food menu section slug as HTML IDs (instead of names) for better language support
+* **Update**: TGM Plugin Activation script updated
+* **Update**: Recommended plugins list
+* **Update**: Documentation and theme demo content info
+* **Update**: Theme options (added an option to disable "Welcome" page)
+* **Update**: Localization
+* **Fix**: Reservations plugin styling issue
+* **Fix**: Widget areas columns styles when 1 or 2 widgets used in the area
+* **Fix**: Page featured image size
+* **Fix**: Food Menu page template issues when the page is set as front page
+* **Fix**: Preventing potential issues with `get_term_link()`
+* **Fix**: Theme Check issues
+
+#### Files changed:
+
+	changelog.md
+	functions.php
+	style.css
+	assets/css/welcome.css
+	documentation/documentation.html
+	includes/plugins/jetpack/class-nova-restaurant.php
+	includes/plugins/one-click-demo-import/class-one-click-demo-import.php
+	includes/post-media/post-media.php
+	includes/setup/setup.php
+	includes/tgmpa/class-tgm-plugin-activation.php
+	includes/tgmpa/plugins.php
+	includes/theme-options/theme-options.php
+	includes/welcome/class-welcome.php
+	includes/welcome/welcome.php
+	languages/sk_SK.mo
+	languages/sk_SK.po
+	languages/auberge.pot
+	library/css/admin.css
+
+
+## 2.0.3
+
+* **Update**: Theme tags
+
+#### Files changed:
+
+	functions.php
+	style.css
+
+
+## 2.0.2
+
+* **Fix**: Advanced Custom Fields plugin recommendation
+
+#### Files changed:
+
+	functions.php
+	style.css
+	includes/tgmpa/plugins.php
+
+
+## 2.0.1
+
+* **Update**: Making the theme compatible with older versions of PHP
+* **Fix**: Advanced Custom Fields plugin recommendation
+
+#### Files changed:
+
+	functions.php
+	style.css
+	includes/plugins/jetpack/jetpack.php
+	includes/setup/setup.php
+	includes/tgmpa/plugins.php
+
+
 ## 2.0
 
 * **Add**: Nested Food Menu sections support
