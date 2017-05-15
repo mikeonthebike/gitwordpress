@@ -4,11 +4,11 @@ Plugin Name: Cloudinary
 Plugin URI: http://cloudinary.com/
 Description: Cloudinary allows you to upload your images to the cloud. They'll be available to your visitors through a fast content delivery network, improving your website's loading speed and overall user experience. With Cloudinary, you can transform uploaded images without leaving Wordpress - apply effects (sharpen, gray scale, sepia, and more), smart cropping and re-sizing (including face detection based cropping), and much more.
 
-Version:  1.1.4
+Version:  1.1.5
 Author: Cloudinary Ltd.
 Author URI: http://cloudinary.com/
 */
-define('cloudinary_VERSION', '1.1.4');
+define('cloudinary_VERSION', '1.1.5');
 define('cloudinary_PLUGIN_URL', plugin_dir_url( __FILE__ ));
 require "cloudinary_api.php" ;
 require "api.php" ;
@@ -355,9 +355,9 @@ class CloudinaryPlugin
       Cloudinary::config_from_url($cloudinary_url);
     }    
   }
-
+  
   function configured() {
-    return Cloudinary::config_get("api_secret") && Cloudinary::config_get("cloud_name") && Cloudinary::config_get("api_key");
+    return Cloudinary::config_get("api_secret") && Cloudinary::config_get("cloud_name") && Cloudinary::config_get("api_key");    
   }    
   
   /* Configure menus */
@@ -365,15 +365,11 @@ class CloudinaryPlugin
     $this->config(); # This is called before admin_init
     $settings_item = CLOUDINARY_UNIQUE_ID . "/options.php";
     $library_item = CLOUDINARY_UNIQUE_ID . "/library.php";
+
     $main_action = $this->configured() ? $library_item : $settings_item;
     add_menu_page('Cloudinary Menu', 'Cloudinary', 'manage_options', $main_action, NULL, plugins_url(CLOUDINARY_UNIQUE_ID . '/images/favicon.png'));
-    if ($this->configured()){
-      add_submenu_page($main_action, "Cloudinary Media Library", "Media library", 'publish_pages', $main_action);
-      add_submenu_page($main_action, "Cloudinary Settings", "Settings", 'manage_options', $settings_item);
-    } else {
-      add_submenu_page($main_action, "Cloudinary Settings", "Settings", 'manage_options', $main_action);
-      add_submenu_page($main_action, "Cloudinary Media Library", "Media library", 'publish_pages', $library_item);
-    }
+    add_submenu_page($main_action, "Cloudinary Media Library", "Media library", 'publish_pages', $main_action);
+    add_submenu_page($main_action, "Cloudinary Settings", "Settings", 'manage_options', $settings_item);
   }
 
   function ajax_update_options() {
@@ -494,7 +490,7 @@ class CloudinaryPlugin
   function media_cloudinary($editor_id = 'content') {
     $context = apply_filters('media_buttons_context', __('Cloudinary Upload/Insert'));
     $xdmremote = $this->prepare_cloudinary_media_lib_url("wp_post");
-    if (!$xdmremote) return "";
+    if (!$xdmremote) return ""; 
 
     echo $this->init_media_lib_integration($xdmremote, false) .
          '<a href="#" class="cloudinary_add_media" id="' . esc_attr( $editor_id ) . '-add_media" ' .

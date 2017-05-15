@@ -5,19 +5,18 @@ require_once( JETPACK__PLUGIN_DIR . 'modules/sso/class.jetpack-sso-helpers.php' 
  * Just some defaults that we share with the server
  */
 class Jetpack_Sync_Defaults {
+
 	static $default_options_whitelist = array(
 		'stylesheet',
 		'blogname',
-		'home',
-		'siteurl',
 		'blogdescription',
 		'blog_charset',
 		'permalink_structure',
 		'category_base',
 		'tag_base',
+		'sidebars_widgets',
 		'comment_moderation',
 		'default_comment_status',
-		'jetpack_site_icon_url',
 		'page_on_front',
 		'rss_use_excerpt',
 		'subscription_options',
@@ -70,7 +69,7 @@ class Jetpack_Sync_Defaults {
 		'comment_whitelist',
 		'comment_max_links',
 		'moderation_keys',
-		'wga',
+		'jetpack_wga',
 		'disabled_likes',
 		'disabled_reblogs',
 		'jetpack_comment_likes_enabled',
@@ -81,8 +80,11 @@ class Jetpack_Sync_Defaults {
 		'jetpack_activated',
 		'jetpack_available_modules',
 		'jetpack_autoupdate_plugins',
+		'jetpack_autoupdate_plugins_translations',
 		'jetpack_autoupdate_themes',
+		'jetpack_autoupdate_themes_translations',
 		'jetpack_autoupdate_core',
+		'jetpack_autoupdate_translations',
 		'carousel_background_color',
 		'carousel_display_exif',
 		'jetpack_portfolio',
@@ -100,14 +102,31 @@ class Jetpack_Sync_Defaults {
 		'post_by_email_address',
 		'jetpack_protect_key',
 		'jetpack_protect_global_whitelist',
-		'sharing_services',
 		'jetpack_sso_require_two_step',
 		'jetpack_relatedposts',
 		'verification_services_codes',
 		'users_can_register',
 		'active_plugins',
 		'uninstall_plugins',
+		'advanced_seo_front_page_description', // Jetpack_SEO_Utils::FRONT_PAGE_META_OPTION
+		'advanced_seo_title_formats', // Jetpack_SEO_Titles::TITLE_FORMATS_OPTION
+		'jetpack_api_cache_enabled',
 	);
+
+	public static function get_options_whitelist() {
+		/** This filter is already documented in json-endpoints/jetpack/class.wpcom-json-api-get-option-endpoint.php */
+		$options_whitelist = apply_filters( 'jetpack_options_whitelist', self::$default_options_whitelist );
+		/**
+		 * Filter the list of WordPress options that are manageable via the JSON API.
+		 *
+		 * @module sync
+		 *
+		 * @since 4.8
+		 *
+		 * @param array The default list of options.
+		 */
+		return apply_filters( 'jetpack_sync_options_whitelist', $options_whitelist );
+	}
 
 	static $default_constants_whitelist = array(
 		'EMPTY_TRASH_DAYS',
@@ -123,7 +142,24 @@ class Jetpack_Sync_Defaults {
 		'WP_ACCESSIBLE_HOSTS',
 		'JETPACK__VERSION',
 		'IS_PRESSABLE',
+		'DISABLE_WP_CRON',
+		'ALTERNATE_WP_CRON',
+		'WP_CRON_LOCK_TIMEOUT',
+		'PHP_VERSION',
 	);
+
+	public static function get_constants_whitelist() {
+		/**
+		 * Filter the list of PHP constants that are manageable via the JSON API.
+		 *
+		 * @module sync
+		 *
+		 * @since 4.8
+		 *
+		 * @param array The default list of constants options.
+		 */
+		return apply_filters( 'jetpack_sync_constants_whitelist', self::$default_constants_whitelist );
+	}
 
 	static $default_callable_whitelist = array(
 		'wp_max_upload_size'               => 'wp_max_upload_size',
@@ -139,6 +175,7 @@ class Jetpack_Sync_Defaults {
 		'taxonomies'                       => array( 'Jetpack_Sync_Functions', 'get_taxonomies' ),
 		'post_types'                       => array( 'Jetpack_Sync_Functions', 'get_post_types' ),
 		'post_type_features'               => array( 'Jetpack_Sync_Functions', 'get_post_type_features' ),
+		'shortcodes'                       => array( 'Jetpack_Sync_Functions', 'get_shortcodes' ),
 		'rest_api_allowed_post_types'      => array( 'Jetpack_Sync_Functions', 'rest_api_allowed_post_types' ),
 		'rest_api_allowed_public_metadata' => array( 'Jetpack_Sync_Functions', 'rest_api_allowed_public_metadata' ),
 		'sso_is_two_step_required'         => array( 'Jetpack_SSO_Helpers', 'is_two_step_required' ),
@@ -151,22 +188,55 @@ class Jetpack_Sync_Defaults {
 		'active_modules'                   => array( 'Jetpack', 'get_active_modules' ),
 		'hosting_provider'                 => array( 'Jetpack_Sync_Functions', 'get_hosting_provider' ),
 		'locale'                           => 'get_locale',
+		'site_icon_url'                    => array( 'Jetpack_Sync_Functions', 'site_icon_url' ),
 	);
+
+	public static function get_callable_whitelist() {
+		/**
+		 * Filter the list of callables that are manageable via the JSON API.
+		 *
+		 * @module sync
+		 *
+		 * @since 4.8
+		 *
+		 * @param array The default list of callables.
+		 */
+		return apply_filters( 'jetpack_sync_callable_whitelist', self::$default_callable_whitelist );
+	}
 
 	static $blacklisted_post_types = array(
 		'ai1ec_event',
 		'snitch',
+		'secupress_log_action',
+		'http',
+		'bwg_gallery',
+		'bwg_album',
+		'idx_page',
+		'postman_sent_mail',
+		'rssmi_feed_item',
+		'rssap-feed',
+		'wp_automatic',
 	);
 
 	static $default_post_checksum_columns = array(
 		'ID',
 		'post_modified',
-	); 
+	);
+
+	static $default_post_meta_checksum_columns = array(
+		'meta_id',
+		'meta_value'
+	);
 
 	static $default_comment_checksum_columns = array(
 		'comment_ID',
 		'comment_content',
-	); 
+	);
+
+	static $default_comment_meta_checksum_columns = array(
+		'meta_id',
+		'meta_value'
+	);
 
 	static $default_option_checksum_columns = array(
 		'option_name',
@@ -182,47 +252,77 @@ class Jetpack_Sync_Defaults {
 		'network_enable_administration_menus' => array( 'Jetpack', 'network_enable_administration_menus' ),
 	);
 
+	public static function get_multisite_callable_whitelist() {
+		/**
+		 * Filter the list of multisite callables that are manageable via the JSON API.
+		 *
+		 * @module sync
+		 *
+		 * @since 4.8
+		 *
+		 * @param array The default list of multisite callables.
+		 */
+		return apply_filters( 'jetpack_sync_multisite_callable_whitelist', self::$default_multisite_callable_whitelist );
+	}
 
-	static $default_whitelist_meta_keys = array(
-		'_wp_attachment_metadata',
-		'_thumbnail_id',
-		'_wpas_mess',
-		'_wpas_skip_',
-		'_g_feedback_shortcode',
-		'_feedback_extra_fields',
+	static $post_meta_whitelist = array(
 		'_feedback_akismet_values',
-		'_publicize_facebook_user',
-		'_wp_attachment_image_alt',
+		'_feedback_email',
+		'_feedback_extra_fields',
+		'_g_feedback_shortcode',
 		'_jetpack_post_thumbnail',
+		'_menu_item_classes',
+		'_menu_item_menu_item_parent',
+		'_menu_item_object',
+		'_menu_item_object_id',
+		'_menu_item_orphaned',
+		'_menu_item_type',
+		'_menu_item_xfn',
+		'_publicize_facebook_user',
+		'_publicize_twitter_user',
 		'_thumbnail_id',
+		'_wp_attached_file',
+		'_wp_attachment_backup_sizes',
+		'_wp_attachment_context',
+		'_wp_attachment_image_alt',
+		'_wp_attachment_is_custom_background',
+		'_wp_attachment_is_custom_header',
 		'_wp_attachment_metadata',
 		'_wp_page_template',
-		'_publicize_twitter_user',
 		'_wp_trash_meta_comments_status',
-		'_wp_attached_file',
+		'_wpas_mess',
+		'content_width',
+		'custom_css_add',
+		'custom_css_preprocessor',
+		'enclosure',
+		'imagedata',
+		'nova_price',
+		'publicize_results',
+		'sharing_disabled',
+		'switch_like_status',
+		'videopress_guid',
+		'vimeo_poster_image',
+		'advanced_seo_description', // Jetpack_SEO_Posts::DESCRIPTION_META_KEY
 	);
 
-	static $default_blacklist_meta_keys = array(
-		'post_views_count',
-		'Views',
-		'tve_leads_impressions',
-		'views',
-		'scc_share_count_crawldate',
-		'wprss_last_update',
-		'wprss_feed_is_updating',
-		'snapFB',
-		'syndication_item_hash',
-		'phonenumber_spellings',
-		'tmac_last_id',
-		'opanda_imperessions',
-		'administer_stats',
-		'spec_ads_views',
-		'snp_views',
-		'mip_post_views_count',
-		'esml_socialcount_LAST_UPDATED',
-		'wprss_last_update_items',
-		'wp_automatic_cache',
-		'snapTW',
+	public static function get_post_meta_whitelist() {
+		/**
+		 * Filter the list of post meta data that are manageable via the JSON API.
+		 *
+		 * @module sync
+		 *
+		 * @since 4.8
+		 *
+		 * @param array The default list of meta data keys.
+		 */
+		return apply_filters( 'jetpack_sync_post_meta_whitelist', self::$post_meta_whitelist );
+	}
+
+	static $comment_meta_whitelist = array(
+		'hc_avatar',
+		'hc_post_as',
+		'hc_wpcom_id_sig',
+		'hc_foreign_user_id'
 	);
 
 	// TODO: move this to server? - these are theme support values
@@ -257,24 +357,42 @@ class Jetpack_Sync_Defaults {
 		return false;
 	}
 
+	static function get_max_sync_execution_time() {
+		$max_exec_time = intval( ini_get( 'max_execution_time' ) );
+		if ( 0 === $max_exec_time ) {
+			// 0 actually means "unlimited", but let's not treat it that way
+			$max_exec_time = 60;
+		}
+		return floor( $max_exec_time / 3 );
+	}
+
 	static $default_network_options_whitelist = array(
 		'site_name',
 		'jetpack_protect_key',
 		'jetpack_protect_global_whitelist',
 		'active_sitewide_plugins',
 	);
+
 	static $default_taxonomy_whitelist = array();
 	static $default_dequeue_max_bytes = 500000; // very conservative value, 1/2 MB
 	static $default_upload_max_bytes = 600000; // a little bigger than the upload limit to account for serialization
 	static $default_upload_max_rows = 500;
 	static $default_sync_wait_time = 10; // seconds, between syncs
 	static $default_sync_wait_threshold = 5; // only wait before next send if the current send took more than X seconds
+	static $default_enqueue_wait_time = 10; // wait between attempting to continue a full sync, via requests
 	static $default_max_queue_size = 1000;
 	static $default_max_queue_lag = 900; // 15 minutes
 	static $default_queue_max_writes_sec = 100; // 100 rows a second
 	static $default_post_types_blacklist = array();
-	static $default_meta_blacklist = array();
+	static $default_post_meta_whitelist = array();
+	static $default_comment_meta_whitelist = array();
 	static $default_disable = 0; // completely disable sending data to wpcom
+	static $default_sync_via_cron = 1; // use cron to sync
+	static $default_render_filtered_content = 0; // render post_filtered_content
+	static $default_max_enqueue_full_sync = 100; // max number of items to enqueue at a time when running full sync
+	static $default_max_queue_size_full_sync = 1000; // max number of total items in the full sync queue
 	static $default_sync_callables_wait_time = MINUTE_IN_SECONDS; // seconds before sending callables again
 	static $default_sync_constants_wait_time = HOUR_IN_SECONDS; // seconds before sending constants again
+	static $default_sync_queue_lock_timeout = 120; // 2 minutes
+	static $default_cron_sync_time_limit = 30; // 30 seconds
 }

@@ -15,7 +15,7 @@ class Jetpack_Client_Server {
 		$role              = Jetpack::translate_current_user_to_role();
 		$redirect          = isset( $data['redirect'] ) ? esc_url_raw( (string) $data['redirect'] ) : '';
 
-		$this->check_admin_referer( "jetpack-authorize_{$role}_{$redirect}" );
+		check_admin_referer( "jetpack-authorize_{$role}_{$redirect}" );
 
 		$result = $this->authorize( $data );
 		if ( is_wp_error( $result ) ) {
@@ -23,9 +23,9 @@ class Jetpack_Client_Server {
 		}
 
 		if ( wp_validate_redirect( $redirect ) ) {
-			$this->wp_safe_redirect( $redirect );
+			wp_safe_redirect( $redirect );
 		} else {
-			$this->wp_safe_redirect( Jetpack::admin_url() );
+			wp_safe_redirect( Jetpack::admin_url() );
 		}
 
 		/**
@@ -130,7 +130,10 @@ class Jetpack_Client_Server {
 		} else {
 			Jetpack::activate_default_modules( false, false, array(), $redirect_on_activation_error );
 		}
-		
+
+		// Since this is a fresh connection, be sure to clear out IDC options
+		Jetpack_IDC::clear_all_idc_options();
+
 		// Start nonce cleaner
 		wp_clear_scheduled_hook( 'jetpack_clean_nonces' );
 		wp_schedule_event( time(), 'hourly', 'jetpack_clean_nonces' );
@@ -264,14 +267,6 @@ class Jetpack_Client_Server {
 
 	public function get_jetpack() {
 		return Jetpack::init();
-	}
-
-	public function check_admin_referer( $action ) {
-		return check_admin_referer( $action );
-	}
-
-	public function wp_safe_redirect( $redirect ) {
-		return wp_safe_redirect( $redirect );
 	}
 
 	public function do_exit() {

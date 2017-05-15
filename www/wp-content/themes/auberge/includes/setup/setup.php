@@ -6,7 +6,7 @@
  * @copyright  WebMan Design, Oliver Juhas
  *
  * @since    1.0
- * @version  2.1
+ * @version  2.2.0
  *
  * Contents:
  *
@@ -263,7 +263,7 @@
 	 * Theme setup
 	 *
 	 * @since    1.0
-	 * @version  2.0
+	 * @version  2.2.0
 	 */
 	if ( ! function_exists( 'wm_setup' ) ) {
 		function wm_setup() {
@@ -274,10 +274,12 @@
 
 				// WordPress visual editor CSS stylesheets
 
+					$rtl_suffix = ( is_rtl() ) ? ( '-rtl' ) : ( '' );
+
 					$visual_editor_css = array_filter( (array) apply_filters( 'wmhook_wm_setup_visual_editor_css', array(
 							str_replace( ',', '%2C', wm_google_fonts_url() ),
 							esc_url_raw( add_query_arg( array( 'ver' => wp_get_theme( get_template() )->get( 'Version' ) ), wm_get_stylesheet_directory_uri( 'assets/fonts/genericons/genericons.css' ) ) ),
-							esc_url_raw( add_query_arg( array( 'ver' => wp_get_theme( get_template() )->get( 'Version' ) ), wm_get_stylesheet_directory_uri( 'assets/css/editor-style.css' ) ) ),
+							esc_url_raw( add_query_arg( array( 'ver' => wp_get_theme( get_template() )->get( 'Version' ) ), wm_get_stylesheet_directory_uri( 'assets/css/editor-style' . $rtl_suffix . '.css' ) ) ),
 						) ) );
 
 						add_editor_style( $visual_editor_css );
@@ -302,6 +304,10 @@
 					// wp-content/themes/theme-name/languages/it_IT.mo
 
 						load_theme_textdomain( 'auberge', get_template_directory() . '/languages' );
+
+				// Declare support for child theme stylesheet automatic enqueuing
+
+					add_theme_support( 'child-theme-stylesheet' );
 
 				// Custom menus
 
@@ -360,13 +366,37 @@
 					 * @link  https://codex.wordpress.org/Function_Reference/add_theme_support#Custom_Header
 					 */
 					add_theme_support( 'custom-header', apply_filters( 'wmhook_wm_setup_custom_header_args', array(
-							'default-image' => wm_get_stylesheet_directory_uri( 'assets/images/header.jpg' ),
-							'header-text'   => false,
-							'width'         => ( isset( $image_sizes['auberge_banner'] ) ) ? ( $image_sizes['auberge_banner'][0] ) : ( 1920 ),
-							'height'        => ( isset( $image_sizes['auberge_banner'] ) ) ? ( $image_sizes['auberge_banner'][1] ) : ( 1080 ),
-							'flex-height'   => false,
-							'flex-width'    => false,
+							'random-default' => true,
+							'header-text'    => false,
+							'width'          => ( isset( $image_sizes['auberge_banner'] ) ) ? ( $image_sizes['auberge_banner'][0] ) : ( 1920 ),
+							'height'         => ( isset( $image_sizes['auberge_banner'] ) ) ? ( $image_sizes['auberge_banner'][1] ) : ( 1080 ),
+							'flex-height'    => true,
+							'flex-width'     => true,
 						) ) );
+
+					// Default custom headers packed with the theme (thumbnail size: 275x155 px)
+
+						register_default_headers( array(
+
+								'header-1' => array(
+									'url'           => '%s/assets/images/header/header-1.jpg',
+									'thumbnail_url' => '%s/assets/images/header/thumbnail/header-1.jpg',
+									'description'   => esc_html_x( 'Coffee machine', 'Header image description.', 'auberge' ),
+								),
+
+								'header-2' => array(
+									'url'           => '%s/assets/images/header/header-2.jpg',
+									'thumbnail_url' => '%s/assets/images/header/thumbnail/header-2.jpg',
+									'description'   => esc_html_x( 'Restaurant interior from above', 'Header image description.', 'auberge' ),
+								),
+
+								'header-3' => array(
+									'url'           => '%s/assets/images/header/header-3.jpg',
+									'thumbnail_url' => '%s/assets/images/header/thumbnail/header-3.jpg',
+									'description'   => esc_html_x( 'Pouring coffee', 'Header image description.', 'auberge' ),
+								),
+
+							) );
 
 				// Custom background
 
@@ -501,6 +531,92 @@
 	 */
 
 		require_once( get_template_directory() . '/includes/welcome/welcome.php' );
+
+
+
+		/**
+		 * Initiate "Welcome" admin notice
+		 *
+		 * @since    2.2.0
+		 * @version  2.2.0
+		 */
+		if ( ! function_exists( 'wm_activation_admin_notice' ) ) {
+			function wm_activation_admin_notice() {
+
+				// Processing
+
+					global $pagenow;
+
+					if (
+						is_admin()
+						&& 'themes.php' == $pagenow
+						&& isset( $_GET['activated'] )
+					) {
+
+						add_action( 'admin_notices', 'wm_welcome_admin_notice', 99 );
+
+					}
+
+			}
+		} // /wm_activation_admin_notice
+
+		add_action( 'load-themes.php', 'wm_activation_admin_notice' );
+
+
+
+		/**
+		 * Display "Welcome" admin notice
+		 *
+		 * @since    2.2.0
+		 * @version  2.2.0
+		 */
+		if ( ! function_exists( 'wm_welcome_admin_notice' ) ) {
+			function wm_welcome_admin_notice() {
+
+				// Helper variables
+
+					$theme_slug = get_template();
+					$theme_name = wp_get_theme( $theme_slug )->get( 'Name' );
+
+
+				// Output
+
+					?>
+
+					<div class="updated notice is-dismissible">
+						<p>
+							<strong>
+								<?php
+
+									printf(
+										esc_html_x( 'Thank you for installing the %s theme!', '%s: Theme name.', 'auberge' ),
+										$theme_name
+									);
+
+								?>
+								<a href="<?php echo esc_url( admin_url( 'themes.php?page=' . $theme_slug . '-welcome' ) ); ?>">
+									<?php esc_html_e( 'Please read the information about the theme.', 'auberge' ); ?>
+								</a>
+							</strong>
+						</p>
+						<p>
+							<a href="<?php echo esc_url( admin_url( 'themes.php?page=' . $theme_slug . '-welcome' ) ); ?>" class="button button-primary">
+								<?php
+
+									printf(
+										esc_html_x( 'Get started with %s', '%s: Theme name.', 'auberge' ),
+										$theme_name
+									);
+
+								?>
+							</a>
+						</p>
+					</div>
+
+					<?php
+
+			}
+		} // /wm_welcome_admin_notice
 
 
 
@@ -994,7 +1110,7 @@
 	 * Registering theme styles and scripts
 	 *
 	 * @since    1.0
-	 * @version  2.0
+	 * @version  2.2.0
 	 */
 	if ( ! function_exists( 'wm_register_assets' ) ) {
 		function wm_register_assets() {
@@ -1012,9 +1128,9 @@
 							'genericons'      => array( wm_get_stylesheet_directory_uri( 'assets/fonts/genericons/genericons.css' ) ),
 							'slick'           => array( wm_get_stylesheet_directory_uri( 'assets/css/slick.css' ) ),
 							'wm-google-fonts' => array( wm_google_fonts_url() ),
-							'wm-starter'      => array( wm_get_stylesheet_directory_uri( 'assets/css/starter.css' ) ),
-							'wm-stylesheet'   => array( 'src' => get_template_directory_uri() . '/style.css', 'deps' => array( 'genericons', 'wm-starter' ) ),
-							'wm-custom'       => array( wm_get_stylesheet_directory_uri( 'assets/css/custom.css' ), 'deps' => array( 'wm-stylesheet' ) ),
+							'wm-main'         => array( wm_get_stylesheet_directory_uri( 'assets/css/main.css' ) ),
+							'wm-stylesheet'   => array( get_stylesheet_uri() ),
+							'wm-custom'       => array( wm_get_stylesheet_directory_uri( 'assets/css/custom.css' ), 'deps' => array( 'wm-main' ) ),
 						) );
 
 					foreach ( $register_styles as $handle => $atts ) {
@@ -1029,7 +1145,6 @@
 				// Scripts
 
 					$register_scripts = apply_filters( 'wmhook_wm_register_assets_register_scripts', array(
-							'imagesloaded'           => array( wm_get_stylesheet_directory_uri( 'assets/js/vendor/imagesloaded.pkgd.min.js' ) ),
 							'slick'                  => array( 'src' => wm_get_stylesheet_directory_uri( 'assets/js/vendor/slick.min.js' ), 'deps' => array( 'jquery' ) ),
 							'wm-scripts-global'      => array( 'src' => wm_get_stylesheet_directory_uri( 'assets/js/scripts-global.js' ), 'deps' => array( 'jquery', 'imagesloaded', 'wm-scripts-navigation' ) ),
 							'wm-scripts-navigation'  => array( wm_get_stylesheet_directory_uri( 'assets/js/scripts-navigation.js' ) ),
@@ -1056,7 +1171,7 @@
 	 * Frontend HTML head assets enqueue
 	 *
 	 * @since    1.0
-	 * @version  2.0
+	 * @version  2.2.0
 	 */
 	if ( ! function_exists( 'wm_enqueue_assets' ) ) {
 		function wm_enqueue_assets() {
@@ -1067,7 +1182,7 @@
 
 				$custom_styles = wm_custom_styles();
 
-				$inline_styles_handle = apply_filters( 'wmhook_wm_enqueue_assets_inline_styles_handle', 'wm-stylesheet' );
+				$inline_styles_handle = apply_filters( 'wmhook_wm_enqueue_assets_inline_styles_handle', 'wm-main' );
 
 
 			// Processing
@@ -1101,6 +1216,8 @@
 
 					// Main
 
+						$enqueue_styles[] = 'genericons';
+						$enqueue_styles[] = 'wm-main';
 						$enqueue_styles[] = 'wm-stylesheet';
 
 					// Colors
@@ -1114,6 +1231,11 @@
 					foreach ( $enqueue_styles as $handle ) {
 						wp_enqueue_style( $handle );
 					}
+
+				// RTL setup
+
+					wp_style_add_data( 'slick', 'rtl', 'replace' );
+					wp_style_add_data( 'wm-main', 'rtl', 'replace' );
 
 				// Styles - inline
 
@@ -1147,20 +1269,6 @@
 
 							wp_add_inline_style( $inline_styles_handle, apply_filters( 'wmhook_esc_css', $output ) . "\r\n" );
 						}
-
-				// Styles - child theme
-
-					if ( is_child_theme() ) {
-
-						wp_enqueue_style(
-							'wm-stylesheet-child',
-							get_stylesheet_uri(),
-							array( 'wm-stylesheet' ),
-							esc_attr( trim( wp_get_theme()->get( 'Version' ) ) ),
-							'all'
-						);
-
-					}
 
 				// Scripts
 
@@ -1345,7 +1453,7 @@
 	 * Post classes
 	 *
 	 * @since    1.4
-	 * @version  1.4
+	 * @version  2.1.1
 	 *
 	 * @param  array $classes
 	 */
@@ -1353,6 +1461,10 @@
 		function wm_post_classes( $classes ) {
 
 			// Processing
+
+				// A generic class for easy styling
+
+					$classes[] = 'entry';
 
 				// Sticky post
 
@@ -2699,7 +2811,7 @@
 			 * Excerpt "Continue reading" text
 			 *
 			 * @since    1.0
-			 * @version  2.0
+			 * @version  2.2.0
 			 *
 			 * @param  string $continue
 			 */
@@ -2707,8 +2819,6 @@
 				function wm_excerpt_continue_reading( $continue ) {
 
 					// Output
-
-						return '<div class="link-more"><a href="' . esc_url( get_permalink() ) . '">' . sprintf( esc_html__( 'Continue reading%s&hellip;', 'auberge' ), '<span class="screen-reader-text"> "' . get_the_title() . '"</span>' ) . '</a></div>';
 
 						return '<div class="link-more"><a href="' . esc_url( get_permalink( get_the_ID() ) ) . '" class="more-link">' . sprintf(
 								esc_html_x( 'Continue reading%s&hellip;', '%s: Name of current post.', 'auberge' ),
@@ -3389,11 +3499,9 @@
 			require_once( get_template_directory() . '/includes/plugins/jetpack/jetpack.php' );
 		}
 
-
-
 	// One Click Demo Import
 
-		if ( class_exists( 'PT_One_Click_Demo_Import' ) && is_admin() ) {
+		if ( ( class_exists( 'OCDI_Plugin' ) || class_exists( 'PT_One_Click_Demo_Import' ) ) && is_admin() ) {
 			require_once( get_template_directory() . '/includes/plugins/one-click-demo-import/class-one-click-demo-import.php' );
 		}
 

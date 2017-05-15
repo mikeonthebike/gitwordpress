@@ -5,7 +5,7 @@
  * @copyright  WebMan Design, Oliver Juhas
  *
  * @since    1.0
- * @version  2.0
+ * @version  2.2.0
  *
  * Contents:
  *
@@ -21,7 +21,7 @@
 
 
 
-jQuery( function() {
+( function( $ ) {
 
 
 
@@ -32,10 +32,18 @@ jQuery( function() {
 	 */
 
 		/**
+		 * RTL check
+		 */
+
+			var $wmIsRtl = ( 'rtl' === $( 'html' ).attr( 'dir' ) );
+
+
+
+		/**
 		 * Tell CSS that JS is enabled...
 		 */
 
-			jQuery( '.no-js' )
+			$( '.no-js' )
 				.removeClass( 'no-js' );
 
 
@@ -44,7 +52,7 @@ jQuery( function() {
 		 * Fixing Recent Comments widget multiple appearances
 		 */
 
-			jQuery( '.widget_recent_comments ul' )
+			$( '.widget_recent_comments ul' )
 				.attr( 'id', '' );
 
 
@@ -55,14 +63,14 @@ jQuery( function() {
 
 			if ( 1280 < window.innerWidth ) {
 
-				jQuery( '.back-to-top' )
+				$( '.back-to-top' )
 					.on( 'click', function( e ) {
 
 						// Processing
 
 							e.preventDefault();
 
-							jQuery( 'html, body' )
+							$( 'html, body' )
 								.animate( {
 									scrollTop: 0
 								}, 600 );
@@ -77,7 +85,7 @@ jQuery( function() {
 		 * Clear floats after columns
 		 */
 
-			jQuery( '.column.last' )
+			$( '.column.last' )
 				.after( '<div class="clear" />' );
 
 
@@ -92,32 +100,32 @@ jQuery( function() {
 		 * Sticky header
 		 */
 
-			jQuery( window )
+			$( window )
 				.on( 'scroll', function() {
 
 					// Helper variables
 
-						var $documentScrollTop = jQuery( document ).scrollTop(),
-						    $headerHeight      = jQuery( '#masthead' ).outerHeight();
+						var $documentScrollTop = $( document ).scrollTop(),
+						    $headerHeight      = $( '#masthead' ).outerHeight();
 
 
 					// Processing
 
 						if ( $documentScrollTop >= ( 3 * $headerHeight ) ) {
 
-							jQuery( 'body' )
+							$( 'body' )
 								.removeClass( 'hide-sticky-header' )
 								.addClass( 'sticky-header' );
 
 						} else if ( $documentScrollTop < ( 3 * $headerHeight ) && $documentScrollTop > ( 1 * $headerHeight ) ) {
 
-							jQuery( 'body.sticky-header' )
+							$( 'body.sticky-header' )
 								.removeClass( 'sticky-header' )
 								.addClass( 'hide-sticky-header' );
 
 						} else {
 
-							jQuery( 'body' )
+							$( 'body' )
 								.removeClass( 'sticky-header hide-sticky-header' );
 
 						}
@@ -130,14 +138,14 @@ jQuery( function() {
 		 * Header search form
 		 */
 
-			jQuery( '#search-toggle' )
+			$( '#search-toggle' )
 				.on( 'click', function( e ) {
 
 					// Processing
 
 						e.preventDefault();
 
-						jQuery( this )
+						$( this )
 							.parent()
 								.toggleClass( 'active' )
 								.find( '.search-field' )
@@ -157,21 +165,21 @@ jQuery( function() {
 		 * Banner slider
 		 */
 
-			if ( jQuery().slick ) {
+			if ( $().slick ) {
 
-				jQuery( '#site-banner.enable-slider .site-banner-inner' )
+				$( '#site-banner.enable-slider .site-banner-inner' )
 					.on( 'init', function( event, slick ) {
 
 						// Processing
 
-							jQuery( '.slider-nav-next' )
-								.before( jQuery( '.slider-nav-prev' ) );
+							$( '.slider-nav-next' )
+								.before( $( '.slider-nav-prev' ) );
 
 					} )
 					.slick( {
 						'adaptiveHeight' : true,
 						'autoplay'       : true,
-						'autoplaySpeed'  : ( ! jQuery( '#site-banner' ).data( 'speed' ) ) ? ( 5400 ) : ( jQuery( '#site-banner' ).data( 'speed' ) ),
+						'autoplaySpeed'  : ( ! $( '#site-banner' ).data( 'speed' ) ) ? ( 5400 ) : ( $( '#site-banner' ).data( 'speed' ) ),
 						'cssEase'        : 'ease-in-out',
 						'dots'           : true,
 						'draggable'      : false,
@@ -181,8 +189,9 @@ jQuery( function() {
 						'slide'          : 'article',
 						'speed'          : 600,
 						'swipeToSlide'   : true,
-						'prevArrow'      : '<div class="slider-nav slider-nav-prev"><button type="button" class="slick-prev"><span class="genericon genericon-previous"></span></button></div>',
-						'nextArrow'      : '<div class="slider-nav slider-nav-next"><button type="button" class="slick-next"><span class="genericon genericon-next"></span></button></div>'
+						'prevArrow'      : '<div class="slider-nav slider-nav-prev"><button type="button" class="slick-prev"><span class="genericon"></span></button></div>',
+						'nextArrow'      : '<div class="slider-nav slider-nav-next"><button type="button" class="slick-next"><span class="genericon"></span></button></div>',
+						'rtl'            : $wmIsRtl
 					} );
 
 			} // /slick
@@ -199,7 +208,7 @@ jQuery( function() {
 		 * Masonry layout
 		 */
 
-			if ( jQuery().masonry ) {
+			if ( $().masonry ) {
 
 
 
@@ -207,15 +216,18 @@ jQuery( function() {
 				 * Posts list
 				 */
 
-					var $postsContainers = jQuery( '.posts' );
+					var $postsContainers = $( '.posts' );
 
 					$postsContainers
 						.imagesLoaded( function() {
 
 							// Processing
 
-								$postsContainers.masonry( {
-										itemSelector : '.hentry'
+								$postsContainers
+									.masonry( {
+										itemSelector    : '.entry',
+										percentPosition : true,
+										isOriginLeft    : ! $wmIsRtl
 									} );
 
 						} );
@@ -226,15 +238,18 @@ jQuery( function() {
 				 * [gallery] shortcode Masonry layout
 				 */
 
-					var $galleryContainers = jQuery( '.gallery' );
+					var $galleryContainers = $( '.gallery' );
 
 					$galleryContainers
 						.imagesLoaded( function() {
 
 							// Processing
 
-								$galleryContainers.masonry( {
-										itemSelector : '.gallery-item'
+								$galleryContainers
+									.masonry( {
+										itemSelector    : '.gallery-item',
+										percentPosition : true,
+										isOriginLeft    : ! $wmIsRtl
 									} );
 
 						} );
@@ -256,21 +271,24 @@ jQuery( function() {
 		 */
 
 			if (
-					jQuery().masonry
-					&& 3 < jQuery( '#footer-widgets .widget' ).length
+					$().masonry
+					&& 3 < $( '#footer-widgets .widget' ).length
 				) {
 
 
 
-				var $footerWidgets = jQuery( '#footer-widgets-container' );
+				var $footerWidgets = $( '#footer-widgets-container' );
 
 				$footerWidgets
 					.imagesLoaded( function() {
 
 						// Processing
 
-							$footerWidgets.masonry( {
-									itemSelector : '.widget'
+							$footerWidgets
+								.masonry( {
+									itemSelector    : '.widget',
+									percentPosition : true,
+									isOriginLeft    : ! $wmIsRtl
 								} );
 
 					} );
@@ -288,70 +306,19 @@ jQuery( function() {
 	 */
 
 		/**
-		 * On-page anchor smooth scrolling
-		 */
-
-			jQuery( 'body' )
-				.on( 'click', 'a[href^="#"]', function( e ) {
-
-					// Requirements check
-
-						// Do nothing when editing page with Beaver Builder
-
-							if ( jQuery( 'html' ).hasClass( 'fl-builder-edit' ) ) {
-								e.preventDefault();
-								return;
-							}
-
-
-					// Helper variables
-
-						var $this         = jQuery( this ),
-						    $anchor       = $this.not( '.add-comment-link, .toggle-mobile-sidebar, .search-toggle, .back-to-top, .skip-link' ).attr( 'href' ),
-						    $scrollObject = jQuery( 'html, body' ),
-						    $scrollSpeed  = ( 1280 >= window.innerWidth ) ? ( 0 ) : ( 600 );
-
-
-					// Processing
-
-						if (
-								$anchor
-								&& '#' !== $anchor
-								&& ! $this.parent().parent().hasClass( 'wm-tab-links' )
-								&& ! $this.parent().parent().hasClass( 'tabs' )
-								&& ! $this.hasClass( 'no-smooth-scroll' )
-							) {
-
-							e.preventDefault();
-
-							var $scrollOffset = jQuery( '#masthead' ).outerHeight() + jQuery( '#menu-group-nav' ).outerHeight();
-
-							$scrollObject
-								.stop()
-								.animate( {
-									scrollTop : jQuery( $anchor ).offset().top - $scrollOffset + 'px'
-								}, $scrollSpeed );
-
-						}
-
-				} );
-
-
-
-		/**
 		 * Sidebar mobile toggle
 		 */
 
 			// Disable sidebar toggle on wider screens
 
-				jQuery( window )
+				$( window )
 					.on( 'resize orientationchange', function( e ) {
 
 						// Processing
 
 							if ( 880 < window.innerWidth ) {
 
-								jQuery( '#toggle-mobile-sidebar' )
+								$( '#toggle-mobile-sidebar' )
 									.attr( 'aria-expanded', 'true' )
 									.siblings( '.widget' )
 										.show();
@@ -362,14 +329,14 @@ jQuery( function() {
 
 			// Clicking the toggle sidebar widgets button
 
-				jQuery( '#toggle-mobile-sidebar' )
+				$( '#toggle-mobile-sidebar' )
 					.on( 'click', function( e ) {
 
 						// Processing
 
 							e.preventDefault();
 
-							var $this                 = jQuery( this ),
+							var $this                 = $( this ),
 							    mobileSidebarExpanded = $this.attr( 'aria-expanded' );
 
 							if ( 'false' == mobileSidebarExpanded ) {
@@ -391,7 +358,7 @@ jQuery( function() {
 		 * Food menu groups navigation
 		 */
 
-		 	var $aubergeFoodMenuGroupHeaders = jQuery( '.items-list .menu-group-header' ).length;
+		 	var $aubergeFoodMenuGroupHeaders = $( '.items-list .menu-group-header' ).length;
 
 			if ( 1 < $aubergeFoodMenuGroupHeaders ) {
 
@@ -399,17 +366,17 @@ jQuery( function() {
 
 				// Set class on items list
 
-					jQuery( '.items-list' )
+					$( '.items-list' )
 						.addClass( 'menu-group-count-' + $aubergeFoodMenuGroupHeaders );
 
 				// Set menu groups IDS
 
-					jQuery( '.menu-group-header' )
+					$( '.menu-group-header' )
 						.each( function( index, val ) {
 
 							// Helper variables
 
-								var $this      = jQuery( this ),
+								var $this      = $( this ),
 								    $thisTitle = $this.find( '> .menu-group-title' ).text(),
 								    $thisID    = $this.attr( 'id' );
 
@@ -427,7 +394,7 @@ jQuery( function() {
 
 				// Create a navigation
 
-					jQuery( '<div class="menu-group-nav-container"><ul id="menu-group-nav" class="menu-group-nav"></ul></div>' )
+					$( '<div class="menu-group-nav-container"><ul id="menu-group-nav" class="menu-group-nav"></ul></div>' )
 						.prependTo( '.items-list' );
 
 					for ( var $menuGroupID in $menuGroups ) {
@@ -435,7 +402,7 @@ jQuery( function() {
 
 						if ( $menuGroups.hasOwnProperty( $menuGroupID ) ) {
 
-							jQuery( '<li class="goto-' + $menuGroupID.replace( /(\r\n|\n|\r)/gm, '' ) + '"><a href="#' + $menuGroupID.replace( /(\r\n|\n|\r)/gm, '' ) + '">' + $menuGroups[ $menuGroupID ].replace( /(\r\n|\n|\r)/gm, '' ) + '</a></li>' )
+							$( '<li class="goto-' + $menuGroupID.replace( /(\r\n|\n|\r)/gm, '' ) + '"><a href="#' + $menuGroupID.replace( /(\r\n|\n|\r)/gm, '' ) + '">' + $menuGroups[ $menuGroupID ].replace( /(\r\n|\n|\r)/gm, '' ) + '</a></li>' )
 								.appendTo( '#menu-group-nav' );
 
 						}
@@ -444,12 +411,12 @@ jQuery( function() {
 
 				// Make navigation sticky once scrolled to it
 
-					jQuery( '#page' )
+					$( '#page' )
 						.imagesLoaded( function() {
 
 							// Helper variables
 
-								var $menuGroupNav    = jQuery( '#menu-group-nav' ),
+								var $menuGroupNav    = $( '#menu-group-nav' ),
 								    $menuGroupNavTop = $menuGroupNav.offset().top;
 
 
@@ -459,19 +426,19 @@ jQuery( function() {
 									.parent()
 									.css( { 'height' : $menuGroupNav.outerHeight() } );
 
-								jQuery( window )
+								$( window )
 									.scroll( function() {
 
 										// Processing
 
-											if ( jQuery( document ).scrollTop() > ( $menuGroupNavTop - jQuery( '#masthead' ).outerHeight() ) ) {
+											if ( $( document ).scrollTop() > ( $menuGroupNavTop - $( '#masthead' ).outerHeight() ) ) {
 
-												jQuery( 'body' )
+												$( 'body' )
 													.addClass( 'sticky-menu-group-nav' );
 
 											} else {
 
-												jQuery( 'body' )
+												$( 'body' )
 													.removeClass( 'sticky-menu-group-nav' );
 
 											}
@@ -490,14 +457,14 @@ jQuery( function() {
 		 * @link  https://wordpress.org/plugins/restaurant-reservations/
 		 */
 
-			var $aubergeRtbContact = jQuery( '.rtb-booking-form .contact' ).hide();
+			var $aubergeRtbContact = $( '.rtb-booking-form .contact' ).hide();
 
-			jQuery( '#rtb-time' )
+			$( '#rtb-time' )
 				.on( 'change', function() {
 
 					// Helper variables
 
-						var $this = jQuery( this );
+						var $this = $( this );
 
 
 					// Processing
@@ -524,7 +491,7 @@ jQuery( function() {
 		 * @link  http://wptheming.com/2013/04/jetpack-infinite-scroll-masonry/
 		 */
 
-			jQuery( document.body )
+			$( document.body )
 				.on( 'post-load', function() {
 
 					// Processing
@@ -533,9 +500,9 @@ jQuery( function() {
 						 * Masonry posts and footer widgets
 						 */
 
-							if ( jQuery().masonry ) {
+							if ( $().masonry ) {
 
-								var $postsContainers = jQuery( '.posts' );
+								var $postsContainers = $( '.posts' );
 
 								$postsContainers
 									.imagesLoaded( function() {
@@ -545,7 +512,7 @@ jQuery( function() {
 
 										setTimeout( function() {
 
-											jQuery( '#footer-widgets-container' )
+											$( '#footer-widgets-container' )
 												.masonry( 'reload' );
 
 										}, 600 );
@@ -560,4 +527,4 @@ jQuery( function() {
 
 
 
-} );
+} )( jQuery );

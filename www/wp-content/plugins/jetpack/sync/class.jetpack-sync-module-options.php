@@ -37,7 +37,16 @@ class Jetpack_Sync_Module_Options extends Jetpack_Sync_Module {
 		$this->update_options_whitelist();
 	}
 
-	function enqueue_full_sync_actions( $config ) {
+	public function set_late_default() {
+
+		/** This filter is already documented in json-endpoints/jetpack/class.wpcom-json-api-get-option-endpoint.php */
+		$late_options = apply_filters( 'jetpack_options_whitelist', array() );
+		if ( ! empty( $late_options ) && is_array( $late_options ) ) {
+			$this->options_whitelist = array_merge( $this->options_whitelist, $late_options );
+		}
+	}
+
+	function enqueue_full_sync_actions( $config, $max_items_to_enqueue, $state ) {
 		/**
 		 * Tells the client to sync all options to the server
 		 *
@@ -47,7 +56,8 @@ class Jetpack_Sync_Module_Options extends Jetpack_Sync_Module {
 		 */
 		do_action( 'jetpack_full_sync_options', true );
 
-		return 1; // The number of actions enqueued
+		// The number of actions enqueued, and next module state (true == done)
+		return array( 1, true );
 	}
 
 	public function estimate_full_sync_actions( $config ) {
@@ -75,8 +85,7 @@ class Jetpack_Sync_Module_Options extends Jetpack_Sync_Module {
 	}
 
 	function update_options_whitelist() {
-		/** This filter is already documented in json-endpoints/jetpack/class.wpcom-json-api-get-option-endpoint.php */
-		$this->options_whitelist = apply_filters( 'jetpack_options_whitelist', Jetpack_Sync_Defaults::$default_options_whitelist );
+		$this->options_whitelist = Jetpack_Sync_Defaults::get_options_whitelist();
 	}
 
 	function set_options_whitelist( $options ) {

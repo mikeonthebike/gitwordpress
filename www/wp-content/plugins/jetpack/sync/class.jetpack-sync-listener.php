@@ -3,6 +3,7 @@
 require_once dirname( __FILE__ ) . '/class.jetpack-sync-settings.php';
 require_once dirname( __FILE__ ) . '/class.jetpack-sync-queue.php';
 require_once dirname( __FILE__ ) . '/class.jetpack-sync-modules.php';
+require_once dirname( __FILE__ ) . '/class.jetpack-sync-actions.php';
 
 /**
  * This class monitors actions and logs them to the queue to be sent
@@ -34,7 +35,6 @@ class Jetpack_Sync_Listener {
 	}
 
 	private function init() {
-
 		$handler = array( $this, 'action_handler' );
 		$full_sync_handler = array( $this, 'full_sync_action_handler' );
 
@@ -166,6 +166,11 @@ class Jetpack_Sync_Listener {
 	}
 
 	function enqueue_action( $current_filter, $args, $queue ) {
+		// don't enqueue an action during the outbound http request - this prevents recursion
+		if ( Jetpack_Sync_Settings::is_sending() ) {
+			return;
+		}
+
 		/**
 		 * Modify or reject the data within an action before it is enqueued locally.
 		 *
@@ -192,13 +197,63 @@ class Jetpack_Sync_Listener {
 			ignore_user_abort( true );
 		}
 
-		$queue->add( array(
-			$current_filter,
-			$args,
-			get_current_user_id(),
-			microtime( true ),
-			Jetpack_Sync_Settings::is_importing()
-		) );
+		if (
+			'sync' === $queue->id ||
+			in_array(
+				$current_filter,
+				array(
+					'jetpack_full_sync_start',
+					'jetpack_full_sync_end',
+					'jetpack_full_sync_cancel'
+				)
+			)
+		) {
+			$queue->add( array(
+				$current_filter,
+				$args,
+				get_current_user_id(),
+				microtime( true ),
+				Jetpack_Sync_Settings::is_importing(),
+				$this->get_actor(),
+			) );
+		} else {
+			$queue->add( array(
+				$current_filter,
+				$args,
+				get_current_user_id(),
+				microtime( true ),
+				Jetpack_Sync_Settings::is_importing()
+			) );
+		}
+
+		// since we've added some items, let's try to load the sender so we can send them as quickly as possible
+		if ( ! Jetpack_Sync_Actions::$sender ) {
+			add_filter( 'jetpack_sync_sender_should_load', '__return_true' );
+			if ( did_action( 'init' ) ) {
+				Jetpack_Sync_Actions::add_sender_shutdown();
+			}
+		}
+	}
+	function get_actor() {
+		$current_user = wp_get_current_user();
+		$actor = array();
+		if ( $current_user ) {
+			$actor[ 'display_name' ] = $current_user->display_name;
+			$actor[ 'user_email' ] = $current_user->user_email;
+		}
+
+		if ( isset( $_SERVER['REMOTE_ADDR'] ) ) {
+			$actor[ 'ip' ] = $_SERVER['REMOTE_ADDR'];
+		}
+
+		$actor['is_cron'] = defined( 'DOING_CRON' ) ? DOING_CRON : false;
+		$actor['is_wp_admin'] = is_admin();
+		$actor['is_rest'] = defined( 'REST_API_REQUEST' ) ? REST_API_REQUEST : false;
+		$actor['is_xmlrpc'] = defined( 'XMLRPC_REQUEST' ) ? XMLRPC_REQUEST : false;
+		$actor['is_wp_rest'] = defined( 'REST_REQUEST' ) ? REST_REQUEST : false;
+		$actor['is_ajax'] = defined( 'DOING_AJAX' ) ? DOING_AJAX : false;
+
+		return $actor;
 	}
 
 	function set_defaults() {

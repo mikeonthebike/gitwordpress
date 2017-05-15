@@ -105,7 +105,7 @@
             $params = array_filter($params);
 
             $api_url = Cloudinary::cloudinary_api_url($action, $options);
-            $api_url .= "?" . preg_replace("/%5B\d+%5D/", "%5B%5D", http_build_query($params));
+            $api_url .= "?" . preg_replace("/%5B\d+%5D/", "%5B%5D", http_build_query($params)); 
             $ch = curl_init($api_url);
 
             $post_params = array();

@@ -6,7 +6,7 @@
  * @copyright  WebMan Design, Oliver Juhas
  *
  * @since    1.0
- * @version  2.1
+ * @version  2.2.0
  *
  * Contents:
  *
@@ -25,7 +25,7 @@
 	 * Set theme options array
 	 *
 	 * @since    1.0
-	 * @version  2.1
+	 * @version  2.2.0
 	 *
 	 * @param  array $options
 	 */
@@ -44,7 +44,7 @@
 							'id'                   => 'placeholder',
 							'type'                 => 'section',
 							'create_section'       => '',
-							'in_panel'             => esc_html_x( 'Theme', 'Customizer panel title.', 'auberge' ),
+							'in_panel'             => esc_html_x( 'Theme Options', 'Customizer panel title.', 'auberge' ),
 							'in_panel-description' => '<h3>' . esc_html__( 'Theme Credits', 'auberge' ) . '</h3>'
 								. '<p class="description">'
 								. sprintf(
@@ -72,7 +72,7 @@
 							'id'             => 'colors-accents',
 							'type'           => 'section',
 							'create_section' => sprintf( esc_html_x( 'Colors: %s', '%s = section name. Customizer section title.', 'auberge' ), esc_html_x( 'Accents', 'Customizer color section title', 'auberge' ) ),
-							'in_panel'       => esc_html_x( 'Theme', 'Customizer panel title.', 'auberge' ),
+							'in_panel'       => esc_html_x( 'Theme Options', 'Customizer panel title.', 'auberge' ),
 						),
 
 							100 . 'colors' . 10 . 100 => array(
@@ -94,7 +94,7 @@
 							'id'             => 'colors-header',
 							'type'           => 'section',
 							'create_section' => sprintf( esc_html_x( 'Colors: %s', '%s = section name. Customizer section title.', 'auberge' ), esc_html_x( 'Header', 'Customizer color section title', 'auberge' ) ),
-							'in_panel'       => esc_html_x( 'Theme', 'Customizer panel title.', 'auberge' ),
+							'in_panel'       => esc_html_x( 'Theme Options', 'Customizer panel title.', 'auberge' ),
 						),
 
 							100 . 'colors' . 20 . 100 => array(
@@ -129,7 +129,7 @@
 							'id'             => 'colors-content',
 							'type'           => 'section',
 							'create_section' => sprintf( esc_html_x( 'Colors: %s', '%s = section name. Customizer section title.', 'auberge' ), esc_html_x( 'Content', 'Customizer color section title', 'auberge' ) ),
-							'in_panel'       => esc_html_x( 'Theme', 'Customizer panel title.', 'auberge' ),
+							'in_panel'       => esc_html_x( 'Theme Options', 'Customizer panel title.', 'auberge' ),
 						),
 
 							100 . 'colors' . 30 . 200 => array(
@@ -171,7 +171,7 @@
 							'id'             => 'colors-footer',
 							'type'           => 'section',
 							'create_section' => sprintf( esc_html_x( 'Colors: %s', '%s = section name. Customizer section title.', 'auberge' ), esc_html_x( 'Footer', 'Customizer color section title', 'auberge' ) ),
-							'in_panel'       => esc_html_x( 'Theme', 'Customizer panel title.', 'auberge' ),
+							'in_panel'       => esc_html_x( 'Theme Options', 'Customizer panel title.', 'auberge' ),
 						),
 
 							100 . 'colors' . 90 . 100 => array(
@@ -209,7 +209,7 @@
 							'id'             => 'layout',
 							'type'           => 'section',
 							'create_section' => esc_html_x( 'Layout', 'Customizer section title.', 'auberge' ),
-							'in_panel'       => esc_html_x( 'Theme', 'Customizer panel title.', 'auberge' ),
+							'in_panel'       => esc_html_x( 'Theme Options', 'Customizer panel title.', 'auberge' ),
 						),
 
 							200 . 'layout' . 100 => array(
@@ -253,7 +253,7 @@
 							'id'             => 'fonts',
 							'type'           => 'section',
 							'create_section' => esc_html_x( 'Typography', 'Customizer section title.', 'auberge' ),
-							'in_panel'       => esc_html_x( 'Theme', 'Customizer panel title.', 'auberge' ),
+							'in_panel'       => esc_html_x( 'Theme Options', 'Customizer panel title.', 'auberge' ),
 						),
 
 							900 . 'typography' . 100 => array(
@@ -316,7 +316,7 @@
 							'id'             => 'others',
 							'type'           => 'section',
 							'create_section' => esc_html_x( 'Others', 'Customizer section title.', 'auberge' ),
-							'in_panel'       => esc_html_x( 'Theme', 'Customizer panel title.', 'auberge' ),
+							'in_panel'       => esc_html_x( 'Theme Options', 'Customizer panel title.', 'auberge' ),
 						),
 
 							950 . 'others' . 100 => array(
@@ -332,6 +332,31 @@
 								'type'  => 'checkbox',
 								'id'    => 'others-single-post-excerpt-disable',
 								'label' => esc_html__( 'Disable excerpt on single post page', 'auberge' ),
+							),
+
+
+
+					// Food Menu
+
+						960 . 'food_menu' => array(
+							'id'             => 'food-menu',
+							'type'           => 'section',
+							'create_section' => esc_html_x( 'Food Menu', 'Customizer section title.', 'auberge' ),
+							'in_panel'       => esc_html_x( 'Theme', 'Customizer panel title.', 'auberge' ),
+						),
+
+							960 . 'food_menu' . 100 => array(
+								'type'        => 'checkbox',
+								'id'          => 'disable-food-menu',
+								'label'       => esc_html__( 'Disable food menu', 'auberge' ),
+								'description' => esc_html__( 'In case you want to use the theme for a business website or a recipe blog (only available with Auberge Plus), you can disable the Food Menu functionality here.', 'auberge' ),
+							),
+
+							960 . 'food_menu' . 110 => array(
+								'type'        => 'checkbox',
+								'id'          => 'food-menu-section-archive-link-disable',
+								'label'       => esc_html__( 'Disable food section archive linking', 'auberge' ),
+								'description' => esc_html__( 'By default, all food menu section titles are linked to corresponding archive page.', 'auberge' ) . ' ' . esc_html__( 'You can override this behavior here.', 'auberge' ),
 							),
 
 

@@ -10,6 +10,11 @@ class Jetpack_XMLRPC_Server {
 	public $error = null;
 
 	/**
+	 * The current user
+	 */
+	public $user = null;
+
+	/**
 	 * Whitelist of the XML-RPC methods available to the Jetpack Server. If the
 	 * user is not authenticated (->login()) then the methods are never added,
 	 * so they will get a "does not exist" error.
@@ -20,9 +25,9 @@ class Jetpack_XMLRPC_Server {
 			'jetpack.verifyAction' => array( $this, 'verify_action' ),
 		);
 
-		$user = $this->login();
+		$this->user = $this->login();
 
-		if ( $user ) {
+		if ( $this->user ) {
 			$jetpack_methods = array_merge( $jetpack_methods, array(
 				'jetpack.testConnection'    => array( $this, 'test_connection' ),
 				'jetpack.testAPIUserCode'   => array( $this, 'test_api_user_code' ),
@@ -31,6 +36,7 @@ class Jetpack_XMLRPC_Server {
 				'jetpack.disconnectBlog'    => array( $this, 'disconnect_blog' ),
 				'jetpack.unlinkUser'        => array( $this, 'unlink_user' ),
 				'jetpack.syncObject'        => array( $this, 'sync_object' ),
+				'jetpack.idcUrlValidation'  => array( $this, 'validate_urls_for_idc_mitigation' ),
 			) );
 
 			if ( isset( $core_methods['metaWeblog.editPost'] ) ) {
@@ -47,7 +53,7 @@ class Jetpack_XMLRPC_Server {
 			 * @param array $core_methods Available core XML-RPC methods.
 			 * @param WP_User $user Information about a given WordPress user.
 			 */
-			$jetpack_methods = apply_filters( 'jetpack_xmlrpc_methods', $jetpack_methods, $core_methods, $user );
+			$jetpack_methods = apply_filters( 'jetpack_xmlrpc_methods', $jetpack_methods, $core_methods, $this->user );
 		}
 
 		/**
@@ -74,25 +80,7 @@ class Jetpack_XMLRPC_Server {
 	function authorize_xmlrpc_methods() {
 		return array(
 			'jetpack.remoteAuthorize' => array( $this, 'remote_authorize' ),
-			'jetpack.activateManage'    => array( $this, 'activate_manage' ),
 		);
-	}
-
-	function activate_manage( $request ) {
-		foreach( array( 'secret', 'state' ) as $required ) {
-			if ( ! isset( $request[ $required ] ) || empty( $request[ $required ] ) ) {
-				return $this->error( new Jetpack_Error( 'missing_parameter', 'One or more parameters is missing from the request.', 400 ) );
-			}
-		}
-		$verified = $this->verify_action( array( 'activate_manage', $request['secret'], $request['state'] ) );
-		if ( is_a( $verified, 'IXR_Error' ) ) {
-			return $verified;
-		}
-		$activated = Jetpack::activate_module( 'manage', false, false );
-		if ( false === $activated || ! Jetpack::is_module_active( 'manage' ) ) {
-			return $this->error( new Jetpack_Error( 'activation_error', 'There was an error while activating the module.', 500 ) );
-		}
-		return 'active';
 	}
 
 	function remote_authorize( $request ) {
@@ -124,12 +112,9 @@ class Jetpack_XMLRPC_Server {
 		if ( is_wp_error( $result ) ) {
 			return $this->error( $result );
 		}
-		// Creates a new secret, allowing someone to activate the manage module for up to 1 day after authorization.
-		$secrets = Jetpack::init()->generate_secrets( 'activate_manage', DAY_IN_SECONDS );
-		@list( $secret ) = explode( ':', $secrets );
+
 		$response = array(
 			'result' => $result,
-			'activate_manage' => $secret,
 		);
 		return $response;
 	}
@@ -217,7 +202,7 @@ class Jetpack_XMLRPC_Server {
 	/**
 	 * Wrapper for wp_authenticate( $username, $password );
 	 *
-	 * @return WP_User|IXR_Error
+	 * @return WP_User|bool
 	 */
 	function login() {
 		Jetpack::init()->require_jetpack_authentication();
@@ -240,7 +225,7 @@ class Jetpack_XMLRPC_Server {
 	/**
 	 * Returns the current error as an IXR_Error
 	 *
-	 * @return null|IXR_Error
+	 * @return bool|IXR_Error
 	 */
 	function error( $error = null ) {
 		if ( !is_null( $error ) ) {
@@ -266,7 +251,7 @@ class Jetpack_XMLRPC_Server {
 	/**
 	 * Just authenticates with the given Jetpack credentials.
 	 *
-	 * @return bool|IXR_Error
+	 * @return string The current Jetpack version number
 	 */
 	function test_connection() {
 		return JETPACK__VERSION;
@@ -294,7 +279,7 @@ class Jetpack_XMLRPC_Server {
 		error_log( "VERIFY: $verify" );
 		*/
 
-		$jetpack_token = Jetpack_Data::get_access_token( JETPACK_MASTER_USER );
+		$jetpack_token = Jetpack_Data::get_access_token( $user_id );
 
 		$api_user_code = get_user_meta( $user_id, "jetpack_json_api_$client_id", true );
 		if ( !$api_user_code ) {
@@ -320,6 +305,12 @@ class Jetpack_XMLRPC_Server {
 	* @return boolean
 	*/
 	function disconnect_blog() {
+
+		// For tracking
+		if ( ! empty( $this->user->ID ) ) {
+			wp_set_current_user( $this->user->ID );
+		}
+
 		Jetpack::log( 'disconnect' );
 		Jetpack::disconnect();
 
@@ -352,9 +343,23 @@ class Jetpack_XMLRPC_Server {
 	}
 
 	/**
+	 * Returns the home URL and site URL for the current site which can be used on the WPCOM side for
+	 * IDC mitigation to decide whether sync should be allowed if the home and siteurl values differ between WPCOM
+	 * and the remote Jetpack site.
+	 *
+	 * @return array
+	 */
+	function validate_urls_for_idc_mitigation() {
+		return array(
+			'home'    => get_home_url(),
+			'siteurl' => get_site_url(),
+		);
+	}
+
+	/**
 	 * Returns what features are available. Uses the slug of the module files.
 	 *
-	 * @return array|IXR_Error
+	 * @return array
 	 */
 	function features_available() {
 		$raw_modules = Jetpack::get_available_modules();
@@ -369,7 +374,7 @@ class Jetpack_XMLRPC_Server {
 	/**
 	 * Returns what features are enabled. Uses the slug of the modules files.
 	 *
-	 * @return array|IXR_Error
+	 * @return array
 	 */
 	function features_enabled() {
 		$raw_modules = Jetpack::get_active_modules();
