@@ -1,13 +1,13 @@
 <?php
 /**
- * This file defines some constant required for SQLite Integration.
+ * This file defines some constant required for PDO Integration.
  *
  * This file must be placed in the directory wordpress/wp-content/db.php.
  * WordPress loads this file automatically.
  *
- * @version 1.8.1
- * @package SQLite Integration
- * @author Kojima Toshiyasu
+ * @version 1.0.0
+ * @package PDO Integration
+ * @author Rich Hildred based on the work of Kojima Toshiyasu
  *
  */
 if (!defined('ABSPATH')) { // Oh, you are not WordPress!
@@ -17,14 +17,14 @@ if (!defined('ABSPATH')) { // Oh, you are not WordPress!
 
 /*
  * USE_MYSQL is a directive for using MySQL for database.
- * If you want to change the database from SQLite to MySQL or from MySQL to SQLite,
+ * If you want to change the database from PDO to MySQL or from MySQL to PDO,
  * the line below in the wp-config.php will enable you to use MySQL.
  *
  * <code>
  * define('USE_MYSQL', true);
  * </code>
  *
- * If you want to use SQLite, the line below will do. Or simply removing the line will
+ * If you want to use PDO, the line below will do. Or simply removing the line will
  * be enough.
  *
  * <code>
@@ -67,9 +67,6 @@ if (!extension_loaded('pdo')) {
 	pdo_log_error('PHP PDO Extension is not loaded.', 'Your PHP installation appears to be missing the PDO extension which is required for this version of WordPress.');
 }
 
-if (!extension_loaded('pdo_sqlite')) {
-	pdo_log_error('PDO Driver for SQLite is missing.', 'Your PHP installtion appears not to have the right PDO drivers loaded. These are required for this version of WordPress and the type of database you have specified.');
-}
 
 /*
  * Notice:
@@ -80,15 +77,15 @@ if (!extension_loaded('pdo_sqlite')) {
  */
 
 /*
- * PDODIR is SQLite Integration installed directory.
+ * PDODIR is Integration installed directory.
  */
 if (defined('WP_PLUGIN_DIR')) {
-	define('PDODIR', WP_PLUGIN_DIR . '/sqlite-integration/');
+	define('PDODIR', WP_PLUGIN_DIR . '/pdo-integration/');
 } else {
 	if (defined('WP_CONTENT_DIR')) {
-		define('PDODIR', WP_CONTENT_DIR . '/plugins/sqlite-integration/');
+		define('PDODIR', WP_CONTENT_DIR . '/plugins/pdo-integration/');
 	} else {
-		define('PDODIR', ABSPATH . 'wp-content/plugins/sqlite-integration/');
+		define('PDODIR', ABSPATH . 'wp-content/plugins/pdo-integration/');
 	}
 }
 /*
@@ -112,10 +109,10 @@ if (defined('DB_DIR')) {
  * FQDB is a database file name. If DB_FILE is defined, it is used
  * as FQDB.
  */
-if ( defined('DB_FILE' )) {
-	define('FQDB', FQDBDIR . DB_FILE);
+if ( defined('DB_DSN' )) {
+	define('FQDB', DB_DSN);
 } else {
-	define('FQDB', FQDBDIR . '.ht.sqlite');
+	define('FQDB', "sqlite:" . FQDBDIR . '.ht.sqlite');
 }
 /*
  * UDF_FILE is a file that contains user defined functions.

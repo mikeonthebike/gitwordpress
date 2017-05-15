@@ -173,7 +173,7 @@ class PDOEngine extends PDO {
         if (!is_file(FQDB)) {
             $this->prepare_directory();
         }
-		$dsn = 'sqlite:' . FQDB;
+		$dsn = FQDB;
 		if (isset($GLOBALS['@pdo'])) {
 			$this->pdo = $GLOBALS['@pdo'];
 		} else {
