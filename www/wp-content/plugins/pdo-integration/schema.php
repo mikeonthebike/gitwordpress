@@ -27,7 +27,7 @@ function make_db_sqlite() {
 	$queries       = explode (";", $table_schemas);
 	$query_parser  = new CreateQuery();
 	try {
-		$pdo = new PDO('sqlite:'.FQDB, null, null, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+		$pdo = new PDO(FQDB, null, null, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 	} catch (PDOException $err) {
 		$err_data = $err->errorInfo;
 		$message  = 'Database connection error!<br />';
@@ -39,19 +39,24 @@ function make_db_sqlite() {
 		$pdo->beginTransaction();
 		foreach ($queries as $query) {
 			$query = trim($query);
+			echo $query . "<br />";
 			if (empty($query))
 				continue;
 			$rewritten_query = $query_parser->rewrite_query($query);
+
 			if (is_array($rewritten_query)) {
 				$table_query   = array_shift($rewritten_query);
 				$index_queries = $rewritten_query;
 				$table_query   = trim($table_query);
+				var_dump( $table_query);
+				echo "<br />";
 				$pdo->exec($table_query);
 				//foreach($rewritten_query as $single_query) {
 				//  $single_query = trim($single_query);
 				//  $pdo->exec($single_query);
 				//}
 			} else {
+				echo $rewritten_query . "<br />";
 				$rewritten_query = trim($rewritten_query);
 				$pdo->exec($rewritten_query);
 			}

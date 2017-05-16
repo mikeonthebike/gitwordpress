@@ -6,8 +6,8 @@
  * loaded. PHP version is checked in the db.php and that will load the apropriate
  * one.
  *
- * @package SQLite Integration
- * @author Kojima Toshiyasu
+ * @package PDO Integration
+ * @author Rich Hildred based on work of Kojima Toshiyasu
  *
  */
 
@@ -37,8 +37,11 @@ class PDOSQLiteUDFS {
 		if (!$pdo) {
 			wp_die('Database is not initialized.', 'Database Error');
 		}
-		foreach ($this->functions as $f=>$t) {
-			$pdo->sqliteCreateFunction($f, array($this, $t));
+		if (strpos(FQDB, 'sqlite:') !== false){
+
+			foreach ($this->functions as $f=>$t) {
+				$pdo->sqliteCreateFunction($f, array($this, $t));
+			}
 		}
 	}
 	/**

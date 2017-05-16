@@ -36,7 +36,10 @@ define('SECURE_AUTH_SALT', 'put your unique phrase here');
 define('LOGGED_IN_SALT',   'put your unique phrase here');
 define('NONCE_SALT',       'put your unique phrase here');
 
-/**#@-*/
+/** DSN setup */
+
+define('DB_NAME', 'rhildred' );
+define('DB_DSN', 'pgsql:dbname=' . DB_NAME . ';user=rhildred;password=Secret6503;host=localhost');
 
 /**
  * WordPress Database Table prefix.
