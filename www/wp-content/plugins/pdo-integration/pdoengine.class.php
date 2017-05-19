@@ -247,30 +247,17 @@ class PDOEngine extends PDO {
 	 * @return boolean
 	 */
 	private function init() {
-		if (strpos(FQDB, 'sqlite:') !== false){
-			if (defined('WP_INSTALLING') && WP_INSTALLING) {
-				$statement = $this->pdo->query("SELECT COUNT(*) FROM sqlite_master WHERE type='table'");
-				$number_of_tables = $statement->fetchColumn(0);
-				$statement = null;
-				if ($number_of_tables == 0) $this->make_sqlite_tables();
-			}
-			if (version_compare($this->get_sqlite_version(), '3.7.11', '>=')) {
-				$this->can_insert_multiple_rows = true;
-			}
-			$statement = $this->pdo->query('PRAGMA foreign_keys');
-			if ($statement->fetchColumn(0) == '0') $this->pdo->query('PRAGMA foreign_keys = ON');
-		}elseif(strpos(FQDB, 'pgsql:') !== false){
-			if (defined('WP_INSTALLING') && WP_INSTALLING) {
-				$statement = $this->pdo->prepare("select count(*) from information_schema.tables where table_schema = :tname;");
-				$statement->execute(array(DB_NAME));
-				$number_of_tables = $statement->fetchColumn(0);
-				$statement = null;
-				if ($number_of_tables == 0){
-					require_once PDODIR . 'installpgsql.php';
-				}
-			}
-			
+		if (defined('WP_INSTALLING') && WP_INSTALLING) {
+			$statement = $this->pdo->query("SELECT COUNT(*) FROM sqlite_master WHERE type='table'");
+			$number_of_tables = $statement->fetchColumn(0);
+			$statement = null;
+			if ($number_of_tables == 0) $this->make_sqlite_tables();
 		}
+		if (version_compare($this->get_sqlite_version(), '3.7.11', '>=')) {
+			$this->can_insert_multiple_rows = true;
+		}
+		$statement = $this->pdo->query('PRAGMA foreign_keys');
+		if ($statement->fetchColumn(0) == '0') $this->pdo->query('PRAGMA foreign_keys = ON');
 	}
 
 	/**
